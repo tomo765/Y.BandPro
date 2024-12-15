@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e353a5752eadb24394c6ad85a28e30e, type: 3}
+  m_Name: InstrumentSprite
+  m_EditorClassIdentifier: 
+  m_WindSprite: {fileID: -6464442389448585498, guid: 82065d9aeb1644b4f8e34822776e5fad, type: 3}
+  m_PercussionSprite: {fileID: -4751088192099734207, guid: 82065d9aeb1644b4f8e34822776e5fad, type: 3}
+  m_StringsSprite: {fileID: 524147800069975738, guid: 82065d9aeb1644b4f8e34822776e5fad, type: 3}
+  m_KeyboardSprite: {fileID: -243662011548832051, guid: 82065d9aeb1644b4f8e34822776e5fad, type: 3}
+  m_GoldSprite: {fileID: 7983932609537439812, guid: 82065d9aeb1644b4f8e34822776e5fad, type: 3}

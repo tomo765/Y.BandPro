@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29cdbaf06035cd429f10fb692ab78ad, type: 3}
+  m_Name: YokaiInfo
+  m_EditorClassIdentifier: 
+  m_StandingSprite: {fileID: -2273543648778204427, guid: 032889ba5ca99f24991fef0e2dd3b6d3, type: 3}
+  m_PixelSprite: {fileID: 350648809194350333, guid: ee46d9ee29f9de04a8c110bc4e3dfbab, type: 3}
+  m_Rarity: 3
+  m_GenreType: 0
+  m_InstrumentType: 0
+  m_Cost:
+    m_Strings: 1
+    m_Percussion: 3
+    m_Wind: 0
+    m_Keyboard: 2
+  m_Discount:
+    m_Strings: 1
+    m_Percussion: 1
+    m_Wind: 0
+    m_Keyboard: 0
+  m_PerformanceStatus:
+    m_Dice1: 2
+    m_Dice2: 2
+    m_Dice3: 3
+    m_Dice4: 5

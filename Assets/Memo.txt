@@ -1,0 +1,10 @@
+------
+
+[serializeField] private InputActionAsset m_Asset;
+playerInput.actions = m_Asset;
+
+この方法でアタッチしたら複数のデバイスから同時に同じ入力がされた判定が出るから使わない。
+
+プレハブにアタッチされている状態のものを生成すれば問題なく使える。
+
+------
