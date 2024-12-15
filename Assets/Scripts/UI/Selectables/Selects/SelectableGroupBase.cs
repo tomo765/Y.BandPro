@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Nakaya.UI
 {
     /// <summary> ISelectableUI のオブジェクトを管理するコンテナUIのベースクラス </summary>
-    [RequireComponent(typeof(Selector))]
+    [RequireComponent(typeof(UISelector))]
     public abstract class SelectableGroupBase : MonoBehaviour
     {
         /// <summary> 継承先のクラスで押したボタンに応じて選択する ISelectableUI を変更するために使う</summary>

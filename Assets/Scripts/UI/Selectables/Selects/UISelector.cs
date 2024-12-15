@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Selector : MonoBehaviour
+public class UISelector : MonoBehaviour
 {
     private SelectableGroupBase m_SelectGroup;
     private ISelectableUI m_CurrentSelect;
@@ -12,19 +12,19 @@ public class Selector : MonoBehaviour
 
     private PlayerInputReceiver m_SelectPlayer;
 
-    void Start()
+    private void OnEnable()
     {
         m_SelectGroup = GetComponent<SelectableGroupBase>();
-
-        m_CurrentSelect = m_SelectGroup.GetInitSelect();
-        m_CurrentSelect.Select();
-
+        InitalizeSelect();
+    }
+    void Start()
+    {
         Init();
     }
 
     private void Init()
     {
-        m_SelectPlayer = DeviceConnectUpdater.Instance.ReceiveInputs.GetPlayerInputAs<Gamepad>()[0].GetComponent<PlayerInputReceiver>();
+        SetSelectPlayer(DeviceConnectUpdater.Instance.ReceiveInputs.GetPlayerInputAs<Gamepad>()[0].GetComponent<PlayerInputReceiver>());
     }
 
     void Update()
@@ -40,21 +40,37 @@ public class Selector : MonoBehaviour
         {
             m_CurrentSelect.Press();
         }
-        //else
-        //{
-        //    m_CurrentSelect.Release();
-        //}
     }
 
     private void Reselect(string dir)
     {
         if(!m_SelectPlayer.GetButtonDown(dir)) { return; }
-        if (!m_SelectGroup.TryReselectUI(dir, m_CurrentSelect, out ISelectableUI nextUI)) { return; }
+        if(!m_SelectGroup.TryReselectUI(dir, m_CurrentSelect, out ISelectableUI nextUI)) { return; }
 
         m_PrevSelect = m_CurrentSelect;
         m_CurrentSelect = nextUI;
 
         m_PrevSelect.Deselect();
         m_CurrentSelect.Select();
+    }
+
+    private void InitalizeSelect()
+    {
+        m_CurrentSelect = m_SelectGroup.GetInitSelect();
+        m_CurrentSelect.Select();
+    }
+
+    public void SetNewSelectGroup(SelectableGroupBase newGroup)
+    {
+        m_CurrentSelect.Deselect();
+        m_PrevSelect = null;
+
+        m_SelectGroup = newGroup;
+        m_CurrentSelect = newGroup.GetInitSelect();
+    }
+
+    public void SetSelectPlayer(PlayerInputReceiver newSelectPlayer)
+    {
+        m_SelectPlayer = newSelectPlayer;
     }
 }

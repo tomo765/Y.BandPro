@@ -7,9 +7,9 @@ namespace Nakaya.UI
     [RequireComponent(typeof(RectTransform), typeof(Image))]
     public abstract class CommonSelectableUI : MonoBehaviour, ISelectableUI
     {
-        protected Image m_Image;
         protected Action m_OnPress;
 
+        [SerializeField] protected Image m_Image;
         [SerializeField] protected ImageSetting m_Default;
         [SerializeField] protected ImageSetting m_Select;
         [SerializeField] protected ImageSetting m_Press;
@@ -36,6 +36,7 @@ namespace Nakaya.UI
             m_Image.sprite = m_Press.Sprite;
             m_Image.color = m_Press.Color;
 
+            Deselect();
             m_OnPress?.Invoke();
         }
         public virtual void Release()
@@ -54,7 +55,7 @@ namespace Nakaya.UI
 #endif
         [SerializeField] private Sprite m_Sprite;
 
-[SerializeField] private Color m_Color = Color.white;
+        [SerializeField] private Color m_Color = Color.white;
 
         public Sprite Sprite => m_Sprite;
         public Color Color => m_Color;

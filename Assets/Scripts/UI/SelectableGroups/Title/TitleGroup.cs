@@ -18,6 +18,8 @@ public class TitleGroup : SelectableGroupBase
     {
         SetTitleButton();
         SetSettingsButton();
+
+        //UISelector.Instance.SetNewSelectGroup(this);
     }
 
     private void SetTitleButton()
