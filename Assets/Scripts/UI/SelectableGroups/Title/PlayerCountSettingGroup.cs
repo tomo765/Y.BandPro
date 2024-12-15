@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerConnectGroup : SelectableGroupBase
+public class PlayerCountSettingGroup : SelectableGroupBase
 {
     private ReselectNodeContainer m_Player2Reselect;
     private ReselectNodeContainer m_Player3Reselect;
@@ -37,6 +37,7 @@ public class PlayerConnectGroup : SelectableGroupBase
         m_Player2Button.AddPressAction(() =>
         {
             Debug.Log("2人プレイ");
+            GameManager.SetPlayerSetting(new PlayerSetting(2));
         });
 
         m_Player2Reselect = new ReselectNodeContainer(right : new(m_Player3Button), left : new(m_Player4Button), bottom : new(m_ReturnTitleButton));
@@ -48,6 +49,7 @@ public class PlayerConnectGroup : SelectableGroupBase
         m_Player3Button.AddPressAction(() =>
         {
             Debug.Log("3人プレイ");
+            GameManager.SetPlayerSetting(new PlayerSetting(3));
         });
 
         m_Player3Reselect = new ReselectNodeContainer(right: new(m_Player4Button), left: new(m_Player2Button), bottom: new(m_ReturnTitleButton));
@@ -59,6 +61,7 @@ public class PlayerConnectGroup : SelectableGroupBase
         m_Player4Button.AddPressAction(() =>
         {
             Debug.Log("4人プレイ");
+            GameManager.SetPlayerSetting(new PlayerSetting(4));
         });
 
         m_Player4Reselect = new ReselectNodeContainer(right: new(m_Player2Button), left: new(m_Player3Button), bottom: new(m_ReturnTitleButton));

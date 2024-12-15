@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UISelector : MonoBehaviour
+public class UISelector : SingletonBehaviour<UISelector>
 {
     private SelectableGroupBase m_SelectGroup;
     private ISelectableUI m_CurrentSelect;
@@ -12,11 +12,6 @@ public class UISelector : MonoBehaviour
 
     private PlayerInputReceiver m_SelectPlayer;
 
-    private void OnEnable()
-    {
-        m_SelectGroup = GetComponent<SelectableGroupBase>();
-        InitalizeSelect();
-    }
     void Start()
     {
         Init();
@@ -54,19 +49,14 @@ public class UISelector : MonoBehaviour
         m_CurrentSelect.Select();
     }
 
-    private void InitalizeSelect()
-    {
-        m_CurrentSelect = m_SelectGroup.GetInitSelect();
-        m_CurrentSelect.Select();
-    }
-
     public void SetNewSelectGroup(SelectableGroupBase newGroup)
     {
-        m_CurrentSelect.Deselect();
+        m_CurrentSelect?.Deselect();
         m_PrevSelect = null;
 
         m_SelectGroup = newGroup;
         m_CurrentSelect = newGroup.GetInitSelect();
+        m_CurrentSelect.Select();
     }
 
     public void SetSelectPlayer(PlayerInputReceiver newSelectPlayer)
