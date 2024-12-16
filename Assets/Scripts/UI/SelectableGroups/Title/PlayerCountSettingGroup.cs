@@ -30,6 +30,8 @@ public class PlayerCountSettingGroup : SelectableGroupBase
         SetPlayer3Button();
         SetPlayer4Button();
         SetReturnTitleButton();
+
+        UnselectFireActions = new UnselectFireAction(onCancel : () => m_ReturnTitleButton.Press());
     }
 
     private void SetPlayer2Button()
