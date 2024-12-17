@@ -10,7 +10,7 @@ public class UISelector : SingletonBehaviour<UISelector>
     private ISelectableUI m_CurrentSelect;
     private ISelectableUI m_PrevSelect;
 
-    private PlayerInputReceiver m_SelectPlayer;
+    private PlayerInputObserver m_SelectPlayer;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class UISelector : SingletonBehaviour<UISelector>
 
     private void Init()
     {
-        SetSelectPlayer(DeviceConnectUpdater.Instance.ReceiveInputs.GetPlayerInputAs<Gamepad>()[0].GetComponent<PlayerInputReceiver>());
+        SetSelectPlayer(DeviceConnectUpdater.Instance.ReceiveInputs.GetPlayerInputAs<Gamepad>()[0].GetComponent<PlayerInputObserver>());
     }
 
     void Update()
@@ -59,7 +59,7 @@ public class UISelector : SingletonBehaviour<UISelector>
         m_CurrentSelect.Select();
     }
 
-    public void SetSelectPlayer(PlayerInputReceiver newSelectPlayer)
+    public void SetSelectPlayer(PlayerInputObserver newSelectPlayer)
     {
         m_SelectPlayer = newSelectPlayer;
     }

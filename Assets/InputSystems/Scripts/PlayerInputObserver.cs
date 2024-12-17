@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 /// <summary> プレイヤーの入力を受け取るクラス </summary>
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerInputReceiver : MonoBehaviour
+public class PlayerInputObserver : MonoBehaviour
 {
     [SerializeField] private PlayerInput m_PlayerInput;
 
