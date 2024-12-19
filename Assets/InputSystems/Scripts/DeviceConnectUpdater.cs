@@ -87,4 +87,7 @@ public static class InputDeviceExtension
 
     public static PlayerInput[] GetPlayerInputAs<T>(this Dictionary<InputDevice, PlayerInput> receiver) where T : InputDevice
         => receiver.Where(keyValues => keyValues.Value.devices[0] is T).Select(keyValues => keyValues.Value).ToArray();
+
+    public static PlayerInputObserver[] GetObservers(this PlayerInput[] inputs)
+         => inputs.Select(input => input.GetComponent<PlayerInputObserver>()).ToArray();
 }

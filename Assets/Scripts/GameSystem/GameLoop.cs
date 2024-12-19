@@ -19,6 +19,12 @@ public class GameLoop
     public int CurrentWeek => m_CurrentWeek;
 
 
+    /// <summary> 順番決め + 星1の手札を順番事に決める </summary>
+    public void Initialize()
+    {
+
+    }
+
     public void PlayPrepare(PlayerManager player)
     {
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerManager
 {
-    private PlayerIndex m_Index;
-    private BandGroup m_Group;
+    public readonly PlayerIndex Index;
+    public readonly PlayerInputObserver Observer;
 }
 
 public enum PlayerIndex
