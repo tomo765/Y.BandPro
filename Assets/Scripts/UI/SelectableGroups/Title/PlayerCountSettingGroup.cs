@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class PlayerCountSettingGroup : SelectableGroupBase
 {
-    private ReselectNodeContainer m_Player2Reselect;
-    private ReselectNodeContainer m_Player3Reselect;
-    private ReselectNodeContainer m_Player4Reselect;
-    private ReselectNodeContainer m_ReturnTitleReselect;
-
     [SerializeField] private CommonSelectableButton m_Player2Button;
     [SerializeField] private CommonSelectableButton m_Player3Button;
     [SerializeField] private CommonSelectableButton m_Player4Button;
@@ -39,8 +34,8 @@ public class PlayerCountSettingGroup : SelectableGroupBase
             Debug.Log("2人プレイ");
         });
 
-        m_Player2Reselect = new ReselectNodeContainer(right : new(m_Player3Button), left : new(m_Player4Button), bottom : new(m_ReturnTitleButton));
-        m_Selectables.Add(m_Player2Button, m_Player2Reselect);
+        var Player2Reselect = new ReselectNodeContainer(right : new(m_Player3Button), left : new(m_Player4Button), bottom : new(m_ReturnTitleButton));
+        m_Selectables.Add(m_Player2Button, Player2Reselect);
     }
 
     private void SetPlayer3Button()
@@ -50,8 +45,8 @@ public class PlayerCountSettingGroup : SelectableGroupBase
             Debug.Log("3人プレイ");
         });
 
-        m_Player3Reselect = new ReselectNodeContainer(right: new(m_Player4Button), left: new(m_Player2Button), bottom: new(m_ReturnTitleButton));
-        m_Selectables.Add(m_Player3Button, m_Player3Reselect);
+        var Player3Reselect = new ReselectNodeContainer(right: new(m_Player4Button), left: new(m_Player2Button), bottom: new(m_ReturnTitleButton));
+        m_Selectables.Add(m_Player3Button, Player3Reselect);
     }
 
     private void SetPlayer4Button()
@@ -61,8 +56,8 @@ public class PlayerCountSettingGroup : SelectableGroupBase
             Debug.Log("4人プレイ");
         });
 
-        m_Player4Reselect = new ReselectNodeContainer(right: new(m_Player2Button), left: new(m_Player3Button), bottom: new(m_ReturnTitleButton));
-        m_Selectables.Add(m_Player4Button, m_Player4Reselect);
+        var Player4Reselect = new ReselectNodeContainer(right: new(m_Player2Button), left: new(m_Player3Button), bottom: new(m_ReturnTitleButton));
+        m_Selectables.Add(m_Player4Button, Player4Reselect);
     }
 
     private void SetReturnTitleButton()
@@ -72,7 +67,7 @@ public class PlayerCountSettingGroup : SelectableGroupBase
             Debug.Log("タイトルに戻る");
         });
 
-        m_ReturnTitleReselect = new ReselectNodeContainer(top: new(m_Player2Button));
-        m_Selectables.Add(m_ReturnTitleButton, m_ReturnTitleReselect);
+        var ReturnTitleReselect = new ReselectNodeContainer(top: new(m_Player2Button));
+        m_Selectables.Add(m_ReturnTitleButton, ReturnTitleReselect);
     }
 }

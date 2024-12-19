@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class SettingGroup : SelectableGroupBase
 {
-    private ReselectNodeContainer m_ReturnTitleReselect;
-    private ReselectNodeContainer m_ExitReselect;
-
     [SerializeField] private CommonSelectableButton m_ReturnTitleButton;
     [SerializeField] private CommonSelectableButton m_ExitButton;
 
@@ -28,8 +25,8 @@ public class SettingGroup : SelectableGroupBase
             Debug.Log("Return to Title");
         });
 
-        m_ReturnTitleReselect = new ReselectNodeContainer(top: new ReselectNode(m_ExitButton), bottom: new ReselectNode(m_ExitButton));
-        m_Selectables.Add(m_ReturnTitleButton, m_ReturnTitleReselect);
+        var ReturnTitleReselect = new ReselectNodeContainer(top: new ReselectNode(m_ExitButton), bottom: new ReselectNode(m_ExitButton));
+        m_Selectables.Add(m_ReturnTitleButton, ReturnTitleReselect);
     }
 
     private void SetExitButton()
@@ -45,8 +42,8 @@ Application.Quit();
 #endif
         });
 
-        m_ExitReselect = new ReselectNodeContainer(top: new ReselectNode(m_ReturnTitleButton), bottom: new ReselectNode(m_ReturnTitleButton));
-        m_Selectables.Add(m_ExitButton, m_ExitReselect);
+        var ExitReselect = new ReselectNodeContainer(top: new ReselectNode(m_ReturnTitleButton), bottom: new ReselectNode(m_ReturnTitleButton));
+        m_Selectables.Add(m_ExitButton, ExitReselect);
     }
 
 

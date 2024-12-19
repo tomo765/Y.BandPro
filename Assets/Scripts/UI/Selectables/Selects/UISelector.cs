@@ -39,6 +39,7 @@ public class UISelector : SingletonBehaviour<UISelector>
 
     private void Reselect(string dir)
     {
+        if (m_SelectGroup == null) { return; }
         if(!m_SelectPlayer.GetButtonDown(dir)) { return; }
         if(!m_SelectGroup.TryReselectUI(dir, m_CurrentSelect, out ISelectableUI nextUI)) { return; }
 
@@ -55,8 +56,8 @@ public class UISelector : SingletonBehaviour<UISelector>
         m_PrevSelect = null;
 
         m_SelectGroup = newGroup;
-        m_CurrentSelect = newGroup.GetInitSelect();
-        m_CurrentSelect.Select();
+        m_CurrentSelect = newGroup?.GetInitSelect();
+        m_CurrentSelect?.Select();
     }
 
     public void SetSelectPlayer(PlayerInputObserver newSelectPlayer)

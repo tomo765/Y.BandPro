@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class TitleGroup : SelectableGroupBase
 {
-    private ReselectNodeContainer m_PlayGameReselect;
-    private ReselectNodeContainer m_SettingsReselect;
-
     [SerializeField] private CommonSelectableButton m_PlayGameButton;
     [SerializeField] private CommonSelectableButton m_SettingsButton;
 
@@ -27,8 +24,8 @@ public class TitleGroup : SelectableGroupBase
             Debug.Log("Play");
         });
 
-        m_PlayGameReselect = new ReselectNodeContainer(top: new ReselectNode(m_SettingsButton), bottom: new ReselectNode(m_SettingsButton));
-        m_Selectables.Add(m_PlayGameButton, m_PlayGameReselect);
+        var PlayGameReselect = new ReselectNodeContainer(top: new ReselectNode(m_SettingsButton), bottom: new ReselectNode(m_SettingsButton));
+        m_Selectables.Add(m_PlayGameButton, PlayGameReselect);
     }
 
     private void SetSettingsButton()
@@ -38,7 +35,7 @@ public class TitleGroup : SelectableGroupBase
             Debug.Log("Setting");
         });
 
-        m_SettingsReselect = new ReselectNodeContainer(top: new ReselectNode(m_PlayGameButton), bottom: new ReselectNode(m_PlayGameButton));
-        m_Selectables.Add(m_SettingsButton, m_SettingsReselect);
+        var SettingsReselect = new ReselectNodeContainer(top: new ReselectNode(m_PlayGameButton), bottom: new ReselectNode(m_PlayGameButton));
+        m_Selectables.Add(m_SettingsButton, SettingsReselect);
     }
 }
