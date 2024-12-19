@@ -20,5 +20,7 @@ namespace Nakaya.UI
             next = m_Selectables[current].Reselect(dir);
             return next != null;
         }
+
+        public void SetActive(bool b) => gameObject.SetActive(b);
     }
 }

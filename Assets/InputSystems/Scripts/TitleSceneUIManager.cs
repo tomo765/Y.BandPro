@@ -24,11 +24,11 @@ public class TitleSceneUIManager : MonoBehaviour
 
     private void SetGroupsActive()
     {
-        m_TitleGroup.gameObject.SetActive(true);
-        m_SettingGroup.gameObject.SetActive(false);
-        m_PlayerConnectGroup.gameObject.SetActive(false);
-        m_ControllerRegisterGroup.gameObject.SetActive(false);
-        m_ConfirmPlayerGroup.gameObject.SetActive(false);
+        m_TitleGroup.SetActive(true);
+        m_SettingGroup.SetActive(false);
+        m_PlayerConnectGroup.SetActive(false);
+        m_ControllerRegisterGroup.SetActive(false);
+        m_ConfirmPlayerGroup.SetActive(false);
     }
 
     private void SetTitleGroup()
@@ -37,16 +37,16 @@ public class TitleSceneUIManager : MonoBehaviour
         {
             UISelector.Instance.SetNewSelectGroup(m_PlayerConnectGroup);
 
-            m_TitleGroup.gameObject.SetActive(false);
-            m_PlayerConnectGroup.gameObject.SetActive(true);
+            m_TitleGroup.SetActive(false);
+            m_PlayerConnectGroup.SetActive(true);
         });
 
         m_TitleGroup.SettingsButton.AddPressAction(() =>
         {
             UISelector.Instance.SetNewSelectGroup(m_SettingGroup);
 
-            m_TitleGroup.gameObject.SetActive(false);
-            m_SettingGroup.gameObject.SetActive(true);
+            m_TitleGroup.SetActive(false);
+            m_SettingGroup.SetActive(true);
         });
     }
 
@@ -56,44 +56,44 @@ public class TitleSceneUIManager : MonoBehaviour
         {
             UISelector.Instance.SetNewSelectGroup(m_TitleGroup);
 
-            m_SettingGroup.gameObject.SetActive(false);
-            m_TitleGroup.gameObject.SetActive(true);
+            m_SettingGroup.SetActive(false);
+            m_TitleGroup.SetActive(true);
         });
     }
 
     private void SetPlayerConnectGroup()
     {
-        m_PlayerConnectGroup.Player2Button.AddPressAction(() =>
+        m_PlayerConnectGroup.Player2Button.AddPressAction(() => 
         {
             UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
 
             m_ControllerRegisterGroup.SetPlayerCount(2);
-            m_PlayerConnectGroup.gameObject.SetActive(false);
-            m_ControllerRegisterGroup.gameObject.SetActive(true);
+            m_PlayerConnectGroup.SetActive(false);
+            m_ControllerRegisterGroup.SetActive(true);
         });
         m_PlayerConnectGroup.Player3Button.AddPressAction(() =>
         {
             UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
 
             m_ControllerRegisterGroup.SetPlayerCount(3);
-            m_PlayerConnectGroup.gameObject.SetActive(false);
-            m_ControllerRegisterGroup.gameObject.SetActive(true);
+            m_PlayerConnectGroup.SetActive(false);
+            m_ControllerRegisterGroup.SetActive(true);
         });
         m_PlayerConnectGroup.Player4Button.AddPressAction(() =>
         {
             UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
 
             m_ControllerRegisterGroup.SetPlayerCount(4);
-            m_PlayerConnectGroup.gameObject.SetActive(false);
-            m_ControllerRegisterGroup.gameObject.SetActive(true);
+            m_PlayerConnectGroup.SetActive(false);
+            m_ControllerRegisterGroup.SetActive(true);
         });
 
         m_PlayerConnectGroup.ReturnTitleButton.AddPressAction(() =>
         {
             UISelector.Instance.SetNewSelectGroup(m_TitleGroup);
 
-            m_PlayerConnectGroup.gameObject.SetActive(false);
-            m_TitleGroup.gameObject.SetActive(true);
+            m_PlayerConnectGroup.SetActive(false);
+            m_TitleGroup.SetActive(true);
         });
     }
 
@@ -103,16 +103,16 @@ public class TitleSceneUIManager : MonoBehaviour
         {
             UISelector.Instance.SetNewSelectGroup(m_PlayerConnectGroup);
 
-            m_ControllerRegisterGroup.gameObject.SetActive(false);
-            m_PlayerConnectGroup.gameObject.SetActive(true);
+            m_ControllerRegisterGroup.SetActive(false);
+            m_PlayerConnectGroup.SetActive(true);
         });
 
         m_ControllerRegisterGroup.OKButton.AddPressAction(() =>
         {
             UISelector.Instance.SetNewSelectGroup(m_ConfirmPlayerGroup);
 
-            m_ControllerRegisterGroup.gameObject.SetActive(false);
-            m_ConfirmPlayerGroup.gameObject.SetActive(true);
+            m_ControllerRegisterGroup.SetActive(false);
+            m_ConfirmPlayerGroup.SetActive(true);
         });
     }
 
@@ -129,8 +129,8 @@ public class TitleSceneUIManager : MonoBehaviour
         {
             UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
 
-            m_ConfirmPlayerGroup.gameObject.SetActive(false);
-            m_ControllerRegisterGroup.gameObject.SetActive(true);
+            m_ConfirmPlayerGroup.SetActive(false);
+            m_ControllerRegisterGroup.SetActive(true);
         });
     }
 }
