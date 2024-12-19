@@ -39,7 +39,7 @@ public class UISelector : SingletonBehaviour<UISelector>
 
         if (m_SelectPlayer.GetButtonDown(InputActions.InputSettings.UI.Click))
         {
-            m_CurrentSelect.Press();
+            m_CurrentSelect?.Press();
         }
     }
 
