@@ -6,6 +6,7 @@ namespace Nakaya.UI
 {
     public interface ISelectableUI
     {
+        bool Enable { get; }
         RectTransform RectTransform { get; }
 
         void Select();
@@ -13,5 +14,7 @@ namespace Nakaya.UI
 
         void Press();
         void Release();
+
+        void SetEnable(bool b);
     }
 }

@@ -15,8 +15,8 @@ namespace Nakaya.UI
 
         public ISelectableUI Reselect()
         {
-            m_Next.Select();
-            return m_Next;
+            if(m_Next.Enable) { m_Next.Select(); }
+            return m_Next.Enable ? m_Next : null;
         }
     }
 }

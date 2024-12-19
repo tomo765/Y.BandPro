@@ -56,6 +56,8 @@ public class ControllerRegisterGroup : SelectableGroupBase
             GameManager.SetPlayers(m_Players);
         });
 
+        m_OKButton.SetEnable(GetNullIndex().Length == 0);
+        m_OKButton.SetEnableCondition(() => GetNullIndex().Length == 0);
         var OKReselect = new ReselectNodeContainer(left : new(m_ReturnPlayerCountButton));
         m_Selectables.Add(OKButton, OKReselect);
     }
@@ -81,19 +83,20 @@ public class ControllerRegisterGroup : SelectableGroupBase
                 break;
             }
         }
-
-        int[] GetNullIndex()
-        {
-            List<int> emptyIndex = new List<int>(m_PlayerCount);
-            for(int i = 0; i < m_Observers.Length; i++)
-            {
-                if (m_Observers[i] != null) { continue; }
-                emptyIndex.Add(i);
-            }
-
-            return emptyIndex.ToArray();
-        }
+        m_OKButton.SetEnable(GetNullIndex().Length == 0);
     }
+    private int[] GetNullIndex()
+    {
+        List<int> emptyIndex = new List<int>(m_PlayerCount);
+        for (int i = 0; i < m_Observers.Length; i++)
+        {
+            if (m_Observers[i] != null) { continue; }
+            emptyIndex.Add(i);
+        }
+
+        return emptyIndex.ToArray();
+    }
+
 
     public void SetPlayerCount(int playerCount)
     {
