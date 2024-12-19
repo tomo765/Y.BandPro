@@ -8,6 +8,7 @@ public class TitleSceneUIManager : MonoBehaviour
     [SerializeField] private SettingGroup m_SettingGroup;
     [SerializeField] private PlayerCountSettingGroup m_PlayerConnectGroup;
     [SerializeField] private ControllerRegisterGroup m_ControllerRegisterGroup;
+    [SerializeField] private ConfirmPlayerGroup m_ConfirmPlayerGroup;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class TitleSceneUIManager : MonoBehaviour
         SetPlayerConnectGroup();
         SetGroupsActive();
         SetControllerRegister();
+        SetConfirmPlayerGroup();
     }
 
     private void SetGroupsActive()
@@ -26,6 +28,7 @@ public class TitleSceneUIManager : MonoBehaviour
         m_SettingGroup.gameObject.SetActive(false);
         m_PlayerConnectGroup.gameObject.SetActive(false);
         m_ControllerRegisterGroup.gameObject.SetActive(false);
+        m_ConfirmPlayerGroup.gameObject.SetActive(false);
     }
 
     private void SetTitleGroup()
@@ -102,6 +105,32 @@ public class TitleSceneUIManager : MonoBehaviour
 
             m_ControllerRegisterGroup.gameObject.SetActive(false);
             m_PlayerConnectGroup.gameObject.SetActive(true);
+        });
+
+        m_ControllerRegisterGroup.OKButton.AddPressAction(() =>
+        {
+            UISelector.Instance.SetNewSelectGroup(m_ConfirmPlayerGroup);
+
+            m_ControllerRegisterGroup.gameObject.SetActive(false);
+            m_ConfirmPlayerGroup.gameObject.SetActive(true);
+        });
+    }
+
+    private void SetConfirmPlayerGroup()
+    {
+        m_ConfirmPlayerGroup.OKButton.AddPressAction(() =>
+        {
+            UISelector.Instance.SetNewSelectGroup(null);
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain");
+        });
+
+        m_ConfirmPlayerGroup.NoButton.AddPressAction(() =>
+        {
+            UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
+
+            m_ConfirmPlayerGroup.gameObject.SetActive(false);
+            m_ControllerRegisterGroup.gameObject.SetActive(true);
         });
     }
 }
