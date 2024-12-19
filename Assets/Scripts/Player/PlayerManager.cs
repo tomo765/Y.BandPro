@@ -6,6 +6,19 @@ public class PlayerManager
 {
     public readonly PlayerIndex Index;
     public readonly PlayerInputObserver Observer;
+
+    private PlayerManager() { }
+    public PlayerManager(PlayerIndex index, PlayerInputObserver observer)
+    {
+        Index = index;
+        Observer = observer;
+    }
+
+    public PlayerManager(int index, PlayerInputObserver observer)
+    {
+        Index = (PlayerIndex)index+1;
+        Observer = observer;
+    }
 }
 
 public enum PlayerIndex

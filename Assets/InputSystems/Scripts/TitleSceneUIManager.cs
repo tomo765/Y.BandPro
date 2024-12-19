@@ -67,7 +67,7 @@ public class TitleSceneUIManager : MonoBehaviour
         {
             UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
 
-            m_ControllerRegisterGroup.SetPlayerManagerCount(2);
+            m_ControllerRegisterGroup.SetPlayerCount(2);
             m_PlayerConnectGroup.gameObject.SetActive(false);
             m_ControllerRegisterGroup.gameObject.SetActive(true);
         });
@@ -75,7 +75,7 @@ public class TitleSceneUIManager : MonoBehaviour
         {
             UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
 
-            m_ControllerRegisterGroup.SetPlayerManagerCount(3);
+            m_ControllerRegisterGroup.SetPlayerCount(3);
             m_PlayerConnectGroup.gameObject.SetActive(false);
             m_ControllerRegisterGroup.gameObject.SetActive(true);
         });
@@ -83,7 +83,7 @@ public class TitleSceneUIManager : MonoBehaviour
         {
             UISelector.Instance.SetNewSelectGroup(m_ControllerRegisterGroup);
 
-            m_ControllerRegisterGroup.SetPlayerManagerCount(4);
+            m_ControllerRegisterGroup.SetPlayerCount(4);
             m_PlayerConnectGroup.gameObject.SetActive(false);
             m_ControllerRegisterGroup.gameObject.SetActive(true);
         });

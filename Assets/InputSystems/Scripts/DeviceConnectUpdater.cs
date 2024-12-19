@@ -71,12 +71,12 @@ public class DeviceConnectUpdater : SingletonBehaviour<DeviceConnectUpdater>
 
 
     public PlayerInputObserver[] GetObserversByButtonDown(string key)
-        => m_Observers.Where(observer => observer.Value.GetButtonDown(key))
-                      .Select(observer => observer.Value)
+        => m_Observers.Select(pair => pair.Value)
+                      .Where(observer => observer.GetButtonDown(key))
                       .ToArray();
 
     public PlayerInputObserver[] GetPlayerInputObserverAs<T>() where T : InputDevice
-        => Observers.Where(receiver => receiver.Value.Device is T).Select(receiver => receiver.Value).ToArray();
+        => Observers?.Where(receiver => receiver.Value.Device is T)?.Select(receiver => receiver.Value)?.ToArray();
 }
 
 public static class InputDeviceExtension
