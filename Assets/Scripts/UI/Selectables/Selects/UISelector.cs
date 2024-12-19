@@ -19,7 +19,7 @@ public class UISelector : SingletonBehaviour<UISelector>
 
     private void Init()
     {
-        SetSelectPlayer(DeviceConnectUpdater.Instance.ReceiveInputs.GetPlayerInputAs<Gamepad>()[0].GetComponent<PlayerInputObserver>());
+        SetSelectPlayer(DeviceConnectUpdater.Instance.GetPlayerInputObserverAs<Gamepad>()[0].GetComponent<PlayerInputObserver>());
     }
 
     void Update()

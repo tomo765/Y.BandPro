@@ -9,11 +9,11 @@ using UnityEngine.InputSystem;
 [AddComponentMenu("Scripts/DeviceUpdater")]
 public class DeviceConnectUpdater : SingletonBehaviour<DeviceConnectUpdater>
 {
-    private Dictionary<InputDevice, PlayerInput> m_ReceiveInputObjects = new Dictionary<InputDevice, PlayerInput>();
+    private Dictionary<InputDevice, PlayerInputObserver> m_Observers = new Dictionary<InputDevice, PlayerInputObserver>();
 
     [SerializeField] private PlayerInput prehab;
 
-    public Dictionary<InputDevice, PlayerInput> ReceiveInputs => m_ReceiveInputObjects;
+    public Dictionary<InputDevice, PlayerInputObserver> Observers => m_Observers;
 
 
     protected override void Awake()
@@ -44,13 +44,13 @@ public class DeviceConnectUpdater : SingletonBehaviour<DeviceConnectUpdater>
     {
         if (change != InputDeviceChange.Removed) { return; }
 
-        Destroy(m_ReceiveInputObjects[device].gameObject);
-        m_ReceiveInputObjects.Remove(device);
+        Destroy(m_Observers[device].gameObject);
+        m_Observers.Remove(device);
     }
 
     private void CreatePlayerInput(InputDevice device)
     {
-        if (m_ReceiveInputObjects.ContainsKey(device)) { return; }
+        if (m_Observers.ContainsKey(device)) { return; }
         if (device is Mouse) { return; }
         if (device is Pen) { return; }
 
@@ -59,7 +59,7 @@ public class DeviceConnectUpdater : SingletonBehaviour<DeviceConnectUpdater>
                                                   pairWithDevice: device);
 
         playerInput.defaultControlScheme = device.GetScheme();
-        m_ReceiveInputObjects.Add(device, playerInput);
+        m_Observers.Add(device, playerInput.GetComponent<PlayerInputObserver>());
         playerInput.transform.SetParent(transform);
     }
 
@@ -68,12 +68,20 @@ public class DeviceConnectUpdater : SingletonBehaviour<DeviceConnectUpdater>
         InputSystem.onDeviceChange -= OnDeviceAdded;
         InputSystem.onDeviceChange -= OnDeviceRemoved;
     }
+
+
+    public PlayerInputObserver[] GetObserversByButtonDown(string key)
+        => m_Observers.Where(observer => observer.Value.GetButtonDown(key))
+                      .Select(observer => observer.Value)
+                      .ToArray();
+
+    public PlayerInputObserver[] GetPlayerInputObserverAs<T>() where T : InputDevice
+        => Observers.Where(receiver => receiver.Value.Device is T).Select(receiver => receiver.Value).ToArray();
 }
 
 public static class InputDeviceExtension
 {
-    #region PlayerInputÇÃê›íË
-    public static string GetScheme<T>(this T Scheme) where T : InputControl
+    public static string GetScheme<T>(this T Scheme) where T : InputDevice
     {
         return (Scheme) switch
         {
@@ -83,11 +91,4 @@ public static class InputDeviceExtension
             _ => ""
         };
     }
-    #endregion
-
-    public static PlayerInput[] GetPlayerInputAs<T>(this Dictionary<InputDevice, PlayerInput> receiver) where T : InputDevice
-        => receiver.Where(keyValues => keyValues.Value.devices[0] is T).Select(keyValues => keyValues.Value).ToArray();
-
-    public static PlayerInputObserver[] GetObservers(this PlayerInput[] inputs)
-         => inputs.Select(input => input.GetComponent<PlayerInputObserver>()).ToArray();
 }
