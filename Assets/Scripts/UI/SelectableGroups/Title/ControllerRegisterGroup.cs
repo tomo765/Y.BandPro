@@ -10,17 +10,17 @@ public class ControllerRegisterGroup : SelectableGroupBase
     private PlayerManager[] m_Players;
     private List<PlayerInput> m_Gamepads = new List<PlayerInput>();
 
-
-    private ReselectNodeContainer m_ToPlayerCount;
-
     [SerializeField] private CommonSelectableButton m_ReturnPlayerCountButton;
+    [SerializeField] private CommonSelectableButton m_OKButton;
 
     public CommonSelectableButton ReturnPlayerCountButton => m_ReturnPlayerCountButton;
+    public CommonSelectableButton OKButton => m_OKButton;
     public override ISelectableUI GetInitSelect() => m_ReturnPlayerCountButton;
 
     void Start()
     {
         SetReturnPlayerCountButton();
+        SetOKButton();
     }
     private void OnEnable()
     {
@@ -47,8 +47,19 @@ public class ControllerRegisterGroup : SelectableGroupBase
             Debug.Log("プレイヤー数選択に戻る");
         });
 
-        m_ToPlayerCount = new ReselectNodeContainer();
-        m_Selectables.Add(m_ReturnPlayerCountButton, m_ToPlayerCount);
+        var ToPlayerCountReselect = new ReselectNodeContainer(right : new(m_OKButton));
+        m_Selectables.Add(m_ReturnPlayerCountButton, ToPlayerCountReselect);
+    }
+    private void SetOKButton()
+    {
+        m_OKButton.AddPressAction(() =>
+        {
+            Debug.Log("OK");
+            GameManager.SetPlayers(m_Players);
+        });
+
+        var OKReselect = new ReselectNodeContainer(left : new(m_ReturnPlayerCountButton));
+        m_Selectables.Add(OKButton, OKReselect);
     }
 
     private void RegisterPlayer()
