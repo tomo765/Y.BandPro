@@ -15,6 +15,7 @@ namespace Nakaya.UI
         void Press();
         void Release();
 
+        void Disable();
         void SetEnable(bool b);
     }
 }

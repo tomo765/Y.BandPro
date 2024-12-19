@@ -1,12 +1,14 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditorInternal.ReorderableList;
 
 namespace Nakaya.UI
 {
     [RequireComponent(typeof(RectTransform), typeof(Image))]
     public abstract class CommonSelectableUI : MonoBehaviour, ISelectableUI
     {
+        protected SelectableUIState m_State = SelectableUIState.Default;
         protected bool m_Enable = true;
         protected Func<bool> IsEnable;  //iru?
         protected Action m_OnPress;
@@ -33,6 +35,7 @@ namespace Nakaya.UI
         {
             if (!m_Enable) { return; }
 
+            m_State = SelectableUIState.Select;
             m_Image.sprite = m_Select.Sprite;
             m_Image.color = m_Select.Color;
         }
@@ -40,6 +43,7 @@ namespace Nakaya.UI
         {
             if (!m_Enable) { return; }
 
+            m_State = SelectableUIState.Deselect;
             m_Image.sprite = m_Default.Sprite;
             m_Image.color = m_Default.Color;
         }
@@ -47,6 +51,7 @@ namespace Nakaya.UI
         {
             if(!m_Enable) {  return; }
 
+            m_State = SelectableUIState.Press;
             m_Image.sprite = m_Press.Sprite;
             m_Image.color = m_Press.Color;
 
@@ -57,22 +62,43 @@ namespace Nakaya.UI
         {
             if (!m_Enable) { return; }
 
+            m_State = SelectableUIState.Release;
             m_Image.sprite = m_Select.Sprite;
             m_Image.color = m_Select.Color;
         }
 
+        public virtual void Disable()
+        {
+            if (m_Enable) { return; }
+
+            m_State = SelectableUIState.Deselect;
+            m_Image.sprite = m_Disable.Sprite;
+            m_Image.color = m_Disable.Color;
+        }
         public void SetEnable(bool b)
         {
             m_Enable = b;
-            if (m_Enable)
+            if (!m_Enable)
             {
-                m_Image.sprite = m_Default.Sprite;
-                m_Image.color = m_Default.Color;
+                Disable();
+                return;
             }
-            else
+
+            switch (m_State)
             {
-                m_Image.sprite = m_Disable.Sprite;
-                m_Image.color = m_Disable.Color;
+                case SelectableUIState.Default:
+                case SelectableUIState.Deselect:
+                    Deselect();
+                    break;
+                case SelectableUIState.Select:
+                    Select();
+                    break;
+                case SelectableUIState.Press:
+                    Press();
+                    break;
+                case SelectableUIState.Release:
+                    Release();
+                    break;
             }
         }
         public void SetEnableCondition(Func<bool> func) => IsEnable = func;
@@ -91,5 +117,14 @@ namespace Nakaya.UI
 
         public Sprite Sprite => m_Sprite;
         public Color Color => m_Color;
+    }
+
+    public enum SelectableUIState
+    {
+        Default,
+        Select,
+        Deselect,
+        Press,
+        Release,
     }
 }
