@@ -76,7 +76,8 @@ public class ControllerRegisterGroup : SelectableGroupBase
     private void OnDeviceRemoved(InputDevice device, InputDeviceChange change)
     {
         if(change != InputDeviceChange.Removed) { return; }
-        m_OKButton.SetEnableCondition(() => GetNullIndex().Length == 0);
+        Debug.Log(GetNullIndex().Length == 0);
+        m_OKButton.CheckEnable();
 
         for (int i = 0; i < m_Observers.Length; i++)
         {
@@ -115,7 +116,7 @@ public class ControllerRegisterGroup : SelectableGroupBase
         List<int> emptyIndex = new List<int>(m_PlayerCount);
         for (int i = 0; i < m_Observers.Length; i++)
         {
-            if (m_Observers[i] != null) { continue; }
+            if (m_Observers[i]?.Device != null) { continue; }
             emptyIndex.Add(i);
         }
 

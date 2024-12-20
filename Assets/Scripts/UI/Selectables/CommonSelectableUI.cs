@@ -101,6 +101,7 @@ namespace Nakaya.UI
             }
         }
         public void SetEnableCondition(Func<bool> func) => IsEnable = func;
+        public void CheckEnable() => SetEnable(IsEnable());
     }
 
 
