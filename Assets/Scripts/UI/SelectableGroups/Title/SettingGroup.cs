@@ -16,6 +16,8 @@ public class SettingGroup : SelectableGroupBase
     {
         SetTitleButton();
         SetExitButton();
+
+        UnselectFireActions = new UnselectFireAction(onCancel: () => m_ReturnTitleButton.Press());
     }
 
     private void SetTitleButton()

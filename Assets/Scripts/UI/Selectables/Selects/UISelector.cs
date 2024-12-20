@@ -41,6 +41,14 @@ public class UISelector : SingletonBehaviour<UISelector>
         {
             m_CurrentSelect?.Press();
         }
+        if (m_SelectPlayer.GetButtonDown(InputActions.InputSettings.UI.Cancel))
+        {
+            m_SelectGroup.UnselectFireActions?.OnCancel?.Invoke();
+        }
+        if (m_SelectPlayer.GetButtonDown(InputActions.InputSettings.UI.Pause))
+        {
+            m_SelectGroup.UnselectFireActions?.OnPause?.Invoke();
+        }
     }
 
     private void Reselect(string dir)
