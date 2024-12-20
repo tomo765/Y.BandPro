@@ -31,44 +31,24 @@ public class PlayerCountSettingGroup : SelectableGroupBase
 
     private void SetPlayer2Button()
     {
-        m_Player2Button.AddPressAction(() =>
-        {
-            Debug.Log("2人プレイ");
-        });
-
         var Player2Reselect = new ReselectNodeContainer(right : new(m_Player3Button), left : new(m_Player4Button), bottom : new(m_ReturnTitleButton));
         m_Selectables.Add(m_Player2Button, Player2Reselect);
     }
 
     private void SetPlayer3Button()
     {
-        m_Player3Button.AddPressAction(() =>
-        {
-            Debug.Log("3人プレイ");
-        });
-
         var Player3Reselect = new ReselectNodeContainer(right: new(m_Player4Button), left: new(m_Player2Button), bottom: new(m_ReturnTitleButton));
         m_Selectables.Add(m_Player3Button, Player3Reselect);
     }
 
     private void SetPlayer4Button()
     {
-        m_Player4Button.AddPressAction(() =>
-        {
-            Debug.Log("4人プレイ");
-        });
-
         var Player4Reselect = new ReselectNodeContainer(right: new(m_Player2Button), left: new(m_Player3Button), bottom: new(m_ReturnTitleButton));
         m_Selectables.Add(m_Player4Button, Player4Reselect);
     }
 
     private void SetReturnTitleButton()
     {
-        m_ReturnTitleButton.AddPressAction(() =>
-        {
-            Debug.Log("タイトルに戻る");
-        });
-
         var ReturnTitleReselect = new ReselectNodeContainer(top: new(m_Player2Button));
         m_Selectables.Add(m_ReturnTitleButton, ReturnTitleReselect);
     }

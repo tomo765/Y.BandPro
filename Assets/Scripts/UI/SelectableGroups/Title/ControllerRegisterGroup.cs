@@ -46,7 +46,6 @@ public class ControllerRegisterGroup : SelectableGroupBase
     {
         m_ReturnPlayerCountButton.AddPressAction(() =>
         {
-            Debug.Log("プレイヤー数選択に戻る");
             m_Players = null;
             m_Observers = null;
 
@@ -60,7 +59,6 @@ public class ControllerRegisterGroup : SelectableGroupBase
     {
         m_OKButton.AddPressAction(() =>
         {
-            Debug.Log("OK");
             var players = m_Observers.Select((observer, index) => new PlayerManager(index, observer)).ToArray();
             GameManager.SetPlayers(m_Players);
 

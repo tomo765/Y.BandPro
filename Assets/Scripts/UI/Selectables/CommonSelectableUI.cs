@@ -9,7 +9,7 @@ namespace Nakaya.UI
     {
         protected SelectableUIState m_State = SelectableUIState.Default;
         protected bool m_Enable = true;
-        protected Func<bool> IsEnable;  //iru?
+        protected Func<bool> IsEnable;
         protected Action m_OnPress;
 
         [SerializeField] protected Image m_Image;

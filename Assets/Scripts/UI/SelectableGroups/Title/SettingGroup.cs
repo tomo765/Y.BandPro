@@ -22,11 +22,6 @@ public class SettingGroup : SelectableGroupBase
 
     private void SetTitleButton()
     {
-        m_ReturnTitleButton.AddPressAction(() =>
-        {
-            Debug.Log("Return to Title");
-        });
-
         var ReturnTitleReselect = new ReselectNodeContainer(top: new ReselectNode(m_ExitButton), bottom: new ReselectNode(m_ExitButton));
         m_Selectables.Add(m_ReturnTitleButton, ReturnTitleReselect);
     }
@@ -35,8 +30,6 @@ public class SettingGroup : SelectableGroupBase
     {
         m_ExitButton.AddPressAction(() =>
         {
-            Debug.Log("Exit");
-            
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

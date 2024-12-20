@@ -19,22 +19,12 @@ public class TitleGroup : SelectableGroupBase
 
     private void SetTitleButton()
     {
-        m_PlayGameButton.AddPressAction(() =>
-        {
-            Debug.Log("Play");
-        });
-
         var PlayGameReselect = new ReselectNodeContainer(top: new ReselectNode(m_SettingsButton), bottom: new ReselectNode(m_SettingsButton));
         m_Selectables.Add(m_PlayGameButton, PlayGameReselect);
     }
 
     private void SetSettingsButton()
     {
-        m_SettingsButton.AddPressAction(() =>
-        {
-            Debug.Log("Setting");
-        });
-
         var SettingsReselect = new ReselectNodeContainer(top: new ReselectNode(m_PlayGameButton), bottom: new ReselectNode(m_PlayGameButton));
         m_Selectables.Add(m_SettingsButton, SettingsReselect);
     }

@@ -25,22 +25,12 @@ public class ConfirmPlayerGroup : SelectableGroupBase
 
     private void SetOKButton()
     {
-        m_OKButton.AddPressAction(() =>
-        {
-            Debug.Log("OK");
-        });
-
         var OKReselect = new ReselectNodeContainer(left : new(m_NoButton));
         m_Selectables.Add(m_OKButton, OKReselect);
     }
 
     private void SetNoButton()
     {
-        m_NoButton.AddPressAction(() =>
-        {
-            Debug.Log("No");
-        });
-
         var NoReselect = new ReselectNodeContainer(right : new(m_OKButton));
         m_Selectables.Add(m_NoButton, NoReselect);
     }

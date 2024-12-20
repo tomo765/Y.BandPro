@@ -39,9 +39,5 @@ public class YokaiMember
                    (m_YokaiRare2?.PerformanceStatus ?? PerformanceStatus.Empty) +
                    (m_YokaiRare3?.PerformanceStatus ?? PerformanceStatus.Empty);
 
-
-
-    public YokaiMember(YokaiInfo yokaiRare1) => m_YokaiRare1 = yokaiRare1;
-
     public void AddYokaiInfo(YokaiInfo info) => GetYokaiInfoRef(info.Rarity) ??= info;
 }
