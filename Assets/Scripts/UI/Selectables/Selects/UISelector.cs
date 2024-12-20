@@ -1,4 +1,5 @@
 using Nakaya.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class UISelector : SingletonBehaviour<UISelector>
     private ISelectableUI m_PrevSelect;
 
     private PlayerInputObserver m_SelectPlayer;
+    public Func<PlayerInputObserver> SetNewDeviceOnRemove;
 
     void Start()
     {
@@ -22,9 +24,17 @@ public class UISelector : SingletonBehaviour<UISelector>
         InputSystem.onDeviceChange += (device, changeState) =>
         {
             if (changeState != InputDeviceChange.Added) { return; }
-            if (m_SelectPlayer != null) { return; }
+            if (m_SelectPlayer?.Device != null) { return; }
             SetSelectPlayer(DeviceConnectUpdater.Instance.Observers[device]);
         };
+        InputSystem.onDeviceChange += (device, changeState) =>
+        {
+            if (changeState != InputDeviceChange.Removed) { return; }
+            if (m_SelectPlayer.Device != null) { return; }
+            Debug.Log(SetNewDeviceOnRemove()?.Device?.name);
+            SetSelectPlayer(SetNewDeviceOnRemove());
+        };
+
         SetSelectPlayer(DeviceConnectUpdater.Instance.GetPlayerInputObserverAs<Gamepad>()?[0]);
     }
 

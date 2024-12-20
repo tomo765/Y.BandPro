@@ -34,8 +34,8 @@ namespace Nakaya.UI
 
         public void SetActive(bool b) => gameObject.SetActive(b);
 
-
-        public class UnselectFireAction
+        //ToDo : ゲームのメイン画面でHomeボタンを押したときにポーズ画面が開く処理を追加
+        public class UnselectFireAction  
         {
             public readonly Action OnCancel;
             public readonly Action OnPause;

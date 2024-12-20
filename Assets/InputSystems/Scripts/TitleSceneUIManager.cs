@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TitleSceneUIManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class TitleSceneUIManager : MonoBehaviour
 
     void Start()
     {
+        UISelector.Instance.SetNewDeviceOnRemove = () =>
+        {
+            var observers = DeviceConnectUpdater.Instance.GetPlayerInputObserverAs<Gamepad>();
+            return observers.Length != 0 ? observers[0] : null;
+        };
         UISelector.Instance.SetNewSelectGroup(m_TitleGroup);
 
         SetTitleGroup();

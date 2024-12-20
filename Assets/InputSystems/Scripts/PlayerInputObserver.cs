@@ -7,7 +7,7 @@ public class PlayerInputObserver : MonoBehaviour
 {
     [SerializeField] private PlayerInput m_PlayerInput;
 
-    public InputDevice Device => m_PlayerInput.devices[0];
+    public InputDevice Device => m_PlayerInput.devices.Count != 0 ? m_PlayerInput.devices[0] : null;
 
     //ToDo : ŠÄŽ‹‚·‚é PlayerInput ‚ª‚È‚­‚È‚Á‚½Žž‚É”­‰Î‚·‚é Action‚ðŽÀ‘•‚·‚é
 
