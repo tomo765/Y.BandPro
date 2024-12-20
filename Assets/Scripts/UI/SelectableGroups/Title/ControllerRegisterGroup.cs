@@ -1,9 +1,9 @@
 using Nakaya.UI;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 //接続が解除されたコントローラーの Observerクラスは同時に削除される仕様なので
 //自動的にm_Observersの指定の値も nullになる?
@@ -18,6 +18,7 @@ public class ControllerRegisterGroup : SelectableGroupBase
 
     [SerializeField] private CommonSelectableButton m_ReturnPlayerCountButton;
     [SerializeField] private CommonSelectableButton m_OKButton;
+    [SerializeField] private RegisterControllerUI[] m_RegisterControllers;
 
     public CommonSelectableButton ReturnPlayerCountButton => m_ReturnPlayerCountButton;
     public CommonSelectableButton OKButton => m_OKButton;
@@ -29,6 +30,11 @@ public class ControllerRegisterGroup : SelectableGroupBase
         SetOKButton();
 
         UnselectFireActions = new UnselectFireAction(onCancel: () => m_ReturnPlayerCountButton.Press());
+    }
+
+    private void OnEnable()
+    {
+        InputSystem.onDeviceChange += OnDeviceRemoved;
     }
 
     private void Update()
@@ -43,6 +49,8 @@ public class ControllerRegisterGroup : SelectableGroupBase
             Debug.Log("プレイヤー数選択に戻る");
             m_Players = null;
             m_Observers = null;
+
+            InputSystem.onDeviceChange -= OnDeviceRemoved;
         });
 
         var ToPlayerCountReselect = new ReselectNodeContainer(right : new(m_OKButton));
@@ -55,6 +63,8 @@ public class ControllerRegisterGroup : SelectableGroupBase
             Debug.Log("OK");
             var players = m_Observers.Select((observer, index) => new PlayerManager(index, observer)).ToArray();
             GameManager.SetPlayers(m_Players);
+
+            InputSystem.onDeviceChange -= OnDeviceRemoved;
         });
 
         m_OKButton.SetEnable(GetNullIndex().Length == 0);
@@ -62,6 +72,19 @@ public class ControllerRegisterGroup : SelectableGroupBase
         var OKReselect = new ReselectNodeContainer(left : new(m_ReturnPlayerCountButton));
         m_Selectables.Add(OKButton, OKReselect);
     }
+
+    private void OnDeviceRemoved(InputDevice device, InputDeviceChange change)
+    {
+        if(change != InputDeviceChange.Removed) { return; }
+        m_OKButton.SetEnableCondition(() => GetNullIndex().Length == 0);
+
+        for (int i = 0; i < m_Observers.Length; i++)
+        {
+            if (m_Observers[i]?.Device != null) { continue; }
+            m_RegisterControllers[i].OnControllerUnregistered();
+        }
+    }
+
 
     /// <summary> 前登録 </summary>
     private void PreregisterPlayer()
@@ -81,6 +104,7 @@ public class ControllerRegisterGroup : SelectableGroupBase
             {
                 if (m_Observers[j] != null) { continue; }
                 m_Observers[j] = unregistrants[i];
+                m_RegisterControllers[j].OnControllerRegistered();
                 break;
             }
         }
@@ -104,5 +128,14 @@ public class ControllerRegisterGroup : SelectableGroupBase
         m_PlayerCount = playerCount;
         m_Players = new PlayerManager[playerCount];
         m_Observers = new PlayerInputObserver[playerCount];
+
+        for(int i = 0; i < m_RegisterControllers.Length; i++)
+        {
+            m_RegisterControllers[i].gameObject.SetActive(i < playerCount);
+            if(m_RegisterControllers[i].ActiveSelf)
+            {
+                m_RegisterControllers[i].Init(index : i + 1);
+            }
+        }
     }
 }
