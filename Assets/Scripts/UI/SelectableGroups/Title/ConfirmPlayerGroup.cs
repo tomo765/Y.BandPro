@@ -19,6 +19,8 @@ public class ConfirmPlayerGroup : SelectableGroupBase
     {
         SetOKButton();
         SetNoButton();
+
+        UnselectFireActions = new UnselectFireAction(onCancel: () => m_NoButton.Press());
     }
 
     private void SetOKButton()

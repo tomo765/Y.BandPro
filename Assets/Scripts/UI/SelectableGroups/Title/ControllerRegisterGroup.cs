@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 //接続が解除されたコントローラーの Observerクラスは同時に削除される仕様なので
 //自動的にm_Observersの指定の値も nullになる?
@@ -28,6 +27,8 @@ public class ControllerRegisterGroup : SelectableGroupBase
     {
         SetReturnPlayerCountButton();
         SetOKButton();
+
+        UnselectFireActions = new UnselectFireAction(onCancel: () => m_ReturnPlayerCountButton.Press());
     }
 
     private void Update()

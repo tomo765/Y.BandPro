@@ -36,6 +36,7 @@ namespace InputActions
             public const string Up = "Up";
             public const string Down = "Down";
             public const string Regist = "Regist";
+            public const string Pause = "Pause";
         }
 
     }
