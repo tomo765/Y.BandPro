@@ -38,9 +38,9 @@ namespace Nakaya.UI
         public class UnselectFireAction  
         {
             public readonly Action OnCancel;
-            public readonly Action OnPause;
+            public readonly Action<SelectableGroupBase, ISelectableUI> OnPause;
 
-            public UnselectFireAction(Action onCancel = null, Action onPause = null)
+            public UnselectFireAction(Action onCancel = null, Action<SelectableGroupBase, ISelectableUI> onPause = null)
             {
                 OnCancel = onCancel;
                 OnPause = onPause;
