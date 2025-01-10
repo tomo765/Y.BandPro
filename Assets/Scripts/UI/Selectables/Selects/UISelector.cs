@@ -57,7 +57,7 @@ public class UISelector : SingletonBehaviour<UISelector>
         }
         if (m_SelectPlayer.GetButtonDown(InputActions.InputSettings.UI.Pause))
         {
-            m_SelectGroup.UnselectFireActions?.OnPause?.Invoke();
+            //m_SelectGroup.UnselectFireActions?.OnPause?.Invoke();
         }
     }
 
