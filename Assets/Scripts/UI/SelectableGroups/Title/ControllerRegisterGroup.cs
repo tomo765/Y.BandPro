@@ -59,8 +59,13 @@ public class ControllerRegisterGroup : SelectableGroupBase
     {
         m_OKButton.AddPressAction(() =>
         {
+            for(int i = 0; i < m_Observers.Length; i++)
+            {
+
+            }
             var players = m_Observers.Select((observer, index) => new PlayerManager(index, observer)).ToArray();
-            GameManager.SetPlayers(m_Players);
+            GameManager.SetPlayers(players);
+            GameManager.InitializeGame(); //ƒeƒXƒg
 
             InputSystem.onDeviceChange -= OnDeviceRemoved;
         });

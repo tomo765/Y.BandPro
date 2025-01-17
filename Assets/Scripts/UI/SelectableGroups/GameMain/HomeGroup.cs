@@ -21,12 +21,17 @@ public class HomeGroup : SelectableGroupBase
         SetRecruiteButton();
         SetActivityButton();
         SetPerformanceButton();
+
     }
 
     private void SetRecruiteButton()
     {
         var recruiteReselect = new ReselectNodeContainer(top: new ReselectNode(m_PerformanceButton), bottom: new ReselectNode(m_ActivityButton));
         m_Selectables.Add(m_RecruiteButton, recruiteReselect);
+        m_RecruiteButton.AddPressAction(() =>
+        {
+            GameManager.UpdateCullentTurnPlayer();
+        });
     }
 
     private void SetActivityButton()
