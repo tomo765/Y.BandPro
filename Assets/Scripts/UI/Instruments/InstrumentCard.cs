@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Ttext = TMPro.TextMeshProUGUI;
+using Ttext = TMPro.TextMeshPro;
 
-[RequireComponent(typeof(Image))]
+
 public class InstrumentCard : MonoBehaviour
 {
     [SerializeField] private Ttext m_Ttext;
-    [SerializeField] private Image m_Image;
+    [SerializeField] private SpriteRenderer m_Image;
     [SerializeField] private GameObject m_Parent;
     private InstrumentType m_Type;
 

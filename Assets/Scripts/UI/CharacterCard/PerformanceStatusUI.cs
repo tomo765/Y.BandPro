@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ttext = TMPro.TextMeshProUGUI;
+using Ttext = TMPro.TextMeshPro;
 
 public class PerformanceStatusUI : MonoBehaviour
 {
