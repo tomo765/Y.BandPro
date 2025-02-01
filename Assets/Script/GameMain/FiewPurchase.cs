@@ -7,16 +7,20 @@ using UnityEngine.UI;
 public class FiewPurchase
 {
     private Image m_FiewImage;
+    private int m_Index;
 
     private ColorType m_Fiew1;
     private ColorType m_Fiew2;
 
+
+    public int Index => m_Index;
     public ColorType FiewType1 => m_Fiew1;
     public ColorType FiewType2 => m_Fiew2;
 
-    public FiewPurchase(Image fiewImage)
+    public FiewPurchase(Image fiewImage, int index)
     {
         m_FiewImage = fiewImage;
+        m_Index = index;
         m_Fiew1 = ColorType.White;
         m_Fiew2 = ColorType.White;
     }

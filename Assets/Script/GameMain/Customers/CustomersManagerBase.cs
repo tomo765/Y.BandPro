@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public abstract class CustomersManagerBase
 {
-    protected readonly ColorType[] CustomerColors = { ColorType.Red, ColorType.Green, ColorType.Blue };
+    protected CustomersModel m_CustomersModel;
 
-    protected List<Customer> m_Customers = new List<Customer>();
-    protected int m_MaxCustomerCount = 30;
+    public CustomersModel CustomersModel => m_CustomersModel;
 
-    public int CustomerCount => m_Customers.Count;
-    public int MaxCustomerCount => m_MaxCustomerCount;
+    public CustomersManagerBase()
+    {
+        m_CustomersModel = new CustomersModel();
+    }
 
     protected abstract void AddCustomer();
 
@@ -19,4 +20,18 @@ public abstract class CustomersManagerBase
     public virtual void Start() { }
     public virtual void Update() { }
     public virtual void FixedUpdate() { }
+}
+
+public class CustomersModel
+{
+    public readonly ColorType[] CustomerColors = { ColorType.Red, ColorType.Green, ColorType.Blue };
+
+    private List<Customer> m_Customers = new List<Customer>();
+    private int m_MaxCustomerCount = 30;
+
+    public int CustomerCount => m_Customers.Count;
+    public int MaxCustomerCount => m_MaxCustomerCount;
+
+    public void AddCustomer(Customer customer) => m_Customers.Add(customer);
+    public ColorType GetRandomColorType() => CustomerColors[Random.Range(0, CustomerColors.Length)];
 }

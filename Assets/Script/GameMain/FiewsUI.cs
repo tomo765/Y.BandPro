@@ -5,21 +5,20 @@ using UnityEngine.UI;
 
 public class FiewsUI : MonoBehaviour
 {
+    private FiewsPresenter m_FiewsPresenter;
+
     [SerializeField] private Image m_FiewSellImage;
-                     private FiewSell m_FiewSell;
 
     [SerializeField] private MyButton m_Fiew1Button;
     [SerializeField] private Image m_Fiew1Image;
-                     private FiewPurchase m_FiewPurchase1;
 
     [SerializeField] private MyButton m_Fiew2Button;
     [SerializeField] private Image m_Fiew2Image;
-                     private FiewPurchase m_FiewPurchase2;
 
     [SerializeField] private MyButton m_Fiew3Button;
     [SerializeField] private Image m_Fiew3Image;
-                     private FiewPurchase m_FiewPurchase3;
 
+    public Image FiewSellImage => m_FiewSellImage;
     public MyButton Fiew1Button => m_Fiew1Button;
     public Image Fiew1Image => m_Fiew1Image;
 
@@ -31,46 +30,7 @@ public class FiewsUI : MonoBehaviour
 
     void Start()
     {
-        m_FiewSell = new FiewSell(m_FiewSellImage, () => 
-        {
-            ColorType newType;
-            while (true)
-            {
-                newType = (ColorType)Random.Range((int)ColorType.Yellow, (int)ColorType.Red);
-                if(newType == ColorType.White) { continue; }
-                if (m_FiewSell.CullentFiew != newType) { break; }
-            }
-            return newType;
-        });
-        m_FiewSell.SetNewFiew();
-
-        m_FiewPurchase1 = new FiewPurchase(m_Fiew1Image);
-        m_FiewPurchase2 = new FiewPurchase(m_Fiew2Image);
-        m_FiewPurchase3 = new FiewPurchase(m_Fiew3Image);
-
-        m_Fiew1Button.onClick = () =>
-        {
-            m_FiewPurchase1.SetNewtFiew(m_FiewSell.CullentFiew);
-            m_FiewSell.SetNewFiew();
-
-            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewPurchase1.FiewType1, m_FiewPurchase1.FiewType2);
-            SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), 1);
-        };
-        m_Fiew2Button.onClick = () =>
-        {
-            m_FiewPurchase2.SetNewtFiew(m_FiewSell.CullentFiew);
-            m_FiewSell.SetNewFiew();
-
-            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewPurchase2.FiewType1, m_FiewPurchase2.FiewType2);
-            SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), 2);
-        };
-        m_Fiew3Button.onClick = () =>
-        {
-            m_FiewPurchase3.SetNewtFiew(m_FiewSell.CullentFiew);
-            m_FiewSell.SetNewFiew();
-
-            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewPurchase3.FiewType1, m_FiewPurchase3.FiewType2);
-            SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), 3);
-        };
+        m_FiewsPresenter = new FiewsPresenter(this);
+        m_FiewsPresenter.Start();
     }
 }

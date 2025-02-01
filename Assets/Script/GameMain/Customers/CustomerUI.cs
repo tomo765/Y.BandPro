@@ -8,13 +8,15 @@ public class CustomerUI : MonoBehaviour
 
     private CustomersManagerBase m_CustomerManager;
 
+    public TMPro.TextMeshProUGUI CustomerCountText => m_CustomerCountText;
+
     void Start()
     {
-        m_CustomerManager = new RandomIncreaseCustomer();
+        m_CustomerManager = new RandomIncreaseCustomer(this);
         m_CustomerManager.Start();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         m_CustomerManager?.Update();
@@ -22,6 +24,8 @@ public class CustomerUI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_CustomerCountText.text = m_CustomerManager.CustomerCount.ToString() + " / " + m_CustomerManager.MaxCustomerCount.ToString();
+        m_CustomerManager?.FixedUpdate();
     }
+
+    public void UpdateCustomerCountText(string text) => m_CustomerCountText.text = text;
 }
