@@ -8,30 +8,30 @@ public class FiewPurchase
 {
     private Image m_FiewImage;
 
-    private FiewType m_Fiew1;
-    private FiewType m_Fiew2;
+    private ColorType m_Fiew1;
+    private ColorType m_Fiew2;
 
-    public FiewType FiewType1 => m_Fiew1;
-    public FiewType FiewType2 => m_Fiew2;
+    public ColorType FiewType1 => m_Fiew1;
+    public ColorType FiewType2 => m_Fiew2;
 
     public FiewPurchase(Image fiewImage)
     {
         m_FiewImage = fiewImage;
-        m_Fiew1 = FiewType.White;
-        m_Fiew2 = FiewType.White;
+        m_Fiew1 = ColorType.White;
+        m_Fiew2 = ColorType.White;
     }
 
-    public void SetNewtFiew(FiewType newFiew)
+    public void SetNewtFiew(ColorType newFiew)
     {
-        if(m_Fiew1 == FiewType.White) { m_Fiew1 = newFiew; }
-        else if(m_Fiew2 == FiewType.White) {  m_Fiew2 = newFiew; }
+        if(m_Fiew1 == ColorType.White) { m_Fiew1 = newFiew; }
+        else if(m_Fiew2 == ColorType.White) {  m_Fiew2 = newFiew; }
 
         var newType = ScriptablesManager.Instance.GetTypeWithTwo(m_Fiew1, m_Fiew2);
         m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[newType];
     }
 }
 
-public enum FiewType
+public enum ColorType
 {
     White,
     Yellow,

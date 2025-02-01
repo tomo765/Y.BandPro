@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "JenreClips", menuName = "Scriptables/JenreClips")]
 public class GenreClips : ScriptableObject
 {
-    [SerializeField] private FiewType m_FiewType;
+    [SerializeField] private ColorType m_FiewType;
 
     [SerializeField] private AudioClip m_Music1;
     [SerializeField] private AudioClip m_Music2;
@@ -23,7 +23,7 @@ public class GenreClips : ScriptableObject
         };
     }
 
-    public FiewType FiewType => m_FiewType;
+    public ColorType FiewType => m_FiewType;
     public float Volume => m_Volume;
 }
 

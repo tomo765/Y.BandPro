@@ -13,14 +13,14 @@ public class FiewSprites : ScriptableObject
     [SerializeField] private Sprite m_GreenFiew;
     [SerializeField] private Sprite m_BlueFiew;
 
-    public Dictionary<FiewType, Sprite> TypeToSprite => new Dictionary<FiewType, Sprite>
+    public Dictionary<ColorType, Sprite> TypeToSprite => new Dictionary<ColorType, Sprite>
     {
-        {FiewType.White, m_WhiteFiew},
-        {FiewType.Yellow, m_YellowFiew},
-        {FiewType.Magenta, m_MagentaFiew},
-        {FiewType.Cyan, m_CyanFiew},
-        {FiewType.Red, m_RedFiew},
-        {FiewType.Green, m_GreenFiew},
-        {FiewType.Blue, m_BlueFiew},
+        {ColorType.White, m_WhiteFiew},
+        {ColorType.Yellow, m_YellowFiew},
+        {ColorType.Magenta, m_MagentaFiew},
+        {ColorType.Cyan, m_CyanFiew},
+        {ColorType.Red, m_RedFiew},
+        {ColorType.Green, m_GreenFiew},
+        {ColorType.Blue, m_BlueFiew},
     };
 }

@@ -8,12 +8,12 @@ public class FiewsUI : MonoBehaviour
     private class FiewSell
     {
         private Image m_FiewImage;
-        private FiewType m_CullentFiew = 0;
-        private System.Func<FiewType> ChangeFiew;
+        private ColorType m_CullentFiew = 0;
+        private System.Func<ColorType> ChangeFiew;
 
-        public FiewType CullentFiew => m_CullentFiew;
+        public ColorType CullentFiew => m_CullentFiew;
 
-        public FiewSell(Image fiewImage, System.Func<FiewType> changeFiew)
+        public FiewSell(Image fiewImage, System.Func<ColorType> changeFiew)
         {
             m_FiewImage = fiewImage;
             ChangeFiew = changeFiew;
@@ -54,11 +54,11 @@ public class FiewsUI : MonoBehaviour
     {
         m_FiewSell = new FiewSell(m_FiewSellImage, () => 
         {
-            FiewType newType;
+            ColorType newType;
             while (true)
             {
-                newType = (FiewType)Random.Range((int)FiewType.Yellow, (int)FiewType.Red);
-                if(newType == FiewType.White) { continue; }
+                newType = (ColorType)Random.Range((int)ColorType.Yellow, (int)ColorType.Red);
+                if(newType == ColorType.White) { continue; }
                 if (m_FiewSell.CullentFiew != newType) { break; }
             }
             return newType;
