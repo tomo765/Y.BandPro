@@ -5,27 +5,6 @@ using UnityEngine.UI;
 
 public class FiewsUI : MonoBehaviour
 {
-    private class FiewSell
-    {
-        private Image m_FiewImage;
-        private ColorType m_CullentFiew = 0;
-        private System.Func<ColorType> ChangeFiew;
-
-        public ColorType CullentFiew => m_CullentFiew;
-
-        public FiewSell(Image fiewImage, System.Func<ColorType> changeFiew)
-        {
-            m_FiewImage = fiewImage;
-            ChangeFiew = changeFiew;
-        }
-
-        public void SetNewFiew()
-        {
-            m_CullentFiew = ChangeFiew();
-            m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[m_CullentFiew];
-        }
-    }
-
     [SerializeField] private Image m_FiewSellImage;
                      private FiewSell m_FiewSell;
 
