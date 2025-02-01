@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673bc6045af7a7040b541518e2eafc96, type: 3}
+  m_Name: FiewSprites
+  m_EditorClassIdentifier: 
+  m_WhiteFiew: {fileID: 21300000, guid: bfda10a57a571ae4b877104bcadd0c8b, type: 3}
+  m_YellowFiew: {fileID: 21300000, guid: 70250cba77d9a2348a6033d6d88ba16b, type: 3}
+  m_MagentaFiew: {fileID: 21300000, guid: 1f80da590d4911b48b52a212e1acb004, type: 3}
+  m_CyanFiew: {fileID: 21300000, guid: 4fafce1db2579314cb350365936cc7d5, type: 3}
+  m_RedFiew: {fileID: 21300000, guid: 74f4ef203b8ea514db44d95430c37ab4, type: 3}
+  m_GreenFiew: {fileID: 21300000, guid: 7df7c77e396ef394bbb8c2edee61f194, type: 3}
+  m_BlueFiew: {fileID: 21300000, guid: 3068ccdcea84d4941875831a97e007f0, type: 3}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenreClipManager : MonoBehaviour
+public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
 {
     
     [SerializeField] private GenreClips m_YellowClips;
@@ -11,6 +11,8 @@ public class GenreClipManager : MonoBehaviour
     [SerializeField] private GenreClips m_RedClips;
     [SerializeField] private GenreClips m_GreenClips;
     [SerializeField] private GenreClips m_BlueClips;
+
+    [SerializeField] private FiewSprites m_FiewSprites;
 
     public GenreClips GetGenreClips(GenreType type)
     {
@@ -25,6 +27,8 @@ public class GenreClipManager : MonoBehaviour
             _ => null
         };
     }
+
+    public FiewSprites FiewSprites => m_FiewSprites;
 }
 
 public enum GenreType
