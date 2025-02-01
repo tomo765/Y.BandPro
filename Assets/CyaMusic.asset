@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b603705a4bc294dad80d5c75459b00, type: 3}
+  m_Name: CyaMusic
+  m_EditorClassIdentifier: 
+  m_Music1: {fileID: 8300000, guid: 18b34e4a71a34ec469f43d9cadca5a56, type: 3}
+  m_Music2: {fileID: 8300000, guid: 49a8e0fe30694f94d95466204e527a00, type: 3}
+  m_Music3: {fileID: 8300000, guid: 44fcc11eb530e9e4aad79d816d869631, type: 3}

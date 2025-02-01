@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b603705a4bc294dad80d5c75459b00, type: 3}
+  m_Name: RedMusic
+  m_EditorClassIdentifier: 
+  m_Music1: {fileID: 8300000, guid: 654f2e7299a10674899133bf49bacc4e, type: 3}
+  m_Music2: {fileID: 8300000, guid: bd202a2d5bede4848b912858f8eaf9f8, type: 3}
+  m_Music3: {fileID: 8300000, guid: 486f2a36cd2784b49ad304df5cd2692a, type: 3}
