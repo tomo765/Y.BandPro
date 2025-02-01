@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b603705a4bc294dad80d5c75459b00, type: 3}
   m_Name: MagMusic
   m_EditorClassIdentifier: 
+  m_FiewType: 2
   m_Music1: {fileID: 8300000, guid: 0004837ede5ace54cb9bbb96c4b7d276, type: 3}
   m_Music2: {fileID: 8300000, guid: 1bb179ad6c5afbf46a5f71ca75aaa6d5, type: 3}
   m_Music3: {fileID: 8300000, guid: e1c62adaba1bc2f4fa39ff1e3ef211d0, type: 3}
+  m_Volume: 1

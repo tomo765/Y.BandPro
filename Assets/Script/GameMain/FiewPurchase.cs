@@ -11,6 +11,9 @@ public class FiewPurchase
     private FiewType m_Fiew1;
     private FiewType m_Fiew2;
 
+    public FiewType FiewType1 => m_Fiew1;
+    public FiewType FiewType2 => m_Fiew2;
+
     public FiewPurchase(Image fiewImage)
     {
         m_FiewImage = fiewImage;
@@ -23,7 +26,7 @@ public class FiewPurchase
         if(m_Fiew1 == FiewType.White) { m_Fiew1 = newFiew; }
         else if(m_Fiew2 == FiewType.White) {  m_Fiew2 = newFiew; }
 
-        var newType = ScriptablesManager.Instance.FiewSprites.GetTypeWithTwo(m_Fiew1, m_Fiew2);
+        var newType = ScriptablesManager.Instance.GetTypeWithTwo(m_Fiew1, m_Fiew2);
         m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[newType];
     }
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b603705a4bc294dad80d5c75459b00, type: 3}
   m_Name: BluMusic
   m_EditorClassIdentifier: 
+  m_FiewType: 6
   m_Music1: {fileID: 8300000, guid: 8e7c60b0904ed2b45ba93efc4677244c, type: 3}
   m_Music2: {fileID: 8300000, guid: 14890281bcad11d40b34b431808f63b6, type: 3}
   m_Music3: {fileID: 8300000, guid: dc290bdcd13097b45b3f7b6cbdae00db, type: 3}
+  m_Volume: 0.5

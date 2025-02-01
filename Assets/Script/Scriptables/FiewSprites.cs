@@ -23,27 +23,4 @@ public class FiewSprites : ScriptableObject
         {FiewType.Green, m_GreenFiew},
         {FiewType.Blue, m_BlueFiew},
     };
-
-    //クソコード、だる
-    public FiewType GetTypeWithTwo(FiewType type1, FiewType type2)
-    {
-        if(type2 == FiewType.White) { return type1; }
-        if(type1 == type2)          { return type1; }
-
-        if(type1 == FiewType.Yellow)
-        {
-            if(type2 == FiewType.Magenta) { return FiewType.Red; }
-            else/*(type2 == FiewType.Cyan)*/ {  return FiewType.Green; }
-        }
-        else if(type1 == FiewType.Magenta)
-        {
-            if (type2 == FiewType.Yellow) { return FiewType.Red; }
-            else/*(type2 == FiewType.Cyan)*/ { return FiewType.Blue; }
-        }
-        else/*(type1 == FiewType.Cyan)*/
-        {
-            if (type2 == FiewType.Yellow) { return FiewType.Green; }
-            else/*(type2 == FiewType.Magenta)*/ { return FiewType.Blue; }
-        }
-    }
 }

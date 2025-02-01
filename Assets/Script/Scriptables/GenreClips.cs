@@ -5,9 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "JenreClips", menuName = "Scriptables/JenreClips")]
 public class GenreClips : ScriptableObject
 {
+    [SerializeField] private FiewType m_FiewType;
+
     [SerializeField] private AudioClip m_Music1;
     [SerializeField] private AudioClip m_Music2;
     [SerializeField] private AudioClip m_Music3;
+    [SerializeField, Range(0, 1f)] private float m_Volume = 1f;
 
     public AudioClip GetAudioClipAsType(MusicType type)
     {
@@ -19,10 +22,14 @@ public class GenreClips : ScriptableObject
             _ => null
         };
     }
+
+    public FiewType FiewType => m_FiewType;
+    public float Volume => m_Volume;
 }
 
 public enum MusicType
 {
+    Main,
     Mus1,
     Mus2,
     Mus3

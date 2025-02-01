@@ -14,29 +14,41 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
 
     [SerializeField] private FiewSprites m_FiewSprites;
 
-    public GenreClips GetGenreClips(GenreType type)
+    public GenreClips GetGenreClips(FiewType type)
     {
         return type switch
         {
-            GenreType.Yellow => m_YellowClips,
-            GenreType.Magenta => m_MagentaClips,
-            GenreType.Cyan => m_CyanClips,
-            GenreType.Red => m_RedClips,
-            GenreType.Green => m_GreenClips,
-            GenreType.Blue => m_BlueClips,
+            FiewType.Yellow => m_YellowClips,
+            FiewType.Magenta => m_MagentaClips,
+            FiewType.Cyan => m_CyanClips,
+            FiewType.Red => m_RedClips,
+            FiewType.Green => m_GreenClips,
+            FiewType.Blue => m_BlueClips,
             _ => null
         };
     }
 
-    public FiewSprites FiewSprites => m_FiewSprites;
-}
+    public FiewType GetTypeWithTwo(FiewType type1, FiewType type2)
+    {
+        if (type2 == FiewType.White) { return type1; }
+        if (type1 == type2) { return type1; }
 
-public enum GenreType
-{
-    Yellow,
-    Magenta,
-    Cyan,
-    Red,
-    Green,
-    Blue
+        if (type1 == FiewType.Yellow)
+        {
+            if (type2 == FiewType.Magenta) { return FiewType.Red; }
+            else/*(type2 == FiewType.Cyan)*/ { return FiewType.Green; }
+        }
+        else if (type1 == FiewType.Magenta)
+        {
+            if (type2 == FiewType.Yellow) { return FiewType.Red; }
+            else/*(type2 == FiewType.Cyan)*/ { return FiewType.Blue; }
+        }
+        else/*(type1 == FiewType.Cyan)*/
+        {
+            if (type2 == FiewType.Yellow) { return FiewType.Green; }
+            else/*(type2 == FiewType.Magenta)*/ { return FiewType.Blue; }
+        }
+    }
+
+    public FiewSprites FiewSprites => m_FiewSprites;
 }

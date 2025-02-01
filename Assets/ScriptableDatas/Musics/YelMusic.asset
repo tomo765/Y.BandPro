@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b603705a4bc294dad80d5c75459b00, type: 3}
   m_Name: YelMusic
   m_EditorClassIdentifier: 
+  m_FiewType: 1
   m_Music1: {fileID: 8300000, guid: 985d7d6e85c680b4fb848c3c763c584f, type: 3}
   m_Music2: {fileID: 8300000, guid: e6cd878294cfcd94288ff28857f68d65, type: 3}
   m_Music3: {fileID: 8300000, guid: 7c78d9d0d1e3707419bafe66a582467d, type: 3}
+  m_Volume: 1
