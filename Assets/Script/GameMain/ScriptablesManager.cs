@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
 {
+    private readonly LinkedList<ColorType> ColorTransitionChain 
+        = new LinkedList<ColorType>(new List<ColorType>
+            { 
+                ColorType.Yellow,
+                ColorType.Red,
+                ColorType.Magenta,
+                ColorType.Blue,
+                ColorType.Cyan,
+                ColorType.Green,
+            });
     
     [SerializeField] private GenreClips m_YellowClips;
     [SerializeField] private GenreClips m_MagentaClips;
@@ -28,25 +39,27 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
         };
     }
 
-    public ColorType GetTypeWithTwo(ColorType type1, ColorType type2)
+    public ColorType GetMixedColor(ColorType type1, ColorType type2)
     {
-        if (type2 == ColorType.White) { return type1; }
-        if (type1 == type2) { return type1; }
+        if(type2 == ColorType.White) { return type1; }
+        if(type1 == type2) { return type1; }
 
-        if (type1 == ColorType.Yellow)
+        int[] values = new int[] { GetColorIndex(type1), GetColorIndex(type2) };
+
+        //Yellow ‚Æ Cyan ‚¾‚Á‚½Žž‚É Green ‚ð•Ô‚·
+        if (values[0] == 0 && values[1] == 4 || values[0] == 4 && values[1] == 0) 
+            { return ColorTransitionChain.ElementAt(5); }
+        
+        return ColorTransitionChain.ElementAt((values[0]+ values[1])/2);
+
+        int GetColorIndex(ColorType type)
         {
-            if (type2 == ColorType.Magenta) { return ColorType.Red; }
-            else/*(type2 == FiewType.Cyan)*/ { return ColorType.Green; }
-        }
-        else if (type1 == ColorType.Magenta)
-        {
-            if (type2 == ColorType.Yellow) { return ColorType.Red; }
-            else/*(type2 == FiewType.Cyan)*/ { return ColorType.Blue; }
-        }
-        else/*(type1 == FiewType.Cyan)*/
-        {
-            if (type2 == ColorType.Yellow) { return ColorType.Green; }
-            else/*(type2 == FiewType.Magenta)*/ { return ColorType.Blue; }
+            int i = 0;
+            for (; i < ColorTransitionChain.Count; i++)
+            {
+                if (ColorTransitionChain.ElementAt(i) == type) { break; }
+            }
+            return i;
         }
     }
 

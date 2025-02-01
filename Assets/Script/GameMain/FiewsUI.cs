@@ -74,7 +74,7 @@ public class FiewsUI : MonoBehaviour
             m_FiewPurchase1.SetNewtFiew(m_FiewSell.CullentFiew);
             m_FiewSell.SetNewFiew();
 
-            var type = ScriptablesManager.Instance.GetTypeWithTwo(m_FiewPurchase1.FiewType1, m_FiewPurchase1.FiewType2);
+            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewPurchase1.FiewType1, m_FiewPurchase1.FiewType2);
             SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), 1);
         };
         m_Fiew2Button.onClick = () =>
@@ -82,7 +82,7 @@ public class FiewsUI : MonoBehaviour
             m_FiewPurchase2.SetNewtFiew(m_FiewSell.CullentFiew);
             m_FiewSell.SetNewFiew();
 
-            var type = ScriptablesManager.Instance.GetTypeWithTwo(m_FiewPurchase2.FiewType1, m_FiewPurchase2.FiewType2);
+            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewPurchase2.FiewType1, m_FiewPurchase2.FiewType2);
             SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), 2);
         };
         m_Fiew3Button.onClick = () =>
@@ -90,7 +90,7 @@ public class FiewsUI : MonoBehaviour
             m_FiewPurchase3.SetNewtFiew(m_FiewSell.CullentFiew);
             m_FiewSell.SetNewFiew();
 
-            var type = ScriptablesManager.Instance.GetTypeWithTwo(m_FiewPurchase3.FiewType1, m_FiewPurchase3.FiewType2);
+            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewPurchase3.FiewType1, m_FiewPurchase3.FiewType2);
             SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), 3);
         };
     }

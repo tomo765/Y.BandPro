@@ -26,7 +26,7 @@ public class FiewPurchase
         if(m_Fiew1 == ColorType.White) { m_Fiew1 = newFiew; }
         else if(m_Fiew2 == ColorType.White) {  m_Fiew2 = newFiew; }
 
-        var newType = ScriptablesManager.Instance.GetTypeWithTwo(m_Fiew1, m_Fiew2);
+        var newType = ScriptablesManager.Instance.GetMixedColor(m_Fiew1, m_Fiew2);
         m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[newType];
     }
 }
