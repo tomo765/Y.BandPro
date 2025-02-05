@@ -10,6 +10,12 @@ public class CustomerUI : MonoBehaviour
 
     public TMPro.TextMeshProUGUI CustomerCountText => m_CustomerCountText;
 
+
+    private void Awake()
+    {
+    }
+
+
     void Start()
     {
         m_CustomerManager = new RandomIncreaseCustomer(this);

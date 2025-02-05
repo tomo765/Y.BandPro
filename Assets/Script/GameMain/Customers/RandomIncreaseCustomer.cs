@@ -22,8 +22,8 @@ public class RandomIncreaseCustomer : CustomersManagerBase
 
     protected override void AddCustomer()
     {
-        if(m_CustomersModel.CustomerCount >= m_CustomersModel.MaxCustomerCount) { return; }
-        m_CustomersModel.AddCustomer(new Customer(m_CustomersModel.GetRandomColorType()));
+        if(GameDataManager.Instance.CustomersModel.CustomerCount >= GameDataManager.Instance.CustomersModel.MaxCustomerCount) { return; }
+        GameDataManager.Instance.CustomersModel.AddCustomer(new Customer(GameDataManager.Instance.CustomersModel.GetRandomColorType()));
     }
 
 
@@ -31,7 +31,7 @@ public class RandomIncreaseCustomer : CustomersManagerBase
 
     public override void FixedUpdate()
     {
-        m_CustomerUI.UpdateCustomerCountText(m_CustomersModel.CustomerCount + " / " + m_CustomersModel.MaxCustomerCount);
+        m_CustomerUI.UpdateCustomerCountText(GameDataManager.Instance.CustomersModel.CustomerCount + " / " + GameDataManager.Instance.CustomersModel.MaxCustomerCount);
     }
 
     public override void Update()
@@ -45,17 +45,16 @@ public class RandomIncreaseCustomer : CustomersManagerBase
     }
 }
 
-    public class RandomCustomerModel
-    {
-        private float m_DefaultIncreaseTime = 15f;
-        private float m_CullentElapseTime = 0;
-        private float m_IncreaseMultiplier = 1;
+public class RandomCustomerModel
+{
+    private float m_DefaultIncreaseTime = 15f;
+    private float m_CullentElapseTime = 0;
+    private float m_IncreaseMultiplier = 1;
 
-        public float DefaultIncreaseTime => m_DefaultIncreaseTime;
-        public float CullentElapseTime => m_CullentElapseTime;
-        public float IncreaseMultiplier => m_IncreaseMultiplier;
+    public float DefaultIncreaseTime => m_DefaultIncreaseTime;
+    public float CullentElapseTime => m_CullentElapseTime;
+    public float IncreaseMultiplier => m_IncreaseMultiplier;
 
-        public void SetCullentElapseTime(float time) => m_CullentElapseTime = time;
-        public void SetIncreaseMultiplier(float mlt) => m_IncreaseMultiplier = mlt;
-
-    }
+    public void SetCullentElapseTime(float time) => m_CullentElapseTime = time;
+    public void SetIncreaseMultiplier(float mlt) => m_IncreaseMultiplier = mlt;
+}

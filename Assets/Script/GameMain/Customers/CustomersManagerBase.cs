@@ -5,13 +5,10 @@ using UnityEngine.UI;
 
 public abstract class CustomersManagerBase
 {
-    protected CustomersModel m_CustomersModel;
-
-    public CustomersModel CustomersModel => m_CustomersModel;
 
     public CustomersManagerBase()
     {
-        m_CustomersModel = new CustomersModel();
+        GameDataManager.Instance.InitCustomersModel(30);
     }
 
     protected abstract void AddCustomer();
@@ -27,10 +24,15 @@ public class CustomersModel
     public readonly ColorType[] CustomerColors = { ColorType.Red, ColorType.Green, ColorType.Blue };
 
     private List<Customer> m_Customers = new List<Customer>();
-    private int m_MaxCustomerCount = 30;
+    private int m_MaxCustomerCount;
 
     public int CustomerCount => m_Customers.Count;
     public int MaxCustomerCount => m_MaxCustomerCount;
+
+    public CustomersModel(int maxCustomerCount)
+    {
+        m_MaxCustomerCount = maxCustomerCount;
+    }
 
     public void AddCustomer(Customer customer) => m_Customers.Add(customer);
     public ColorType GetRandomColorType() => CustomerColors[Random.Range(0, CustomerColors.Length)];

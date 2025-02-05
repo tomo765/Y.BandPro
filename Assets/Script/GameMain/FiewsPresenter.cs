@@ -5,14 +5,10 @@ using UnityEngine;
 public class FiewsPresenter
 {
     private FiewsUI m_FiewsUI;
-    private FiewsModel m_FiewsModel;
 
     public FiewsPresenter(FiewsUI fiewsUI)
     {
         m_FiewsUI = fiewsUI;
-        m_FiewsModel = new FiewsModel(new FiewPurchase(m_FiewsUI.Fiew1Image, 1),
-                                      new FiewPurchase(m_FiewsUI.Fiew2Image, 2),
-                                      new FiewPurchase(m_FiewsUI.Fiew3Image, 3));
     }
 
     public void Start()
@@ -24,38 +20,27 @@ public class FiewsPresenter
             {
                 newType = (ColorType)Random.Range((int)ColorType.Yellow, (int)ColorType.Red);
                 if (newType == ColorType.White) { continue; }
-                if (m_FiewsModel.FiewSell.CullentFiew != newType) { break; }
+                if (GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew != newType) { break; }
             }
             return newType;
         });
-        m_FiewsModel.SetFiewSell(fiewSell);
-        m_FiewsModel.FiewSell.SetNewFiew();
+        GameDataManager.Instance.FiewsModel.SetFiewSell(fiewSell);
+        GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
 
 
-        m_FiewsUI.Fiew1Button.onClick = () =>
-        {
-            m_FiewsModel.FiewPurchase1.SetNewtFiew(m_FiewsModel.FiewSell.CullentFiew);
-            m_FiewsModel.FiewSell.SetNewFiew();
+        m_FiewsUI.Fiew1Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase1);
+        m_FiewsUI.Fiew2Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase2);
+        m_FiewsUI.Fiew3Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase3);
+    }
 
-            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewsModel.FiewPurchase1.FiewType1, m_FiewsModel.FiewPurchase1.FiewType2);
-            SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), m_FiewsModel.FiewPurchase1.Index);
-        };
-        m_FiewsUI.Fiew2Button.onClick = () =>
-        {
-            m_FiewsModel.FiewPurchase2.SetNewtFiew(m_FiewsModel.FiewSell.CullentFiew);
-            m_FiewsModel.FiewSell.SetNewFiew();
+    private void OnFiewButtonClicked(FiewPurchase fiewPurchase)
+    {
+        fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);
+        GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
+        var type = ScriptablesManager.Instance.GetMixedColor(fiewPurchase.FiewType1, fiewPurchase.FiewType2);
+        SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), fiewPurchase.Index);
 
-            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewsModel.FiewPurchase2.FiewType1, m_FiewsModel.FiewPurchase2.FiewType2);
-            SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), m_FiewsModel.FiewPurchase2.Index);
-        };
-        m_FiewsUI.Fiew3Button.onClick = () =>
-        {
-            m_FiewsModel.FiewPurchase3.SetNewtFiew(m_FiewsModel.FiewSell.CullentFiew);
-            m_FiewsModel.FiewSell.SetNewFiew();
-
-            var type = ScriptablesManager.Instance.GetMixedColor(m_FiewsModel.FiewPurchase3.FiewType1, m_FiewsModel.FiewPurchase3.FiewType2);
-            SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), m_FiewsModel.FiewPurchase3.Index);
-        };
+        GameDataManager.Instance.ScoreModel.AddScore(100);
     }
 }
 

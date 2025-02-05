@@ -5,16 +5,16 @@ using UnityEngine;
 public class ScorePresenter
 {
     private ScoreUI m_ScoreUI;
-    private ScoreModel m_ScoreModel;
 
     public ScorePresenter(ScoreUI scoreUI)
     {
+        GameDataManager.Instance.InitScoreModel();
         m_ScoreUI = scoreUI;
     }
 
     public void FixedUpdate()
     {
-        m_ScoreUI.RankText.text = "A";
-        m_ScoreUI.ScoreText.text = "Score : " + 111;
+        m_ScoreUI.RankText.text = GameDataManager.Instance.ScoreModel.Rank;
+        m_ScoreUI.ScoreText.text = "Score : " + GameDataManager.Instance.ScoreModel.Score;
     }
 }
