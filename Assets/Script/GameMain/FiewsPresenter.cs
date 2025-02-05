@@ -27,6 +27,11 @@ public class FiewsPresenter
         GameDataManager.Instance.FiewsModel.SetFiewSell(fiewSell);
         GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
 
+        m_FiewsUI.ChangeFierw.onClick = () =>
+        {
+            GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
+            GameDataManager.Instance.CalcScore();
+        };
 
         m_FiewsUI.Fiew1Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase1);
         m_FiewsUI.Fiew2Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase2);
@@ -37,10 +42,9 @@ public class FiewsPresenter
     {
         fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);
         GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
-        var type = ScriptablesManager.Instance.GetMixedColor(fiewPurchase.FiewType1, fiewPurchase.FiewType2);
-        SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(type), fiewPurchase.Index);
+        SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(fiewPurchase.MixedColor), fiewPurchase.Index);
 
-        GameDataManager.Instance.ScoreModel.AddScore(100);
+        GameDataManager.Instance.CalcScore();
     }
 }
 
@@ -55,6 +59,8 @@ public class FiewsModel
     public FiewPurchase FiewPurchase1 => m_FiewPurchase1;
     public FiewPurchase FiewPurchase2 => m_FiewPurchase2;
     public FiewPurchase FiewPurchase3 => m_FiewPurchase3;
+
+    public ColorType[] AllFiewColor => new ColorType[] { m_FiewPurchase1.MixedColor, m_FiewPurchase2.MixedColor, m_FiewPurchase3.MixedColor };
 
     public FiewsModel(FiewPurchase fp1, FiewPurchase fp2, FiewPurchase fp3)
     {

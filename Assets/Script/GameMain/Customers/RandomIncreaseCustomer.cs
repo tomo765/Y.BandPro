@@ -27,7 +27,10 @@ public class RandomIncreaseCustomer : CustomersManagerBase
     }
 
 
-    public override void Start() { }
+    public override void Start()
+    {
+        AddCustomer();
+    }
 
     public override void FixedUpdate()
     {
@@ -40,6 +43,7 @@ public class RandomIncreaseCustomer : CustomersManagerBase
         if (m_RCModel.CullentElapseTime >= m_RCModel.DefaultIncreaseTime)
         {
             AddCustomer();
+            GameDataManager.Instance.CalcScore();
             m_RCModel.SetCullentElapseTime(m_RCModel.CullentElapseTime - m_RCModel.DefaultIncreaseTime);
         }
     }

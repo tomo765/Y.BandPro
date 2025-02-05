@@ -16,4 +16,4 @@ MonoBehaviour:
   m_Music1: {fileID: 8300000, guid: 3e00fd7e8aa675a4f80a849202baf430, type: 3}
   m_Music2: {fileID: 8300000, guid: f9f8c1f17caf1474eb0d367a3ba774b5, type: 3}
   m_Music3: {fileID: 8300000, guid: de74b35bc17e4b44a9b4949cf27e574b, type: 3}
-  m_Volume: 1
+  m_Volume: 0.5

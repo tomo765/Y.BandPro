@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,7 @@ public class CustomersModel
     private List<Customer> m_Customers = new List<Customer>();
     private int m_MaxCustomerCount;
 
+    public List<ColorType> AllCustomerColor => m_Customers.Select(c => c.ColorType).ToList();
     public int CustomerCount => m_Customers.Count;
     public int MaxCustomerCount => m_MaxCustomerCount;
 

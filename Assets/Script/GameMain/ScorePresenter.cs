@@ -15,6 +15,6 @@ public class ScorePresenter
     public void FixedUpdate()
     {
         m_ScoreUI.RankText.text = GameDataManager.Instance.ScoreModel.Rank;
-        m_ScoreUI.ScoreText.text = "Score : " + GameDataManager.Instance.ScoreModel.Score;
+        m_ScoreUI.ScoreText.text = "Score : " + GameDataManager.Instance.ScoreModel.Score.ToString("N0");
     }
 }

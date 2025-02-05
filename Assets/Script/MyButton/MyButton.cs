@@ -47,7 +47,7 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
         if(!eventData.hovered.Contains(gameObject)) { return; }
         m_Image.color = m_Hover.Color;
 
-        onClick();
+        onClick?.Invoke();
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)

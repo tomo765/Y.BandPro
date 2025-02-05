@@ -8,6 +8,8 @@ public class Customer
     private ColorType m_ColorType;
     private SpriteRenderer m_SpriteRenderer;
 
+    public ColorType ColorType => m_ColorType;
+
     public Customer(ColorType type)
     {
         m_ColorType = type;
