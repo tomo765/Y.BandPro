@@ -19,7 +19,6 @@ public class ScoreModel
         int customerCountScore = CustomersBaseScore * CalcCustomersCountPoint(customersModel);
         int customersColorScore = CalcCustomersColorPoint(fiewsModel, customersModel) * customersModel.CustomerCount;
 
-        //m_Score = fiewsScore + customerCountScore + customersColorScore;
         m_Score = fiewsScore * customerCountScore + customersColorScore;
     }
 

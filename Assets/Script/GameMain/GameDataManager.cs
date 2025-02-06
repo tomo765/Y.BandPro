@@ -13,7 +13,7 @@ public class GameDataManager : SingletonBehaviour<GameDataManager>
     public void InitScoreModel() => m_ScoreModel = new ScoreModel();
     public void InitCustomersModel(int maxCustomerCount) => m_CustomersModel = new CustomersModel(maxCustomerCount);
 
-    public void CalcScore() => m_ScoreModel.UpdateScore(m_FiewsModel, m_CustomersModel);
+    public void UpdateScore() => m_ScoreModel.UpdateScore(m_FiewsModel, m_CustomersModel);
 
     public FiewsModel FiewsModel => m_FiewsModel;
     public ScoreModel ScoreModel => m_ScoreModel;

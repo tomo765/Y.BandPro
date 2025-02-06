@@ -9,7 +9,7 @@ public class FiewsUI : MonoBehaviour
 
     [SerializeField] private MyButton m_ChangeFierw;
 
-    [SerializeField,SpaceAttribute(5)] private Image m_FiewSellImage;
+    [SerializeField,Space(5)] private Image m_FiewSellImage;
 
     [SerializeField] private MyButton m_Fiew1Button;
     [SerializeField] private Image m_Fiew1Image;

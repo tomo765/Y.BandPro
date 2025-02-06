@@ -43,7 +43,7 @@ public class RandomIncreaseCustomer : CustomersManagerBase
         if (m_RCModel.CullentElapseTime >= m_RCModel.DefaultIncreaseTime)
         {
             AddCustomer();
-            GameDataManager.Instance.CalcScore();
+            GameDataManager.Instance.UpdateScore();
             m_RCModel.SetCullentElapseTime(m_RCModel.CullentElapseTime - m_RCModel.DefaultIncreaseTime);
         }
     }
