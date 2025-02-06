@@ -26,7 +26,6 @@ public class FiewsPresenter
         });
         GameDataManager.Instance.FiewsModel.SetFiewSell(fiewSell);
         fiewSell.SetNewFiew();
-
         m_FiewsUI.ChangeFierw.onClick = () =>
         {
             GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
@@ -44,9 +43,8 @@ public class FiewsPresenter
 
     private void OnFiewButtonClicked(FiewPurchase fiewPurchase)
     {
-        Debug.Log("mmmmmmmmmmmmmmmm");
         if(fiewPurchase.FiewType1 != ColorType.White && fiewPurchase.FiewType2 != ColorType.White) { return; }
-        Debug.Log("aohaiuerg");
+
         fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);
         GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
         SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(fiewPurchase.MixedColor), fiewPurchase.Index);

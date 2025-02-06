@@ -27,15 +27,15 @@ public class FiewsUI : MonoBehaviour
     public Image FiewSellImage => m_FiewSellImage;
 
     public MyButton Fiew1Button => m_Fiew1Button;
-    public MyButton Fiew1DeleteButton => m_Fiew1Button;
+    public MyButton Fiew1DeleteButton => m_Fiew1DeleteButton;
     public Image Fiew1Image => m_Fiew1Image;
 
     public MyButton Fiew2Button => m_Fiew2Button;
-    public MyButton Fiew2DeleteButton => m_Fiew2Button;
+    public MyButton Fiew2DeleteButton => m_Fiew2DeleteButton;
     public Image Fiew2Image => m_Fiew2Image;
 
     public MyButton Fiew3Button => m_Fiew3Button;
-    public MyButton Fiew3DeleteButton => m_Fiew3Button;
+    public MyButton Fiew3DeleteButton => m_Fiew3DeleteButton;
     public Image Fiew3Image => m_Fiew3Image;
 
     void Start()

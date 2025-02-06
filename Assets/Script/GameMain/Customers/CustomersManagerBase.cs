@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public abstract class CustomersManagerBase
 {
-
     public CustomersManagerBase()
     {
         GameDataManager.Instance.InitCustomersModel(30);
