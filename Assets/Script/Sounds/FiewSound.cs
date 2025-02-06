@@ -12,6 +12,7 @@ public class FiewSound : MonoBehaviour
 
     public MusicType PlayMusicType => m_PlayMusicType;
     public AudioSource MainSource => m_MainSource;
+    public bool IsPlaying => m_MainSource.isPlaying;
 
     public void PlaySound(GenreClips clips, float master, AudioSource mainAudio)
     {
@@ -21,7 +22,7 @@ public class FiewSound : MonoBehaviour
         StartCoroutine(GraduallyIncreaseVolume(m_MainSource, master * clips.Volume, 0.05f));
 
         m_MainSource.clip = clips.GetAudioClipAsType(m_PlayMusicType);
-        //m_MainSource.volume = master * clips.Volume;
+
         m_MainSource.Play();
         m_MainSource.time = mainAudio.time;
     }

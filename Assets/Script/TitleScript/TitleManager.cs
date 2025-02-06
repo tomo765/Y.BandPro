@@ -35,7 +35,7 @@ public class TitleManager : SingletonBehaviour<TitleManager>
     public void SetReserveUI(ReserveUI reserveUI)
     {
         m_ReserveUI = reserveUI;
-        Debug.Log(m_ReserveUI);
+        //Debug.Log(m_ReserveUI);
 
         m_ReserveUI.PlayButton.onClick.RemoveAllListeners();
         m_ReserveUI.PlayButton.onClick.AddListener(() =>

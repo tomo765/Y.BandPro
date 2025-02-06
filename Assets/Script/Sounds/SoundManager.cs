@@ -11,10 +11,12 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 
     [SerializeField, Space(5)] private float m_MasterVolume;
 
+    public bool IsPlaySound => m_MainSound.IsPlaying;
+
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     public void PlaySound(GenreClips clips, int fiewNumber)
