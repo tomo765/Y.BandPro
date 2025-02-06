@@ -16,7 +16,7 @@ public class FiewSound : MonoBehaviour
 
     public void PlaySound(GenreClips clips, float master, AudioSource mainAudio)
     {
-        if(m_PlayMusicType == MusicType.Main) { return; }
+        if (m_PlayMusicType == MusicType.Main) { return; }
         (m_MainSource, m_SubSource) = (m_SubSource, m_MainSource);
         StartCoroutine(GraduallyDecreaseVolume(m_SubSource, 0.05f));
         StartCoroutine(GraduallyIncreaseVolume(m_MainSource, master * clips.Volume, 0.05f));
@@ -33,20 +33,32 @@ public class FiewSound : MonoBehaviour
     {
         while (target.volume > 0 + ApproximateRange)
         {
+            if (target == m_MainSource) { yield break; }
+
             target.volume = Mathf.SmoothStep(target.volume, 0, t);
             yield return null;
         }
-        target.Stop();
-        target.volume = 0;
+        if (target == m_SubSource)
+        {
+            target.Stop();
+            target.volume = 0;
+        }
     }
 
     private IEnumerator GraduallyIncreaseVolume(AudioSource target, float targetVolume, float t)
     {
         target.Play();
-        while(target.volume < targetVolume - ApproximateRange)
+        while (target.volume < targetVolume - ApproximateRange)
         {
+            if (target == m_SubSource) { yield break; }
+
             target.volume = Mathf.SmoothStep(target.volume, targetVolume, t);
             yield return null;
+        }
+
+        if (target == m_MainSource)
+        {
+            target.volume = targetVolume;
         }
     }
 }
