@@ -44,6 +44,7 @@ public class RandomIncreaseCustomer : CustomersManagerBase
         {
             AddCustomer();
             GameDataManager.Instance.UpdateScore();
+            GameDataManager.Instance.UpdateRank();
             m_RCModel.SetCullentElapseTime(m_RCModel.CullentElapseTime - m_RCModel.DefaultIncreaseTime);
         }
     }
@@ -51,7 +52,7 @@ public class RandomIncreaseCustomer : CustomersManagerBase
 
 public class RandomCustomerModel
 {
-    private float m_DefaultIncreaseTime = 15f;
+    private float m_DefaultIncreaseTime = 7.5f;
     private float m_CullentElapseTime = 0;
     private float m_IncreaseMultiplier = 1;
 

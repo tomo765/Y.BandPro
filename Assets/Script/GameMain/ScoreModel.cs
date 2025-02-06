@@ -5,8 +5,9 @@ using System.Linq;
 public class ScoreModel
 {
     private int m_Score;
+    private RankStatus m_RankStatus = RankStatus.D;
 
-    public string Rank => "SSS";
+    public string Rank => m_RankStatus.ToString().Replace("_Plus", "+");
     public int Score => m_Score;
 
     private const int FiewsBaseScore = 100;
@@ -19,6 +20,22 @@ public class ScoreModel
         int customersColorScore = CalcCustomersColorPoint(fiewsModel, customersModel) * customersModel.CustomerCount;
 
         m_Score = fiewsScore * customerCountScore + customersColorScore;
+    }
+    public void UpdateRank()
+    {
+        m_RankStatus = GetRank();
+
+        RankStatus GetRank()
+        {
+            if     (Score < 200000)   { return RankStatus.D; }
+            else if(Score < 450000)   { return RankStatus.D_Plus; }
+            else if(Score < 800000)   { return RankStatus.C; }
+            else if(Score < 1350000)  { return RankStatus.C_Plus; }
+            else if(Score < 1850000)  { return RankStatus.B_Plus; }
+            else if(Score < 2400000)  { return RankStatus.B_Plus; }
+            else if(Score < 2800000)  { return RankStatus.A; }
+            else                      { return RankStatus.S; }
+        }
     }
 
     private int CalcFiewsMmberPoint(FiewsModel fiewsModel)
@@ -77,4 +94,17 @@ public class ScoreModel
 
         return point;
     }
+}
+
+public enum RankStatus
+{
+    D,
+    D_Plus,
+    C,
+    C_Plus,
+    B,
+    B_Plus,
+    A,
+    S
+
 }

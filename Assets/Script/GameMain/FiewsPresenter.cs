@@ -47,6 +47,7 @@ public class FiewsPresenter
         SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(fiewPurchase.MixedColor), fiewPurchase.Index);
 
         GameDataManager.Instance.UpdateScore();
+        GameDataManager.Instance.UpdateRank();
     }
 }
 
