@@ -106,5 +106,4 @@ public enum RankStatus
     B_Plus,
     A,
     S
-
 }

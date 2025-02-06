@@ -17,11 +17,13 @@ public class GameInfoUI : MonoBehaviour
 
     private void Awake()
     {
-        m_GameInfoPreseneter = new GameInfoPresenter(this);
+        
     }
 
     void Start()
     {
+        GameDataManager.Instance.InitGameInfoModel(this);
+        m_GameInfoPreseneter = new GameInfoPresenter(this);
         m_GameInfoPreseneter.Start();
     }
 

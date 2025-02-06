@@ -6,6 +6,7 @@ public class GameInfoPresenter
 {
     private GameInfoUI m_GameInfoUI;
     private float m_MaxSoundTime;
+    private RankStatus m_TargetRank;
 
     public GameInfoPresenter(GameInfoUI gameInfoUI)
     {
@@ -14,13 +15,14 @@ public class GameInfoPresenter
 
     public void Start()
     {
-        m_MaxSoundTime = ScriptablesManager.Instance.MainClips.GetAudioClipAsType(MusicType.Mus1).length;
-        m_GameInfoUI.TimerSlider.maxValue = m_MaxSoundTime;
-        m_GameInfoUI.TimerSlider.value = m_MaxSoundTime;
+        GameDataManager.Instance.GameInfoModel.SetMoneyText();
+        GameDataManager.Instance.GameInfoModel.SetTargetRankText();
+        GameDataManager.Instance.GameInfoModel.SetTimerSliderValue();
     }
 
     public void FixedUpdate()
     {
-        m_GameInfoUI.TimerSlider.value = m_MaxSoundTime - SoundManager.Instance.MainSoundTime;
+        GameDataManager.Instance.GameInfoModel.SetMoneyText();
+        GameDataManager.Instance.GameInfoModel.SetTimerSliderValue();
     }
 }
