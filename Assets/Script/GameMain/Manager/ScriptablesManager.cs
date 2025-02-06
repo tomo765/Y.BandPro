@@ -4,7 +4,8 @@ using System.Linq;
 using UnityEngine;
 
 public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
-{    
+{
+    [SerializeField] private GenreClips m_MainClips;
     [SerializeField] private GenreClips m_YellowClips;
     [SerializeField] private GenreClips m_MagentaClips;
     [SerializeField] private GenreClips m_CyanClips;
@@ -13,6 +14,8 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
     [SerializeField] private GenreClips m_BlueClips;
 
     [SerializeField] private FiewSprites m_FiewSprites;
+
+    public GenreClips MainClips => m_MainClips;
 
     public GenreClips GetGenreClips(ColorType type)
     {

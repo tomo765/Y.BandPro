@@ -16,7 +16,7 @@ public class FiewPurchase
     public int Index => m_Index;
     public ColorType FiewType1 => m_Fiew1;
     public ColorType FiewType2 => m_Fiew2;
-    public ColorType MixedColor => FiewPurchase.GetMixedColor(m_Fiew1, m_Fiew2);
+    public ColorType MixedColor => GetMixedColor(m_Fiew1, m_Fiew2);
 
     public FiewPurchase(Image fiewImage, int index)
     {

@@ -11,6 +11,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 
     [SerializeField, Space(5)] private float m_MasterVolume;
 
+    public float MainSoundTime => m_MainSound.MainSource.time;
     public bool IsPlaySound => m_MainSound.IsPlaying;
 
     protected override void Awake()

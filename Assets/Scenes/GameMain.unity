@@ -1204,6 +1204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583039218}
+  - component: {fileID: 583039219}
   m_Layer: 5
   m_Name: GameInfoUI
   m_TagString: Untagged
@@ -1233,6 +1234,21 @@ RectTransform:
   m_AnchoredPosition: {x: -540.00006, y: 460}
   m_SizeDelta: {x: 840, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &583039219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583039217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cb537192cf6ac4882c3da26f88b809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TargetRankText: {fileID: 835229765}
+  m_HaveMoneyText: {fileID: 467568686}
+  m_TimerSlider: {fileID: 376604275}
 --- !u!1 &679261535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +1993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8238993, g: 0.8238993, b: 0.8238993, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3463,6 +3479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af935faebb03cf34c9d214a0f7cb022d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MainClips: {fileID: 11400000, guid: 95ebd8bb333bfb44db9929fa822f6c2a, type: 2}
   m_YellowClips: {fileID: 11400000, guid: d0b12514d8975bf4c82f89df46f7766c, type: 2}
   m_MagentaClips: {fileID: 11400000, guid: 76bb7efeacbaba6448af0a2c30419070, type: 2}
   m_CyanClips: {fileID: 11400000, guid: 8513d2981e67d1e44a49e82d5dc9af2f, type: 2}
