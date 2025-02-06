@@ -36,15 +36,29 @@ public class FiewsPresenter
         m_FiewsUI.Fiew1Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase1);
         m_FiewsUI.Fiew2Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase2);
         m_FiewsUI.Fiew3Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase3);
+
+        m_FiewsUI.Fiew1DeleteButton.onClick = () => OnDeleteFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase1);
+        m_FiewsUI.Fiew2DeleteButton.onClick = () => OnDeleteFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase2);
+        m_FiewsUI.Fiew3DeleteButton.onClick = () => OnDeleteFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase3);
     }
 
     private void OnFiewButtonClicked(FiewPurchase fiewPurchase)
     {
+        Debug.Log("mmmmmmmmmmmmmmmm");
         if(fiewPurchase.FiewType1 != ColorType.White && fiewPurchase.FiewType2 != ColorType.White) { return; }
-
+        Debug.Log("aohaiuerg");
         fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);
         GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
         SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(fiewPurchase.MixedColor), fiewPurchase.Index);
+
+        GameDataManager.Instance.UpdateScore();
+        GameDataManager.Instance.UpdateRank();
+    }
+
+    private void OnDeleteFiewButtonClicked(FiewPurchase fiewPurchase)
+    {
+        fiewPurchase.DeleteFiew();
+        SoundManager.Instance.StopSound(fiewPurchase.Index);
 
         GameDataManager.Instance.UpdateScore();
         GameDataManager.Instance.UpdateRank();

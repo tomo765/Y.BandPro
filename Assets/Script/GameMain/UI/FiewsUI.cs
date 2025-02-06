@@ -9,26 +9,33 @@ public class FiewsUI : MonoBehaviour
 
     [SerializeField] private MyButton m_ChangeFierw;
 
-    [SerializeField,Space(5)] private Image m_FiewSellImage;
+    [SerializeField] private Image m_FiewSellImage;
 
-    [SerializeField] private MyButton m_Fiew1Button;
+    [SerializeField, Space(10)] private MyButton m_Fiew1Button;
+    [SerializeField] private MyButton m_Fiew1DeleteButton;
     [SerializeField] private Image m_Fiew1Image;
 
-    [SerializeField] private MyButton m_Fiew2Button;
+    [SerializeField, Space(10)] private MyButton m_Fiew2Button;
+    [SerializeField] private MyButton m_Fiew2DeleteButton;
     [SerializeField] private Image m_Fiew2Image;
 
-    [SerializeField] private MyButton m_Fiew3Button;
+    [SerializeField, Space(10)] private MyButton m_Fiew3Button;
+    [SerializeField] private MyButton m_Fiew3DeleteButton;
     [SerializeField] private Image m_Fiew3Image;
 
     public MyButton ChangeFierw => m_ChangeFierw;
     public Image FiewSellImage => m_FiewSellImage;
+
     public MyButton Fiew1Button => m_Fiew1Button;
+    public MyButton Fiew1DeleteButton => m_Fiew1Button;
     public Image Fiew1Image => m_Fiew1Image;
 
     public MyButton Fiew2Button => m_Fiew2Button;
+    public MyButton Fiew2DeleteButton => m_Fiew2Button;
     public Image Fiew2Image => m_Fiew2Image;
 
     public MyButton Fiew3Button => m_Fiew3Button;
+    public MyButton Fiew3DeleteButton => m_Fiew3Button;
     public Image Fiew3Image => m_Fiew3Image;
 
     void Start()

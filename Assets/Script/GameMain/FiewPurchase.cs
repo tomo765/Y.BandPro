@@ -34,7 +34,12 @@ public class FiewPurchase
         m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[MixedColor];
     }
 
-
+    public void DeleteFiew()
+    {
+        m_Fiew1 = ColorType.White;
+        m_Fiew2 = ColorType.White;
+        m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[MixedColor];
+    }
 
     public static readonly LinkedList<ColorType> ColorTransitionChain = new LinkedList<ColorType>(new List<ColorType>
     {

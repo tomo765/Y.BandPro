@@ -22,8 +22,26 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 
     public void PlaySound(GenreClips clips, int fiewNumber)
     {
-        if(fiewNumber == 1) { m_Fiew1Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
-        else if(fiewNumber == 2) { m_Fiew2Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
-        else { m_Fiew3Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
+        GetFiewSound(fiewNumber).PlaySound(clips, m_MasterVolume, m_MainSound.MainSource);
+
+        //if (fiewNumber == 1) { m_Fiew1Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
+        //else if(fiewNumber == 2) { m_Fiew2Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
+        //else { m_Fiew3Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
+    }
+
+    public void StopSound(int index)
+    {
+        GetFiewSound(index).StopSound();
+    }
+
+    private FiewSound GetFiewSound(int index)
+    {
+        return index switch
+        {
+            1 => m_Fiew1Sound,
+            2 => m_Fiew2Sound,
+            3 => m_Fiew3Sound,
+            _ => null,
+        };
     }
 }
