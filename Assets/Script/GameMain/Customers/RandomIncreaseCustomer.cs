@@ -34,7 +34,7 @@ public class RandomIncreaseCustomer : CustomersManagerBase
         if(GameDataManager.Instance.CustomersModel.CustomerCount >= GameDataManager.Instance.CustomersModel.MaxCustomerCount) { return; }
 
         ColorType type = GameDataManager.Instance.CustomersModel.GetRandomColorType();
-        GameDataManager.Instance.CustomersModel.AddCustomer(new Customer(GetCustomerObjAsColor(type).Instantiate()));
+        GameDataManager.Instance.CustomersModel.AddCustomer(new CustomerModel(GetCustomerObjAsColor(type).Instantiate()));
     }
 
 

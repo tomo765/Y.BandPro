@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Customer
+public class CustomerModel
 {
     private CustomerObject m_CustomerObject;
 
     public ColorType ColorType => m_CustomerObject.ColorType;
 
-    public Customer(CustomerObject customerObject)
+    public CustomerModel(CustomerObject customerObject)
     {
         m_CustomerObject = customerObject;
-        //m_SpriteRenderer.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[type];
     }
 
     public void Start()

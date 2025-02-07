@@ -24,7 +24,7 @@ public class CustomersModel
 {
     public readonly ColorType[] CustomerColors = { ColorType.Red, ColorType.Green, ColorType.Blue };
 
-    private List<Customer> m_Customers = new List<Customer>();
+    private List<CustomerModel> m_Customers = new List<CustomerModel>();
     private int m_MaxCustomerCount;
 
     public List<ColorType> AllCustomerColor => m_Customers.Select(c => c.ColorType).ToList();
@@ -36,6 +36,6 @@ public class CustomersModel
         m_MaxCustomerCount = maxCustomerCount;
     }
 
-    public void AddCustomer(Customer customer) => m_Customers.Add(customer);
+    public void AddCustomer(CustomerModel customer) => m_Customers.Add(customer);
     public ColorType GetRandomColorType() => CustomerColors[Random.Range(0, CustomerColors.Length)];
 }
