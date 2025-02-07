@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class RandomIncreaseCustomer : CustomersManagerBase
 {
-    private CustomerUI m_CustomerUI;
     private RandomCustomerModel m_RCModel;
 
     public RandomCustomerModel RCModel => m_RCModel;
 
-    public RandomIncreaseCustomer(CustomerUI customerUI) : base()
+    public RandomIncreaseCustomer(CustomerUI customerUI) : base(customerUI)
     {
-        m_CustomerUI = customerUI;
         m_RCModel = new RandomCustomerModel();
     }
 
@@ -20,10 +18,23 @@ public class RandomIncreaseCustomer : CustomersManagerBase
         m_RCModel.SetCullentElapseTime(m_RCModel.CullentElapseTime + Time.deltaTime * m_RCModel.IncreaseMultiplier);
     }
 
+    private CustomerObject GetCustomerObjAsColor(ColorType type)
+    {
+        return type switch
+        {
+            ColorType.Red => m_CustomerUI.RedCustomer,
+            ColorType.Green => m_CustomerUI.GreenCustomer,
+            ColorType.Blue => m_CustomerUI.BlueCustomer,
+            _ => null
+        };
+    }
+
     protected override void AddCustomer()
     {
         if(GameDataManager.Instance.CustomersModel.CustomerCount >= GameDataManager.Instance.CustomersModel.MaxCustomerCount) { return; }
-        GameDataManager.Instance.CustomersModel.AddCustomer(new Customer(GameDataManager.Instance.CustomersModel.GetRandomColorType()));
+
+        ColorType type = GameDataManager.Instance.CustomersModel.GetRandomColorType();
+        GameDataManager.Instance.CustomersModel.AddCustomer(new Customer(GetCustomerObjAsColor(type).Instantiate()));
     }
 
 

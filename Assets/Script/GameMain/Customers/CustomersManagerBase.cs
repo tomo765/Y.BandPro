@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public abstract class CustomersManagerBase
 {
-    public CustomersManagerBase()
+    protected CustomerUI m_CustomerUI;
+    public CustomersManagerBase(CustomerUI customerUI)
     {
+        m_CustomerUI = customerUI;
         GameDataManager.Instance.InitCustomersModel(30);
     }
 
