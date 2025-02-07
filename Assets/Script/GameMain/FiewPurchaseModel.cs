@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 
-public class FiewPurchase
+public class FiewPurchaseModel
 {
     private Image m_FiewImage;
     private int m_Index;
@@ -18,7 +18,7 @@ public class FiewPurchase
     public ColorType FiewType2 => m_Fiew2;
     public ColorType MixedColor => GetMixedColor(m_Fiew1, m_Fiew2);
 
-    public FiewPurchase(Image fiewImage, int index)
+    public FiewPurchaseModel(Image fiewImage, int index)
     {
         m_FiewImage = fiewImage;
         m_Index = index;

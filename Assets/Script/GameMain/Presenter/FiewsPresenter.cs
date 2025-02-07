@@ -13,7 +13,7 @@ public class FiewsPresenter
 
     public void Start()
     {
-        var fiewSell = new FiewSell(m_FiewsUI.FiewSellImage, () =>
+        var fiewSell = new FiewSellModel(m_FiewsUI.FiewSellImage, () =>
         {
             ColorType newType;
             while (true)
@@ -41,7 +41,7 @@ public class FiewsPresenter
         m_FiewsUI.Fiew3DeleteButton.onClick = () => OnDeleteFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase3);
     }
 
-    private void OnFiewButtonClicked(FiewPurchase fiewPurchase)
+    private void OnFiewButtonClicked(FiewPurchaseModel fiewPurchase)
     {
         if(fiewPurchase.FiewType1 != ColorType.White && fiewPurchase.FiewType2 != ColorType.White) { return; }
 
@@ -53,7 +53,7 @@ public class FiewsPresenter
         GameDataManager.Instance.UpdateRank();
     }
 
-    private void OnDeleteFiewButtonClicked(FiewPurchase fiewPurchase)
+    private void OnDeleteFiewButtonClicked(FiewPurchaseModel fiewPurchase)
     {
         fiewPurchase.DeleteFiew();
         SoundManager.Instance.StopSound(fiewPurchase.Index);
@@ -65,24 +65,24 @@ public class FiewsPresenter
 
 public class FiewsModel
 {
-    private FiewSell m_FiewSell;
-    private FiewPurchase m_FiewPurchase1;
-    private FiewPurchase m_FiewPurchase2;
-    private FiewPurchase m_FiewPurchase3;
+    private FiewSellModel m_FiewSell;
+    private FiewPurchaseModel m_FiewPurchase1;
+    private FiewPurchaseModel m_FiewPurchase2;
+    private FiewPurchaseModel m_FiewPurchase3;
 
-    public FiewSell FiewSell => m_FiewSell;
-    public FiewPurchase FiewPurchase1 => m_FiewPurchase1;
-    public FiewPurchase FiewPurchase2 => m_FiewPurchase2;
-    public FiewPurchase FiewPurchase3 => m_FiewPurchase3;
+    public FiewSellModel FiewSell => m_FiewSell;
+    public FiewPurchaseModel FiewPurchase1 => m_FiewPurchase1;
+    public FiewPurchaseModel FiewPurchase2 => m_FiewPurchase2;
+    public FiewPurchaseModel FiewPurchase3 => m_FiewPurchase3;
 
     public ColorType[] AllFiewColor => new ColorType[] { m_FiewPurchase1.MixedColor, m_FiewPurchase2.MixedColor, m_FiewPurchase3.MixedColor };
 
-    public FiewsModel(FiewPurchase fp1, FiewPurchase fp2, FiewPurchase fp3)
+    public FiewsModel(FiewPurchaseModel fp1, FiewPurchaseModel fp2, FiewPurchaseModel fp3)
     {
         m_FiewPurchase1 = fp1;
         m_FiewPurchase2 = fp2;
         m_FiewPurchase3 = fp3;
     }
 
-    public void SetFiewSell(FiewSell fiewSell) => m_FiewSell = fiewSell;
+    public void SetFiewSell(FiewSellModel fiewSell) => m_FiewSell = fiewSell;
 }

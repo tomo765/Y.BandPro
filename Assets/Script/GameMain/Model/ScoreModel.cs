@@ -77,12 +77,12 @@ public class ScoreModel
 
         for (int i = 0; i < customersModel.CustomerCount; i++)
         {
-            var node = FiewPurchase.ColorTransitionChain.Find(customersModel.AllCustomerColor[i]);
+            var node = FiewPurchaseModel.ColorTransitionChain.Find(customersModel.AllCustomerColor[i]);
 
             List<ColorType> findColors = new List<ColorType>();
             findColors.Add(node.Previous.Value);
             findColors.Add(node.Value);
-            findColors.Add(node.Next != null ? node.Next.Value : FiewPurchase.ColorTransitionChain.First.Value);
+            findColors.Add(node.Next != null ? node.Next.Value : FiewPurchaseModel.ColorTransitionChain.First.Value);
 
             if (fiewsModel.AllFiewColor.Contains(findColors[0]) || 
                 fiewsModel.AllFiewColor.Contains(findColors[1]) || 

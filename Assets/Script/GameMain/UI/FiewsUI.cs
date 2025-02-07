@@ -40,9 +40,9 @@ public class FiewsUI : MonoBehaviour
 
     void Start()
     {
-        GameDataManager.Instance.InitFiewsModel(new FiewPurchase(m_Fiew1Image, 1),
-                                                new FiewPurchase(m_Fiew2Image, 2),
-                                                new FiewPurchase(m_Fiew3Image, 3));
+        GameDataManager.Instance.InitFiewsModel(new FiewPurchaseModel(m_Fiew1Image, 1),
+                                                new FiewPurchaseModel(m_Fiew2Image, 2),
+                                                new FiewPurchaseModel(m_Fiew3Image, 3));
 
         m_FiewsPresenter = new FiewsPresenter(this);
         m_FiewsPresenter.Start();
