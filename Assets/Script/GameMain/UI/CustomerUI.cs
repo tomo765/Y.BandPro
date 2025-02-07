@@ -10,7 +10,7 @@ public class CustomerUI : MonoBehaviour
 
     [SerializeField] private TMPro.TextMeshProUGUI m_CustomerCountText;
 
-    private CustomersManagerBase m_CustomerManager;
+    private CustomersPresenterBase m_CustomerManager;
 
     public CustomerObject RedCustomer => m_RedCustomer;
     public CustomerObject GreenCustomer => m_GreenCustomer;
@@ -26,7 +26,7 @@ public class CustomerUI : MonoBehaviour
 
     void Start()
     {
-        m_CustomerManager = new RandomIncreaseCustomer(this);
+        m_CustomerManager = new RandomSpawnCustomerPresenter(this);
         m_CustomerManager.Start();
     }
 

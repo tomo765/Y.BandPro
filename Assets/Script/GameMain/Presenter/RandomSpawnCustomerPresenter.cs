@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomIncreaseCustomer : CustomersManagerBase
+public class RandomSpawnCustomerPresenter : CustomersPresenterBase
 {
     private RandomCustomerModel m_RCModel;
 
     public RandomCustomerModel RCModel => m_RCModel;
 
-    public RandomIncreaseCustomer(CustomerUI customerUI) : base(customerUI)
+    public RandomSpawnCustomerPresenter(CustomerUI customerUI) : base(customerUI)
     {
         m_RCModel = new RandomCustomerModel();
     }

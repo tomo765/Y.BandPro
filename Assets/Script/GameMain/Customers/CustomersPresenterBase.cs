@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class CustomersManagerBase
+public abstract class CustomersPresenterBase
 {
     protected CustomerUI m_CustomerUI;
-    public CustomersManagerBase(CustomerUI customerUI)
+    public CustomersPresenterBase(CustomerUI customerUI)
     {
         m_CustomerUI = customerUI;
         GameDataManager.Instance.InitCustomersModel(30);
