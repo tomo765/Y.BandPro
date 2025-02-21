@@ -15,17 +15,15 @@ public class FadeUI : SingletonBehaviour<FadeUI>
 
     protected override void Awake()
     {
-        Debug.Log(142214125213);
         base.Awake();
-        DontDestroyOnLoad(this.gameObject);
-        //FadeIn().Forget();
+        DontDestroyOnLoad(this);
     }
     public async UniTask FadeIn()
     {
         await UniTask.WaitUntil(() =>
         {
             Color cl = fadeimage.color;
-            cl.a += 0.01f;
+            cl.a += 0.004f;
             fadeimage.color = cl;
 
             return fadeimage.color.a >= 1;
@@ -37,7 +35,7 @@ public class FadeUI : SingletonBehaviour<FadeUI>
         await UniTask.WaitUntil(() =>
         {
             Color cl = fadeimage.color;
-            cl.a -= 0.01f;
+            cl.a -= 0.004f;
             fadeimage.color = cl;
 
             return fadeimage.color.a <= 0;
@@ -73,7 +71,7 @@ public class FadeUI : SingletonBehaviour<FadeUI>
     //    }
     //}
 
-    // Update is called once per frame
+
     void Update()
     {
         

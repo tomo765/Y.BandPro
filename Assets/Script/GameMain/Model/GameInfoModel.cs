@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GameInfoModel
 {
+    private int m_Cullenturn = 1;
     private GameInfoUI m_GameInfoUI;
     private float m_MaxSoundTime;
     private int m_Money;
-    private RankStatus m_TargetRank;
+    private RankStatus m_TargetRank = RankStatus.C;
 
+    public int CullentTurn => m_Cullenturn;
     public int Money => m_Money;
+    public RankStatus TargetRank => m_TargetRank;
 
     public GameInfoModel(GameInfoUI gameInfoUI, float maxSoundTime)
     {
@@ -18,6 +21,8 @@ public class GameInfoModel
 
         gameInfoUI.TimerSlider.maxValue = maxSoundTime;
     }
+
+    public void AddTurn() => m_Cullenturn++;
 
     public void SetTimerSliderValue()
     {

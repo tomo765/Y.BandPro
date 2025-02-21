@@ -13,11 +13,6 @@ public class RandomSpawnCustomerPresenter : CustomersPresenterBase
         m_RCModel = new RandomCustomerModel();
     }
 
-    private void AddTime()
-    {
-        m_RCModel.SetCullentElapseTime(m_RCModel.CullentElapseTime + Time.deltaTime * m_RCModel.IncreaseMultiplier);
-    }
-
     private CustomerObject GetCustomerObjAsColor(ColorType type)
     {
         return type switch
@@ -50,13 +45,16 @@ public class RandomSpawnCustomerPresenter : CustomersPresenterBase
 
     public override void Update()
     {
-        AddTime();
-        if (m_RCModel.CullentElapseTime >= m_RCModel.DefaultIncreaseTime)
+        //1ターン目は1～10人, 2ターン目は11～20人、3ターン目は21～30人で増える
+        //ターン中は7.5秒毎に1人客が増える
+        int cullentCustomerCount = Mathf.FloorToInt(SoundManager.Instance.MainSoundTime / m_RCModel.DefaultIncreaseTime);
+        cullentCustomerCount += (GameDataManager.Instance.GameInfoModel.CullentTurn - 1) * 10;
+
+        if (cullentCustomerCount >= GameDataManager.Instance.CustomersModel.CustomerCount)
         {
             AddCustomer();
             GameDataManager.Instance.UpdateScore();
             GameDataManager.Instance.UpdateRank();
-            m_RCModel.SetCullentElapseTime(m_RCModel.CullentElapseTime - m_RCModel.DefaultIncreaseTime);
         }
     }
 }
@@ -64,13 +62,10 @@ public class RandomSpawnCustomerPresenter : CustomersPresenterBase
 public class RandomCustomerModel
 {
     private float m_DefaultIncreaseTime = 7.5f;
-    private float m_CullentElapseTime = 0;
     private float m_IncreaseMultiplier = 1;
 
     public float DefaultIncreaseTime => m_DefaultIncreaseTime;
-    public float CullentElapseTime => m_CullentElapseTime;
     public float IncreaseMultiplier => m_IncreaseMultiplier;
 
-    public void SetCullentElapseTime(float time) => m_CullentElapseTime = time;
     public void SetIncreaseMultiplier(float mlt) => m_IncreaseMultiplier = mlt;
 }

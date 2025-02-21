@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,22 +12,38 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 
     [SerializeField, Space(5)] private float m_MasterVolume;
 
+    public UnityEngine.Events.UnityEvent OnFinishMainSound { get; } = new UnityEngine.Events.UnityEvent();
     public float MainSoundTime => m_MainSound.MainSource.time;
     public bool IsPlaySound => m_MainSound.IsPlaying;
 
     protected override void Awake()
     {
         base.Awake();
-        //DontDestroyOnLoad(this);
     }
+
+    public async UniTask StartMainSound()
+    {
+        m_MainSound.MainSource.time = 0;
+        m_MainSound.MainSource.Play();
+        
+        await UniTask.WaitUntil(() => !m_MainSound.IsPlaying);
+        OnFinishMainSound.Invoke();
+    }
+    public void StartPlaySounds()
+    {
+        m_Fiew1Sound.MainSource.Play();
+        m_Fiew2Sound.MainSource.Play();
+        m_Fiew3Sound.MainSource.Play();
+
+        m_Fiew1Sound.MainSource.time = MainSoundTime;
+        m_Fiew2Sound.MainSource.time = MainSoundTime;
+        m_Fiew3Sound.MainSource.time = MainSoundTime;
+    }
+
 
     public void PlaySound(GenreClips clips, int fiewNumber)
     {
         GetFiewSound(fiewNumber).PlaySound(clips, m_MasterVolume, m_MainSound.MainSource);
-
-        //if (fiewNumber == 1) { m_Fiew1Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
-        //else if(fiewNumber == 2) { m_Fiew2Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
-        //else { m_Fiew3Sound.PlaySound(clips, m_MasterVolume, m_MainSound.MainSource); }
     }
 
     public void StopSound(int index)
