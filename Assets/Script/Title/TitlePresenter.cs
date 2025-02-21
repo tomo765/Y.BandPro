@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 
 
 public class TitlePresenter:MonoBehaviour
@@ -16,6 +17,8 @@ public class TitlePresenter:MonoBehaviour
     public void Start()
     {
         GameObject fadeUI = (GameObject)Resources.Load("FadeOutUI");
+        Instantiate(fadeUI,new Vector3 (0f,0f,0f),Quaternion.identity);
+        FadeUI.Instance.gameObject.SetActive(false);
 
         m_TitleManager.TitleUI.StartButton.onClick = () =>
         {
@@ -23,10 +26,17 @@ public class TitlePresenter:MonoBehaviour
             m_TitleManager.ReserveUI.SetActive(true);
         };
 
-        m_TitleManager.ReserveUI.PlayButton.onClick = () =>
+        m_TitleManager.ReserveUI.PlayButton.onClick = async() =>
         {
-            Instantiate(fadeUI,new Vector3 (0f,0f,0f),Quaternion.identity);
-            //SceneManager.LoadScene("GameMain");
+            FadeUI.Instance.gameObject.SetActive(true);
+
+            await FadeUI.Instance.FadeIn();
+            SceneManager.LoadScene("GameMain");
+            await UniTask.Delay(300);
+            await FadeUI.Instance.FadeOut();
+
+            await UniTask.WaitUntil(() => FadeUI.Instance.IsFadeOut);
+            FadeUI.Instance.gameObject.SetActive(false);
         };
 
         m_TitleManager.ReserveUI.BackButton.onClick = () =>
