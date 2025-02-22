@@ -30,13 +30,8 @@ public class TitlePresenter:MonoBehaviour
         {
             FadeUI.Instance.gameObject.SetActive(true);
 
-            await FadeUI.Instance.FadeIn();
-            SceneManager.LoadScene("GameMain");
-            await UniTask.Delay(300);
-            await FadeUI.Instance.FadeOut();
+            await FadeUI.Instance.Fade("GameMain", () => FadeUI.Instance.gameObject.SetActive(false));
 
-            await UniTask.WaitUntil(() => FadeUI.Instance.IsFadeOut);
-            FadeUI.Instance.gameObject.SetActive(false);
         };
 
         m_TitleManager.ReserveUI.BackButton.onClick = () =>

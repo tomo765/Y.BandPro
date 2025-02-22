@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
-using System;
-using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class FadeUI : SingletonBehaviour<FadeUI>
 {
-    public Image fadeimage;
-    public float fadeDuration = 1.0f;
+    [SerializeField] private Image fadeimage;
+    [SerializeField] private float fadeDuration = 1.0f;
 
     public bool IsFadeOut => fadeimage.color.a <= 0;
 
@@ -18,7 +17,18 @@ public class FadeUI : SingletonBehaviour<FadeUI>
         base.Awake();
         DontDestroyOnLoad(this);
     }
-    public async UniTask FadeIn()
+
+    public async UniTask Fade(string newSceneName, System.Action OnFinishFade = null)
+    {
+        await FadeIn();
+        SceneManager.LoadScene(newSceneName);
+        await FadeOut();
+
+        OnFinishFade?.Invoke();
+    }
+
+
+    private async UniTask FadeIn()
     {
         await UniTask.WaitUntil(() =>
         {
@@ -30,7 +40,7 @@ public class FadeUI : SingletonBehaviour<FadeUI>
         });
     }
 
-    public async UniTask FadeOut()
+    private async UniTask FadeOut()
     {
         await UniTask.WaitUntil(() =>
         {
@@ -41,36 +51,6 @@ public class FadeUI : SingletonBehaviour<FadeUI>
             return fadeimage.color.a <= 0;
         });
     }
-
-    //public IEnumerator FadeLoadScene()
-    //{
-    //    fadeimage.enabled = true;
-    //    float elapsedTime = 0.0f;
-    //    Color startColor = fadeimage.color;
-    //    Color endColor = new Color(startColor.r, startColor.g, startColor.b, 1.0f);
-
-    //    while (elapsedTime < fadeDuration)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        float t = Mathf.Clamp01(elapsedTime / fadeDuration);
-    //        fadeimage.color = Color.Lerp(startColor, endColor, t);
-    //        yield return null;
-    //    }
-    //    fadeimage.color = endColor;       
-    //    SceneManager.LoadScene("GameMain");
-    //    yield return new WaitForSeconds(1);
-
-    //    float elapsedTime2 = 0.0f;
-
-    //    while (elapsedTime2 < fadeDuration)
-    //    {
-    //        elapsedTime2 += Time.deltaTime;
-    //        float t2 = Mathf.Clamp01(elapsedTime2 / fadeDuration);
-    //        fadeimage.color = Color.Lerp(endColor, startColor, t2);
-    //        yield return null;
-    //    }
-    //}
-
 
     void Update()
     {
