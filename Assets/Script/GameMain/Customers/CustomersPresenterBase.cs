@@ -12,7 +12,7 @@ public abstract class CustomersPresenterBase
         GameDataManager.Instance.InitCustomersModel(30);
     }
 
-    protected abstract void AddCustomer();
+    protected abstract void AddCustomer(ColorType type);
 
     public virtual void Awake() { }
     public virtual void Start() { }

@@ -26,7 +26,7 @@ public class CustomerUI : MonoBehaviour
 
     void Start()
     {
-        m_CustomerManager = new RandomSpawnCustomerPresenter(this);
+        m_CustomerManager = new RandomSpawnCustomerPresenter(this);  //FixMe : GaugeSpawnCustomerPresenter ‚É‚·‚é
         m_CustomerManager.Start();
     }
 

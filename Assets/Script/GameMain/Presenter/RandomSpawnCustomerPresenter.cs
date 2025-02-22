@@ -24,18 +24,18 @@ public class RandomSpawnCustomerPresenter : CustomersPresenterBase
         };
     }
 
-    protected override void AddCustomer()
+    protected override void AddCustomer(ColorType type)
     {
         if(GameDataManager.Instance.CustomersModel.CustomerCount >= GameDataManager.Instance.CustomersModel.MaxCustomerCount) { return; }
 
-        ColorType type = GameDataManager.Instance.CustomersModel.GetRandomColorType();
+        type = GameDataManager.Instance.CustomersModel.GetRandomColorType();
         GameDataManager.Instance.CustomersModel.AddCustomer(new CustomerModel(GetCustomerObjAsColor(type).Instantiate()));
     }
 
 
     public override void Start()
     {
-        AddCustomer();
+        AddCustomer(0);
     }
 
     public override void FixedUpdate()
@@ -52,7 +52,7 @@ public class RandomSpawnCustomerPresenter : CustomersPresenterBase
 
         if (cullentCustomerCount >= GameDataManager.Instance.CustomersModel.CustomerCount)
         {
-            AddCustomer();
+            AddCustomer(0);
             GameDataManager.Instance.UpdateScore();
             GameDataManager.Instance.UpdateRank();
         }
