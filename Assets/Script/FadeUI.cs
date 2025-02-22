@@ -56,9 +56,4 @@ public class FadeUI : SingletonBehaviour<FadeUI>
             return fadeimage.color.a <= 0;
         });
     }
-
-    void Update()
-    {
-        
-    }
 }
