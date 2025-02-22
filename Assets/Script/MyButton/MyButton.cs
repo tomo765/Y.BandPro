@@ -24,7 +24,7 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     }
 
 
-    public Action onClick {  private get; set; }
+    public Action onClick {  get; set; }
 
     [SerializeField] private Image m_Image;
 

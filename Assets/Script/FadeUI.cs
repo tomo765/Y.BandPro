@@ -16,15 +16,20 @@ public class FadeUI : SingletonBehaviour<FadeUI>
     {
         base.Awake();
         DontDestroyOnLoad(this);
+
+        gameObject.SetActive(false);
     }
 
     public async UniTask Fade(string newSceneName, System.Action OnFinishFade = null)
     {
+        gameObject.SetActive(true);
+
         await FadeIn();
         SceneManager.LoadScene(newSceneName);
         await FadeOut();
 
         OnFinishFade?.Invoke();
+        gameObject.SetActive(false);
     }
 
 
