@@ -19,3 +19,6 @@ MonoBehaviour:
   m_RedFiew: {fileID: 21300000, guid: 74f4ef203b8ea514db44d95430c37ab4, type: 3}
   m_GreenFiew: {fileID: 21300000, guid: 7df7c77e396ef394bbb8c2edee61f194, type: 3}
   m_BlueFiew: {fileID: 21300000, guid: 3068ccdcea84d4941875831a97e007f0, type: 3}
+  m_WhiteYellowFiew: {fileID: 21300000, guid: 94aa8da6f62412644b5b9a5a2cf94b37, type: 3}
+  m_WhiteMagentaFiew: {fileID: 21300000, guid: 427ced224703e474391aca928436db40, type: 3}
+  m_WhiteCyanFiew: {fileID: 21300000, guid: 98502eb33c350c34baa0373a84238495, type: 3}

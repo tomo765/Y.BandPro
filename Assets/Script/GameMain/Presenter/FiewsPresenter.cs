@@ -47,7 +47,7 @@ public class FiewsPresenter
 
         fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);
         GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
-        SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(fiewPurchase.MixedColor), fiewPurchase.Index);
+        SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(fiewPurchase.AnyMixedColor), fiewPurchase.Index);
 
         GameDataManager.Instance.UpdateScore();
         GameDataManager.Instance.UpdateRank();

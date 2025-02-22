@@ -68,7 +68,7 @@ public class ScoreModel
         }
 
     }
-    private int CalcCustomersCountPoint(CustomersModel customersModel)
+    private int CalcCustomersCountPoint(CustomersModel customersModel)  // * 10 => * 1
     {
         return customersModel.CustomerCount * 10;
     }

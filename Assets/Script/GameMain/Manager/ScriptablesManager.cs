@@ -27,6 +27,10 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
             ColorType.Red => m_RedClips,
             ColorType.Green => m_GreenClips,
             ColorType.Blue => m_BlueClips,
+
+            ColorType.White_Yellow => m_YellowClips,
+            ColorType.White_Magenta => m_MagentaClips,
+            ColorType.White_Cyan => m_CyanClips,
             _ => null
         };
     }
