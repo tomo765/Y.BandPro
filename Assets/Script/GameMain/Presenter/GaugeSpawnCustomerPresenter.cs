@@ -56,7 +56,7 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
         if (!GameDataManager.Instance.CustomerGaugeModel.GetIsFullGauge(type)) { return; }
 
         m_CustomerUI.GetGaugeUI(type).OnFullGauge();
-        m_GaugeCustomerModel.SetNextFullTime(type, m_GaugeCustomerModel.GetNextFullTime(type) + m_GaugeCustomerModel.DefaultGaugeFullTime);
+        m_GaugeCustomerModel.SetNextFullTime(type, m_GaugeCustomerModel.GetNextFullTime(type) + m_GaugeCustomerModel.DefaultGaugeFullTime);  //FixMe : DefaultGaugeFullTime を倍率の変数で割って、客が増えるスピードを調整する
 
         GameDataManager.Instance.CustomersModel.AddCustomer(GetCustomerObjAsColor(type));
         GameDataManager.Instance.CustomerGaugeModel.ResetGauge(type);
@@ -67,7 +67,6 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
 
 public class GaugeCustomerModel
 {
-    //必要ならそれぞれの色の客が増えるスピードをここで管理する (変数必要ないかも)
     public readonly float DefaultGaugeFullTime = 15f;
 
     private float m_PrevRedFull = 0;
