@@ -29,18 +29,18 @@ public class CustomerGaugeModel
             _ => false,
         };
     }
-    public void AddGauge(ColorType type, float value)
+    public void UpdateGauge(ColorType type, float value)
     {
         switch (type)
         {
             case ColorType.Red:
-                m_RedGauge = Mathf.Clamp01(m_RedGauge + value);
+                m_RedGauge = Mathf.Clamp01(value);
                 break;
             case ColorType.Green:
-                m_GreenGauge = Mathf.Clamp01(m_GreenGauge + value);
+                m_GreenGauge = Mathf.Clamp01(value);
                 break;
             case ColorType.Blue:
-                m_BlueGauge = Mathf.Clamp01(m_BlueGauge + value);
+                m_BlueGauge = Mathf.Clamp01(value);
                 break;
         }
     }
