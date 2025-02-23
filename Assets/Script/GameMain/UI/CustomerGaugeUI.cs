@@ -1,35 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TText = TMPro.TextMeshProUGUI;
 
-public class CustomerGaugeUI : MonoBehaviour
+public class CustomerGaugeUI : CustomerUIBase
 {
-    private CustomerGaugePresenter m_CustomerGaugePresenter;
+    private GaugeSpawnCustomerPresenter m_GaugeSpawnCustomerPresenter;
 
-    [SerializeField] private GaugeUI m_RedGauge;
+    [SerializeField, Space(10)] private GaugeUI m_RedGauge;
+    [SerializeField] private TText m_RedGaugeText;
     [SerializeField] private GaugeUI m_GreenGauge;
+    [SerializeField] private TText m_GreenGaugeText;
     [SerializeField] private GaugeUI m_BlueGauge;
-
-    public GaugeUI RedGauge => m_RedGauge;
-    public GaugeUI GreenGauge => m_GreenGauge;
-    public GaugeUI BlueGauge => m_BlueGauge;
+    [SerializeField] private TText m_BlueGaugeText;
 
     private void Awake()
     {
-        m_CustomerGaugePresenter = new CustomerGaugePresenter(this);
+        
     }
 
     private void Start()
     {
+        m_GaugeSpawnCustomerPresenter = new GaugeSpawnCustomerPresenter(this);
+
         GameDataManager.Instance.InitCustomerGaugeModel();
+        m_GaugeSpawnCustomerPresenter.Start();
     }
 
     private void Update()
     {
-        m_CustomerGaugePresenter.Update();
+        m_GaugeSpawnCustomerPresenter.Update();
     }
     private void FixedUpdate()
     {
-        m_CustomerGaugePresenter.FixedUpdate();
+        m_GaugeSpawnCustomerPresenter.FixedUpdate();
+    }
+
+    public GaugeUI GetGaugeUI(ColorType type)
+    {
+        return (type) switch
+        {
+            ColorType.Red => m_RedGauge,
+            ColorType.Green => m_GreenGauge,
+            ColorType.Blue => m_BlueGauge,
+            _ => null,
+        };
+    }
+    public void UpdateGaugeText(ColorType type , int count)
+    {
+        switch (type)
+        {
+            case ColorType.Red:
+                m_RedGaugeText.text = $"x {count}";
+                break;
+            case ColorType.Green:
+                m_GreenGaugeText.text = $"x {count}";
+                break;
+            case ColorType.Blue:
+                m_BlueGaugeText.text = $"x {count}";
+                break;
+        }
     }
 }

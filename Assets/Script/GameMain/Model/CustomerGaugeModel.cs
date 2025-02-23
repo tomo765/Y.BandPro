@@ -8,19 +8,55 @@ public class CustomerGaugeModel
     private float m_GreenGauge = 0;
     private float m_BlueGauge = 0;
 
-    public float RedGauge => m_RedGauge;
-    public float GreenGauge => m_GreenGauge;
-    public float BlueGauge => m_BlueGauge;
 
-    public bool IsFullRedGauge => m_RedGauge >= 1.0f;
-    public bool IsFullGreenGauge => m_GreenGauge >= 1.0f;
-    public bool IsFullBlueGauge => m_BlueGauge >= 1.0f;
-
-    public void AddRedGauge(float value) => m_RedGauge = Mathf.Clamp01(m_RedGauge + value);
-    public void ResetRedGauge() => m_RedGauge = 0;
-
-    public void AddGreenGauge(float value) => m_GreenGauge = Mathf.Clamp01(m_GreenGauge + value);
-    public void ResetGreenGauge() => m_GreenGauge = 0;
-    public void AddBlueGauge(float value) => m_BlueGauge = Mathf.Clamp01(m_BlueGauge + value);
-    public void ResetBlueGauge() => m_BlueGauge = 0;
+    public float GetGauge(ColorType type)
+    {
+        return (type) switch
+        {
+            ColorType.Red => m_RedGauge,
+            ColorType.Green => m_GreenGauge,
+            ColorType.Blue => m_BlueGauge,
+            _ => 0,
+        };
+    }
+    public bool GetIsFullGauge(ColorType type)
+    {
+        return (type) switch
+        {
+            ColorType.Red => m_RedGauge >= 1.0f,
+            ColorType.Green => m_GreenGauge >= 1.0f,
+            ColorType.Blue => m_BlueGauge >= 1.0f,
+            _ => false,
+        };
+    }
+    public void AddGauge(ColorType type, float value)
+    {
+        switch (type)
+        {
+            case ColorType.Red:
+                m_RedGauge = Mathf.Clamp01(m_RedGauge + value);
+                break;
+            case ColorType.Green:
+                m_GreenGauge = Mathf.Clamp01(m_GreenGauge + value);
+                break;
+            case ColorType.Blue:
+                m_BlueGauge = Mathf.Clamp01(m_BlueGauge + value);
+                break;
+        }
+    }
+    public void ResetGauge(ColorType type)
+    {
+        switch (type)
+        {
+            case ColorType.Red:
+                m_RedGauge = 0;
+                break;
+            case ColorType.Green:
+                m_GreenGauge = 0;
+                break;
+            case ColorType.Blue:
+                m_BlueGauge = 0;
+                break;
+        }
+    }
 }
