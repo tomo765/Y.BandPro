@@ -13,4 +13,10 @@ public class GaugeUI : MonoBehaviour
         m_FillValue = Mathf.Clamp01(value);
         m_GaugeImage.fillAmount = m_FillValue;
     }
+
+    public void OnFullGauge()
+    {
+        m_FillValue = 0;
+        m_GaugeImage.fillAmount = m_FillValue;
+    }
 }

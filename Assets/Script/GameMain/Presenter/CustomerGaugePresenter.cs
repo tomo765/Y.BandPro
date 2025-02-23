@@ -16,21 +16,49 @@ public class CustomerGaugePresenter
     //その後、UI の更新を行う。
 
 
-    void Start()
+    public void Start()
     {
         
     }
 
-    void Update()
+    public void Update()
     {
-        
+        UpdateGaugeUI();
+    }
+
+    public void FixedUpdate()
+    {
+        UpdateGaugeModel();
+    }
+
+    private void UpdateGaugeModel()
+    {
+        GameDataManager.Instance.CustomerGaugeModel.AddRedGauge(0.01f);
+        GameDataManager.Instance.CustomerGaugeModel.AddGreenGauge(0.01f);
+        GameDataManager.Instance.CustomerGaugeModel.AddBlueGauge(0.01f);
+
+        if (GameDataManager.Instance.CustomerGaugeModel.IsFullRedGauge)
+        {
+            m_CustomerGaugeUI.RedGauge.OnFullGauge();
+            GameDataManager.Instance.CustomerGaugeModel.ResetRedGauge();
+        }
+        if (GameDataManager.Instance.CustomerGaugeModel.IsFullGreenGauge)
+        {
+            m_CustomerGaugeUI.GreenGauge.OnFullGauge();
+            GameDataManager.Instance.CustomerGaugeModel.ResetGreenGauge();
+        }
+        if (GameDataManager.Instance.CustomerGaugeModel.IsFullBlueGauge)
+        {
+            m_CustomerGaugeUI.BlueGauge.OnFullGauge();
+            GameDataManager.Instance.CustomerGaugeModel.ResetBlueGauge();
+        }
     }
 
     // UpdateGaugeFill() の引数には、CustomerGaugeModel の それぞれのゲージの値が入る
     private void UpdateGaugeUI()
     {
-        m_CustomerGaugeUI.RedGauge.UpdateGaugeFill(1);
-        m_CustomerGaugeUI.GreenGauge.UpdateGaugeFill(1);
-        m_CustomerGaugeUI.BlueGauge.UpdateGaugeFill(1);
+        m_CustomerGaugeUI.RedGauge.UpdateGaugeFill(GameDataManager.Instance.CustomerGaugeModel.RedGauge);
+        m_CustomerGaugeUI.GreenGauge.UpdateGaugeFill(GameDataManager.Instance.CustomerGaugeModel.GreenGauge);
+        m_CustomerGaugeUI.BlueGauge.UpdateGaugeFill(GameDataManager.Instance.CustomerGaugeModel.BlueGauge);
     }
 }

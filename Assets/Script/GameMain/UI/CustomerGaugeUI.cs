@@ -18,4 +18,18 @@ public class CustomerGaugeUI : MonoBehaviour
     {
         m_CustomerGaugePresenter = new CustomerGaugePresenter(this);
     }
+
+    private void Start()
+    {
+        GameDataManager.Instance.InitCustomerGaugeModel();
+    }
+
+    private void Update()
+    {
+        m_CustomerGaugePresenter.Update();
+    }
+    private void FixedUpdate()
+    {
+        m_CustomerGaugePresenter.FixedUpdate();
+    }
 }
