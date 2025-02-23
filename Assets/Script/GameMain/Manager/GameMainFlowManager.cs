@@ -24,7 +24,7 @@ public class GameMainFlowManager : SingletonBehaviour<GameMainFlowManager>
 
     private async UniTask OnStart()
     {
-        await UniTask.WaitUntil(() => FadeUI.Instance.IsFadeOut);
+        await UniTask.WaitUntil(() => FadeUI.Instance?.IsFadeOut ?? true);
         SoundManager.Instance.StartMainSound().Forget();
     }
 
