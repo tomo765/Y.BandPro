@@ -50,7 +50,8 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
 
     private void UpdateGauge(ColorType type, float gaugeSpeed)
     {
-        GameDataManager.Instance.CustomerGaugeModel.UpdateGauge(type, m_GaugeCustomerModel.GetGaugePercent(type, SoundManager.Instance.MainSoundTime));
+        GameDataManager.Instance.CustomerGaugeModel.UpdateGauge(type, m_GaugeCustomerModel.GetGaugePercent
+            (type, SoundManager.Instance.MainSoundTime + SoundManager.Instance.SoundLength * (GameDataManager.Instance.GameInfoModel.CullentTurn - 1)));
         UpdateGaugeUI(type);
 
         if (!GameDataManager.Instance.CustomerGaugeModel.GetIsFullGauge(type)) { return; }
@@ -61,6 +62,7 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
         GameDataManager.Instance.CustomersModel.AddCustomer(GetCustomerObjAsColor(type));
         GameDataManager.Instance.CustomerGaugeModel.ResetGauge(type);
         GameDataManager.Instance.UpdateScore();
+        GameDataManager.Instance.UpdateRank();
         UpdateCountText(type);
     }
 }
