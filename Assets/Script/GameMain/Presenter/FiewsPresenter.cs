@@ -29,6 +29,8 @@ public class FiewsPresenter
         fiewSell.SetNewFiew();
         m_FiewsUI.ChangeFierw.onClick = () =>
         {
+            if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(FiewSellModel.ChangeFiewPrice)) { return; }
+
             GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
             GameDataManager.Instance.UpdateScore();
             GameDataManager.Instance.UpdateRank();
@@ -45,7 +47,7 @@ public class FiewsPresenter
 
     private void OnFiewButtonClicked(FiewPurchaseModel fiewPurchase)
     {
-
+        if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(FiewSellModel.FiewPrice)) { return; }
         if (fiewPurchase.FiewType1 != ColorType.White && fiewPurchase.FiewType2 != ColorType.White) { return; }
 
         fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);

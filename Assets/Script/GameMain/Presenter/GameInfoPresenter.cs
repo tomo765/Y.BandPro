@@ -5,8 +5,6 @@ using UnityEngine;
 public class GameInfoPresenter
 {
     private GameInfoUI m_GameInfoUI;
-    private float m_MaxSoundTime;
-    private RankStatus m_TargetRank;
 
     public GameInfoPresenter(GameInfoUI gameInfoUI)
     {
