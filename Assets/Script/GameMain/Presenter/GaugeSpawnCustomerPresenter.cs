@@ -10,9 +10,6 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
     public GaugeSpawnCustomerPresenter(CustomerGaugeUI customerUI) : base(customerUI)
     {
         m_GaugeCustomerModel = new GaugeCustomerModel();
-        m_GaugeCustomerModel.SetNextFullTime(ColorType.Red, m_GaugeCustomerModel.DefaultGaugeFullTime);
-        m_GaugeCustomerModel.SetNextFullTime(ColorType.Green, m_GaugeCustomerModel.DefaultGaugeFullTime);
-        m_GaugeCustomerModel.SetNextFullTime(ColorType.Blue, m_GaugeCustomerModel.DefaultGaugeFullTime);
     }
 
     protected override void AddCustomer(ColorType type)
@@ -29,7 +26,7 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
 
     public override void FixedUpdate()
     {
-        UpdateGaugeModel();
+        UpdateGauge(Time.fixedDeltaTime);
     }
 
     private void UpdateCountText(ColorType type) 
@@ -39,31 +36,31 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
          => m_CustomerUI.GetGaugeUI(type).UpdateGaugeFill(GameDataManager.Instance.CustomerGaugeModel.GetGauge(type));
 
 
-    private void UpdateGaugeModel()
+    private void UpdateGauge(float elapsedTime)
     {
-        UpdateGauge(ColorType.Red, 0.01f);
-        UpdateGauge(ColorType.Green, 0.01f);
-        UpdateGauge(ColorType.Blue, 0.01f);
-    }
+        if (!SoundManager.Instance.IsPlaySound) { return; }
 
+        UpdateGauge(ColorType.Red, elapsedTime);
+        UpdateGauge(ColorType.Green, elapsedTime);
+        UpdateGauge(ColorType.Blue, elapsedTime);
 
+        void UpdateGauge(ColorType type, float gaugeSpeed)
+        {
+            m_GaugeCustomerModel.AddGaugeProgress(type, gaugeSpeed);
+            GameDataManager.Instance.CustomerGaugeModel.UpdateGauge(type, m_GaugeCustomerModel.GetGaugePercent(type));
+            UpdateGaugeUI(type);
+            if (!GameDataManager.Instance.CustomerGaugeModel.GetIsFullGauge(type)) { return; }
 
-    private void UpdateGauge(ColorType type, float gaugeSpeed)
-    {
-        GameDataManager.Instance.CustomerGaugeModel.UpdateGauge(type, m_GaugeCustomerModel.GetGaugePercent
-            (type, SoundManager.Instance.MainSoundTime + SoundManager.Instance.SoundLength * (GameDataManager.Instance.GameInfoModel.CullentTurn - 1)));
-        UpdateGaugeUI(type);
+            m_CustomerUI.GetGaugeUI(type).OnFullGauge();
+            m_GaugeCustomerModel.ResetGaugeProgress(type);
 
-        if (!GameDataManager.Instance.CustomerGaugeModel.GetIsFullGauge(type)) { return; }
+            GameDataManager.Instance.CustomersModel.AddCustomer(GetCustomerObjAsColor(type));
+            GameDataManager.Instance.CustomerGaugeModel.ResetGauge(type);
+            GameDataManager.Instance.UpdateScore();
+            GameDataManager.Instance.UpdateRank();
 
-        m_CustomerUI.GetGaugeUI(type).OnFullGauge();
-        m_GaugeCustomerModel.SetNextFullTime(type, m_GaugeCustomerModel.GetNextFullTime(type) + m_GaugeCustomerModel.DefaultGaugeFullTime);  //FixMe : DefaultGaugeFullTime を倍率の変数で割って、客が増えるスピードを調整する
-
-        GameDataManager.Instance.CustomersModel.AddCustomer(GetCustomerObjAsColor(type));
-        GameDataManager.Instance.CustomerGaugeModel.ResetGauge(type);
-        GameDataManager.Instance.UpdateScore();
-        GameDataManager.Instance.UpdateRank();
-        UpdateCountText(type);
+            UpdateCountText(type);
+        }
     }
 }
 
@@ -71,56 +68,46 @@ public class GaugeCustomerModel
 {
     public readonly float DefaultGaugeFullTime = 15f;
 
-    private float m_PrevRedFull = 0;
-    private float m_PrevGreenFull = 0;
-    private float m_PrevBlueFull = 0;
-    private float m_NextRedFull = 0;
-    private float m_NextGreenFull = 0;
-    private float m_NextBlueFull = 0;
+    private float m_RedGauge = 0;
+    private float m_GreenGauge = 0;
+    private float m_BlueGauge = 0;
 
-    private float GetPercent(float elapseTime, float nextFull)
-        => 1 - (Mathf.Max(0, nextFull - elapseTime) / DefaultGaugeFullTime);
-
-    /// <summary> 0 ～ 1 の間の値を取得する </summary>
-    /// <remarks> デバッグ時に巻き戻しでマイナスの値が返ってくる可能性があるから、0未満の時は0を返す。</remarks>
-    public float GetGaugePercent(ColorType type, float elapsedTime)
+    public float GetGaugePercent(ColorType type)
     {
         return (type) switch
         {
-            ColorType.Red => GetPercent(elapsedTime, m_NextRedFull),
-            ColorType.Green => GetPercent(elapsedTime, m_NextGreenFull),
-            ColorType.Blue => GetPercent(elapsedTime, m_NextBlueFull),
-            _ => 0,
+            ColorType.Red => GetPercent(ref m_RedGauge),
+            ColorType.Green => GetPercent(ref m_GreenGauge),
+            ColorType.Blue => GetPercent(ref m_BlueGauge),
+            _ => 0
         };
+
+        float GetPercent(ref float gauge) => gauge / DefaultGaugeFullTime;
     }
 
-    public float GetNextFullTime(ColorType type)
+    public void AddGaugeProgress(ColorType type, float value)
     {
-        return (type) switch
+        switch(type)
         {
-            ColorType.Red => m_NextRedFull,
-            ColorType.Green => m_NextGreenFull,
-            ColorType.Blue => m_NextBlueFull,
-            _ => 0,
-        };
+            case ColorType.Red:
+                AddValue(ref m_RedGauge, value); break;
+            case ColorType.Green:
+                AddValue(ref m_GreenGauge, value); break;
+            case ColorType.Blue:
+                AddValue(ref m_BlueGauge, value); break;
+        }
+
+
+        void AddValue(ref float gauge, float value) => gauge += value;
     }
 
-    public void SetNextFullTime(ColorType type, float nextTime)
+    public void ResetGaugeProgress(ColorType type)
     {
         switch (type)
         {
-            case ColorType.Red:
-                m_PrevRedFull = m_NextRedFull;
-                m_NextRedFull = nextTime;
-                break;
-            case ColorType.Green:
-                m_PrevGreenFull = m_NextGreenFull;
-                m_NextGreenFull = nextTime;
-                break;
-            case ColorType.Blue:
-                m_PrevBlueFull = m_NextBlueFull;
-                m_NextBlueFull = nextTime;
-                break;
+            case ColorType.Red: m_RedGauge = 0; break;
+            case ColorType.Green: m_GreenGauge = 0; break;
+            case ColorType.Blue: m_BlueGauge = 0; break;
         }
     }
 }
