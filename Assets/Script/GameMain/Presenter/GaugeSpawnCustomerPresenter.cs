@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeUI>
@@ -40,9 +41,9 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
     {
         if (!SoundManager.Instance.IsPlaySound) { return; }
 
-        UpdateGauge(ColorType.Red, elapsedTime);
-        UpdateGauge(ColorType.Green, elapsedTime);
-        UpdateGauge(ColorType.Blue, elapsedTime);
+        UpdateGauge(ColorType.Red, elapsedTime * Mathf.Max(1, GameDataManager.Instance.FiewsModel.GetRGBColorCount(ColorType.Red)));
+        UpdateGauge(ColorType.Green, elapsedTime * Mathf.Max(1, GameDataManager.Instance.FiewsModel.GetRGBColorCount(ColorType.Green)));
+        UpdateGauge(ColorType.Blue, elapsedTime * Mathf.Max(1, GameDataManager.Instance.FiewsModel.GetRGBColorCount(ColorType.Blue)));
 
         void UpdateGauge(ColorType type, float gaugeSpeed)
         {
@@ -89,12 +90,9 @@ public class GaugeCustomerModel
     {
         switch(type)
         {
-            case ColorType.Red:
-                AddValue(ref m_RedGauge, value); break;
-            case ColorType.Green:
-                AddValue(ref m_GreenGauge, value); break;
-            case ColorType.Blue:
-                AddValue(ref m_BlueGauge, value); break;
+            case ColorType.Red: AddValue(ref m_RedGauge, value); break;
+            case ColorType.Green: AddValue(ref m_GreenGauge, value); break;
+            case ColorType.Blue: AddValue(ref m_BlueGauge, value); break;
         }
 
 

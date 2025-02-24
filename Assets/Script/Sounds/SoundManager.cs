@@ -28,7 +28,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
         m_MainSound.MainSource.Play();
         
         await UniTask.WaitUntil(() => !m_MainSound.IsPlaying);
-        OnFinishMainSound.Invoke();
+        OnFinishMainSound?.Invoke();
     }
     public void StartPlaySounds()
     {

@@ -53,6 +53,7 @@ public class FiewPurchaseModel
         ColorType.Cyan,
         ColorType.Green,
     });
+
     private static ColorType GetMixedColor(ColorType type1, ColorType type2)
     {
         if (type2 == ColorType.White) { return ColorType.White; }  
