@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class CustomerModel
 {
+    private const float PayMoneyTime = 10f;
+    
     private CustomerObject m_CustomerObject;
+    private float m_CullentTime = 0;
 
     public ColorType ColorType => m_CustomerObject.ColorType;
+
+    public bool PayableMoney => m_CullentTime >= PayMoneyTime;
 
     public CustomerModel(CustomerObject customerObject)
     {
@@ -22,5 +27,14 @@ public class CustomerModel
     public void Update()
     {
         
+    }
+
+    public void UpdatePay(float time)
+    {
+        m_CullentTime += time;
+        if(m_CullentTime < PayMoneyTime) { return; }
+
+        m_CullentTime = 0;
+        GameDataManager.Instance.GameInfoModel.AddMoney(100);
     }
 }

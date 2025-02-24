@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class CustomersPresenterBase<T> where T : CustomerUIBase
@@ -30,6 +31,13 @@ public abstract class CustomersPresenterBase<T> where T : CustomerUIBase
             _ => null
         };
     }
+
+    protected void UpdateCustomersPay(float time)
+    {
+        if (!SoundManager.Instance.IsPlaySound) { return; }
+
+        GameDataManager.Instance.CustomersModel.UpdateCustomersPay(time);
+    }
 }
 
 public class CustomersModel
@@ -49,15 +57,20 @@ public class CustomersModel
         m_MaxCustomerCount = maxCustomerCount;
     }
 
-    public int GetCustomerCountCount(ColorType type)
-    {
-        return m_Customers.Where(cust => cust.ColorType == type).Count();
-    }
+    public int GetCustomerCount(ColorType type) => m_Customers.Where(cust => cust.ColorType == type).Count();
 
     public void AddCustomer(CustomerObject customer)
     {
         if(m_Customers.Count >= m_MaxCustomerCount) { return; }
         m_Customers.Add(new CustomerModel(customer.Instantiate()));
     }
+    public void UpdateCustomersPay(float time)
+    {
+        for(int i = 0; i < m_Customers.Count; i++) 
+        { 
+            m_Customers[i].UpdatePay(time); 
+        }
+    }
+
     public ColorType GetRandomColorType() => CustomerColors[Random.Range(0, CustomerColors.Length)];
 }

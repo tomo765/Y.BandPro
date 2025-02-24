@@ -28,10 +28,11 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
     public override void FixedUpdate()
     {
         UpdateGauge(Time.fixedDeltaTime);
+        UpdateCustomersPay(Time.fixedDeltaTime);
     }
 
     private void UpdateCountText(ColorType type) 
-        => m_CustomerUI.UpdateGaugeText(type, GameDataManager.Instance.CustomersModel.GetCustomerCountCount(type));
+        => m_CustomerUI.UpdateGaugeText(type, GameDataManager.Instance.CustomersModel.GetCustomerCount(type));
 
     private void UpdateGaugeUI(ColorType type)
          => m_CustomerUI.GetGaugeUI(type).UpdateGaugeFill(GameDataManager.Instance.CustomerGaugeModel.GetGauge(type));

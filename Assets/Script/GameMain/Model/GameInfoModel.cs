@@ -23,6 +23,13 @@ public class GameInfoModel
     }
 
     public void AddTurn() => m_Cullenturn++;
+    public void AddMoney(int val) => m_Money += val;
+    public bool TryUseMoney(int val)
+    {
+        if (m_Money < val) { return false; }
+        m_Money -= val;
+        return true;
+    }
 
     public void SetTimerSliderValue()
     {
@@ -31,7 +38,7 @@ public class GameInfoModel
 
     public void SetMoneyText()
     {
-        m_GameInfoUI.HaveMoneyText.text = "Money : " + GameDataManager.Instance.GameInfoModel.m_Money.ToString();
+        m_GameInfoUI.HaveMoneyText.text = "Money : " + m_Money.ToString();
     }
 
     public void SetTargetRankText()
