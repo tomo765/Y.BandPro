@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FiewsPresenter
@@ -30,6 +31,7 @@ public class FiewsPresenter
         {
             GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
             GameDataManager.Instance.UpdateScore();
+            GameDataManager.Instance.UpdateRank();
         };
 
         m_FiewsUI.Fiew1Button.onClick = () => OnFiewButtonClicked(GameDataManager.Instance.FiewsModel.FiewPurchase1);
@@ -43,9 +45,11 @@ public class FiewsPresenter
 
     private void OnFiewButtonClicked(FiewPurchaseModel fiewPurchase)
     {
-        if(fiewPurchase.FiewType1 != ColorType.White && fiewPurchase.FiewType2 != ColorType.White) { return; }
+
+        if (fiewPurchase.FiewType1 != ColorType.White && fiewPurchase.FiewType2 != ColorType.White) { return; }
 
         fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);
+        UpdateRGBColors();
         GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
         SoundManager.Instance.PlaySound(ScriptablesManager.Instance.GetGenreClips(fiewPurchase.AnyMixedColor), fiewPurchase.Index);
 
@@ -53,13 +57,42 @@ public class FiewsPresenter
         GameDataManager.Instance.UpdateRank();
     }
 
+
     private void OnDeleteFiewButtonClicked(FiewPurchaseModel fiewPurchase)
     {
         fiewPurchase.DeleteFiew();
+        UpdateRGBColors();
         SoundManager.Instance.StopSound(fiewPurchase.Index);
 
         GameDataManager.Instance.UpdateScore();
         GameDataManager.Instance.UpdateRank();
+    }
+
+    private void UpdateRGBColors()
+    {
+        var cols = GameDataManager.Instance.FiewsModel.AllFiewColor;
+        var rgbs = new List<ColorType>(6);
+        for (int i = 0; i < cols.Length; i++)
+        {
+            if (cols[i] == ColorType.White) { continue; }
+            var rgb = ToRGB(cols[i]);
+            rgbs.AddRange(rgb);
+        }
+        GameDataManager.Instance.FiewsModel.SetRGBColors(rgbs.ToArray());
+    }
+
+    private ColorType[] ToRGB(ColorType type)
+    {
+        return (type) switch
+        {
+            ColorType.Yellow => new ColorType[] { ColorType.Red, ColorType.Green },
+            ColorType.Red => new ColorType[] { ColorType.Red },
+            ColorType.Magenta => new ColorType[] { ColorType.Red, ColorType.Blue },
+            ColorType.Blue => new ColorType[] { ColorType.Blue },
+            ColorType.Cyan => new ColorType[] { ColorType.Blue, ColorType.Green },
+            ColorType.Green => new ColorType[] { ColorType.Green },
+            _ => new ColorType[0]
+        };
     }
 }
 
@@ -69,11 +102,14 @@ public class FiewsModel
     private FiewPurchaseModel m_FiewPurchase1;
     private FiewPurchaseModel m_FiewPurchase2;
     private FiewPurchaseModel m_FiewPurchase3;
+    private ColorType[] m_RGBColors = new ColorType[0];
 
     public FiewSellModel FiewSell => m_FiewSell;
     public FiewPurchaseModel FiewPurchase1 => m_FiewPurchase1;
     public FiewPurchaseModel FiewPurchase2 => m_FiewPurchase2;
     public FiewPurchaseModel FiewPurchase3 => m_FiewPurchase3;
+    public ColorType[] RGBColors => m_RGBColors;
+
 
     public ColorType[] AllFiewColor => new ColorType[] { m_FiewPurchase1.MixedColor, m_FiewPurchase2.MixedColor, m_FiewPurchase3.MixedColor };
 
@@ -85,4 +121,17 @@ public class FiewsModel
     }
 
     public void SetFiewSell(FiewSellModel fiewSell) => m_FiewSell = fiewSell;
+
+    public void SetRGBColors(ColorType[] types) => m_RGBColors = types;
+
+    public int GetRGBColorCount(ColorType type)
+    {
+        return type switch
+        {
+            ColorType.Red => m_RGBColors.Where(col => col == ColorType.Red).Count(),
+            ColorType.Green => m_RGBColors.Where(col => col == ColorType.Green).Count(),
+            ColorType.Blue => m_RGBColors.Where(col => col == ColorType.Blue).Count(),
+            _ => 0
+        };
+    }
 }

@@ -14,6 +14,7 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
 
     public UnityEngine.Events.UnityEvent OnFinishMainSound { get; } = new UnityEngine.Events.UnityEvent();
     public float MainSoundTime => m_MainSound.MainSource.time;
+    public float SoundLength => m_MainSound.MainSource.clip.length;
     public bool IsPlaySound => m_MainSound.IsPlaying;
 
     protected override void Awake()
@@ -27,7 +28,7 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
         m_MainSound.MainSource.Play();
         
         await UniTask.WaitUntil(() => !m_MainSound.IsPlaying);
-        OnFinishMainSound.Invoke();
+        OnFinishMainSound?.Invoke();
     }
     public void StartPlaySounds()
     {
