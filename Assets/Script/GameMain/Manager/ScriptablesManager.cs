@@ -14,6 +14,7 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
     [SerializeField] private GenreClips m_BlueClips;
 
     [SerializeField] private FiewSprites m_FiewSprites;
+    [SerializeField] private GenreActorSprites m_ActorSprites;
 
     public GenreClips MainClips => m_MainClips;
 
@@ -36,4 +37,5 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
     }
 
     public FiewSprites FiewSprites => m_FiewSprites;
+    public GenreActorSprites ActorSprites => m_ActorSprites;
 }

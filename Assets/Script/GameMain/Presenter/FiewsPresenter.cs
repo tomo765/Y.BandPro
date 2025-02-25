@@ -57,6 +57,8 @@ public class FiewsPresenter
 
         GameDataManager.Instance.UpdateScore();
         GameDataManager.Instance.UpdateRank();
+
+        ConcertMasterManager.Instance.CheckMatchFiewColor();
     }
 
 
@@ -68,6 +70,8 @@ public class FiewsPresenter
 
         GameDataManager.Instance.UpdateScore();
         GameDataManager.Instance.UpdateRank();
+
+        ConcertMasterManager.Instance.CheckMatchFiewColor();
     }
 
     private void UpdateRGBColors()
