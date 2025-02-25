@@ -2271,6 +2271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 1419971308}
   m_PerformancePosX: -3.23
+  m_PosZ: -4.31
 --- !u!1 &759223835
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,6 +3436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 2051205637}
   m_PerformancePosX: -4.5
+  m_PosZ: -4.3
 --- !u!1 &1093446999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5782,6 +5784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 309905276}
   m_PerformancePosX: -6
+  m_PosZ: -4.29
 --- !u!1001 &2051205636
 PrefabInstance:
   m_ObjectHideFlags: 0

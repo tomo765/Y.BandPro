@@ -6,10 +6,11 @@ public class FiewObject : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private float m_PerformancePosX;
+    [SerializeField] private float m_PosZ;
 
     public float MoveSpeed => 5f;
-    public readonly Vector3 OutComePos = new Vector3(-8.8f, 0, -4.3f);
-    public Vector3 InComePos => new Vector3(m_PerformancePosX, 0, OutComePos.z);
+    public Vector3 OutComePos => new Vector3(-8.8f, 0, m_PosZ);
+    public Vector3 InComePos => new Vector3(m_PerformancePosX, 0, m_PosZ);
 
     public void SetFlip(bool b) => m_SpriteRenderer.flipX = b;
 }
