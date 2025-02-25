@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 public class CustomerModel
 {
     private const float PayMoneyTime = 10f;
-    
+    private const float MoveSpeed = 5f;
+
     private CustomerObject m_CustomerObject;
     private float m_CullentTime = 0;
 
@@ -13,20 +15,18 @@ public class CustomerModel
 
     public bool PayableMoney => m_CullentTime >= PayMoneyTime;
 
-    public CustomerModel(CustomerObject customerObject)
+    private CustomerModel() { }
+    public CustomerModel(CustomerObject customerObject, Vector3 to)
     {
         m_CustomerObject = customerObject;
+        MoveTo(to);
     }
 
-    public void Start()
+    private void MoveTo(Vector3 to)
     {
-        
-    }
-
-
-    public void Update()
-    {
-        
+        float time = Mathf.Abs(to.x - m_CustomerObject.transform.position.x) / MoveSpeed;
+        m_CustomerObject.transform.DOMove(to, time)
+                                  .SetEase(Ease.Linear);
     }
 
     public void UpdatePay(float time)

@@ -42,6 +42,8 @@ public abstract class CustomersPresenterBase<T> where T : CustomerUIBase
 
 public class CustomersModel
 {
+    public static Vector3 InitPos => new Vector3(12, 1.15f, Random.Range(-8f , - 0.5f));
+
     public readonly ColorType[] CustomerColors = { ColorType.Red, ColorType.Green, ColorType.Blue };
 
     private List<CustomerModel> m_Customers = new List<CustomerModel>();
@@ -62,7 +64,11 @@ public class CustomersModel
     public void AddCustomer(CustomerObject customer)
     {
         if(m_Customers.Count >= m_MaxCustomerCount) { return; }
-        m_Customers.Add(new CustomerModel(customer.Instantiate()));
+
+        Vector3 from = InitPos;
+        Vector3 to = from;
+        to.x = Random.Range(1.5f, GetRightPos(from.z));
+        m_Customers.Add(new CustomerModel(customer.Instantiate(from), to));
     }
     public void UpdateCustomersPay(float time)
     {
@@ -73,4 +79,9 @@ public class CustomersModel
     }
 
     public ColorType GetRandomColorType() => CustomerColors[Random.Range(0, CustomerColors.Length)];
+
+    /// <summary> 下記の2点が通る1次関数にy座標を代入してxを取得する。 </summary>
+    /// <remarks> z = 1.389x - 14.1122</remarks>
+    /// <remarks> (4.4, -8) ～ (9.8, -0.5)がカメラの右端に映る位置 </remarks>
+    private float GetRightPos(float z) => (z + 14.1122f) / 1.389f;
 }

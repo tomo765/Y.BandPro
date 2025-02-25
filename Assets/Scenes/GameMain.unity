@@ -1621,6 +1621,7 @@ MonoBehaviour:
   m_Fiew2Sound: {fileID: 2083931291}
   m_Fiew3Sound: {fileID: 1651846247}
   m_MasterVolume: 0.8
+  SoundPitch: 1
 --- !u!1001 &458555984
 PrefabInstance:
   m_ObjectHideFlags: 0

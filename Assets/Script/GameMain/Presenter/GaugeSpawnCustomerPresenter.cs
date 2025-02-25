@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeUI>
@@ -15,7 +14,7 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
 
     protected override void AddCustomer(ColorType type)
     {
-
+        GameDataManager.Instance.CustomersModel.AddCustomer(GetCustomerObjAsColor(type));
     }
 
     public override void Start()
@@ -56,7 +55,7 @@ public class GaugeSpawnCustomerPresenter : CustomersPresenterBase<CustomerGaugeU
             m_CustomerUI.GetGaugeUI(type).OnFullGauge();
             m_GaugeCustomerModel.ResetGaugeProgress(type);
 
-            GameDataManager.Instance.CustomersModel.AddCustomer(GetCustomerObjAsColor(type));
+            AddCustomer(type);
             GameDataManager.Instance.CustomerGaugeModel.ResetGauge(type);
             GameDataManager.Instance.UpdateScore();
             GameDataManager.Instance.UpdateRank();
