@@ -14,14 +14,17 @@ public class FiewsUI : MonoBehaviour
     [SerializeField, Space(10)] private MyButton m_Fiew1Button;
     [SerializeField] private MyButton m_Fiew1DeleteButton;
     [SerializeField] private Image m_Fiew1Image;
+    [SerializeField] private FiewObject m_Fiew1Object;
 
     [SerializeField, Space(10)] private MyButton m_Fiew2Button;
     [SerializeField] private MyButton m_Fiew2DeleteButton;
     [SerializeField] private Image m_Fiew2Image;
+    [SerializeField] private FiewObject m_Fiew2Object;
 
     [SerializeField, Space(10)] private MyButton m_Fiew3Button;
     [SerializeField] private MyButton m_Fiew3DeleteButton;
     [SerializeField] private Image m_Fiew3Image;
+    [SerializeField] private FiewObject m_Fiew3Object;
 
     public MyButton ChangeFierw => m_ChangeFierw;
     public Image FiewSellImage => m_FiewSellImage;
@@ -40,9 +43,9 @@ public class FiewsUI : MonoBehaviour
 
     void Start()
     {
-        GameDataManager.Instance.InitFiewsModel(new FiewPurchaseModel(m_Fiew1Image, 1),
-                                                new FiewPurchaseModel(m_Fiew2Image, 2),
-                                                new FiewPurchaseModel(m_Fiew3Image, 3));
+        GameDataManager.Instance.InitFiewsModel(new FiewPurchaseModel(m_Fiew1Object, m_Fiew1Image, 1),
+                                                new FiewPurchaseModel(m_Fiew2Object, m_Fiew2Image, 2),
+                                                new FiewPurchaseModel(m_Fiew3Object, m_Fiew3Image, 3));
 
         m_FiewsPresenter = new FiewsPresenter(this);
         m_FiewsPresenter.Start();

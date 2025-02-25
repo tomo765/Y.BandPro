@@ -1,14 +1,19 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class FiewPurchaseModel
 {
+    private FiewObject m_FiewObject;
     private Image m_FiewImage;
     private int m_Index;
 
+
+    private Tween m_Tween;
     private ColorType m_Fiew1;
     private ColorType m_Fiew2;
 
@@ -21,8 +26,9 @@ public class FiewPurchaseModel
     /// <summary> ”’ˆÈŠO‚ÌF‚ğ¬‚º‚½‚ÌF‚ğ•Ô‚· </summary>
     public ColorType AnyMixedColor => GetAnyMixedColor(m_Fiew1, m_Fiew2);
 
-    public FiewPurchaseModel(Image fiewImage, int index)
+    public FiewPurchaseModel(FiewObject fiewObject, Image fiewImage, int index)
     {
+        m_FiewObject = fiewObject;
         m_FiewImage = fiewImage;
         m_Index = index;
         m_Fiew1 = ColorType.White;
@@ -35,6 +41,9 @@ public class FiewPurchaseModel
         else if(m_Fiew2 == ColorType.White) {  m_Fiew2 = newFiew; }
 
         m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[AnyMixedColor];
+
+
+        MoveAt(m_FiewObject.InComePos, false);
     }
 
     public void DeleteFiew()
@@ -42,7 +51,21 @@ public class FiewPurchaseModel
         m_Fiew1 = ColorType.White;
         m_Fiew2 = ColorType.White;
         m_FiewImage.sprite = ScriptablesManager.Instance.FiewSprites.TypeToSprite[ColorType.White];
+
+        MoveAt(m_FiewObject.OutComePos, true);
     }
+
+    private void MoveAt(Vector3 target, bool flip)
+    {
+        float time = Mathf.Abs(m_FiewObject.transform.position.x - target.x) / m_FiewObject.MoveSpeed;
+
+        m_Tween?.Kill();
+        m_FiewObject.SetFlip(flip);
+        m_Tween = m_FiewObject.transform.DOMove(target, time)
+                                        .SetEase(Ease.Linear)
+                                        .OnComplete(() => { m_Tween = null; });
+    }
+
 
     public static readonly LinkedList<ColorType> ColorTransitionChain = new LinkedList<ColorType>(new List<ColorType>
     {
