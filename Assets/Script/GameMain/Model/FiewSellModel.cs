@@ -9,6 +9,9 @@ public class FiewSellModel
     private ColorType m_CullentFiew = 0;
     private System.Func<ColorType> ChangeFiew;
 
+    public const int FiewPrice = 50;
+    public const int ChangeFiewPrice = 30;
+
     public ColorType CullentFiew => m_CullentFiew;
 
     public FiewSellModel(Image fiewImage, System.Func<ColorType> changeFiew)

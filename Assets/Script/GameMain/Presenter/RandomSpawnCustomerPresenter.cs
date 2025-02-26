@@ -2,45 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomSpawnCustomerPresenter : CustomersPresenterBase
+public class RandomSpawnCustomerPresenter : CustomersPresenterBase<RandomCustomerUI>
 {
     private RandomCustomerModel m_RCModel;
 
     public RandomCustomerModel RCModel => m_RCModel;
 
-    public RandomSpawnCustomerPresenter(CustomerUI customerUI) : base(customerUI)
+    public RandomSpawnCustomerPresenter(RandomCustomerUI customerUI) : base(customerUI)
     {
         m_RCModel = new RandomCustomerModel();
     }
 
-    private CustomerObject GetCustomerObjAsColor(ColorType type)
-    {
-        return type switch
-        {
-            ColorType.Red => m_CustomerUI.RedCustomer,
-            ColorType.Green => m_CustomerUI.GreenCustomer,
-            ColorType.Blue => m_CustomerUI.BlueCustomer,
-            _ => null
-        };
-    }
-
-    protected override void AddCustomer()
+    protected override void AddCustomer(ColorType type)
     {
         if(GameDataManager.Instance.CustomersModel.CustomerCount >= GameDataManager.Instance.CustomersModel.MaxCustomerCount) { return; }
 
-        ColorType type = GameDataManager.Instance.CustomersModel.GetRandomColorType();
-        GameDataManager.Instance.CustomersModel.AddCustomer(new CustomerModel(GetCustomerObjAsColor(type).Instantiate()));
+        type = GameDataManager.Instance.CustomersModel.GetRandomColorType();
+        GameDataManager.Instance.CustomersModel.AddCustomer(GetCustomerObjAsColor(type));
     }
 
 
     public override void Start()
     {
-        AddCustomer();
+        AddCustomer(0);
     }
 
     public override void FixedUpdate()
     {
-        m_CustomerUI.UpdateCustomerCountText(GameDataManager.Instance.CustomersModel.CustomerCount + " / " + GameDataManager.Instance.CustomersModel.MaxCustomerCount);
+        var customerUI = m_CustomerUI;
+        customerUI?.UpdateCustomerCountText(GameDataManager.Instance.CustomersModel.CustomerCount + " / " + GameDataManager.Instance.CustomersModel.MaxCustomerCount);
     }
 
     public override void Update()
@@ -52,7 +42,7 @@ public class RandomSpawnCustomerPresenter : CustomersPresenterBase
 
         if (cullentCustomerCount >= GameDataManager.Instance.CustomersModel.CustomerCount)
         {
-            AddCustomer();
+            AddCustomer(0);
             GameDataManager.Instance.UpdateScore();
             GameDataManager.Instance.UpdateRank();
         }

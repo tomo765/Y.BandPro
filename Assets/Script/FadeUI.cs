@@ -16,15 +16,20 @@ public class FadeUI : SingletonBehaviour<FadeUI>
     {
         base.Awake();
         DontDestroyOnLoad(this);
+
+        gameObject.SetActive(false);
     }
 
     public async UniTask Fade(string newSceneName, System.Action OnFinishFade = null)
     {
+        gameObject.SetActive(true);
+
         await FadeIn();
         SceneManager.LoadScene(newSceneName);
         await FadeOut();
 
         OnFinishFade?.Invoke();
+        gameObject.SetActive(false);
     }
 
 
@@ -33,7 +38,7 @@ public class FadeUI : SingletonBehaviour<FadeUI>
         await UniTask.WaitUntil(() =>
         {
             Color cl = fadeimage.color;
-            cl.a += 0.004f;
+            cl.a += 0.015f;
             fadeimage.color = cl;
 
             return fadeimage.color.a >= 1;
@@ -45,15 +50,10 @@ public class FadeUI : SingletonBehaviour<FadeUI>
         await UniTask.WaitUntil(() =>
         {
             Color cl = fadeimage.color;
-            cl.a -= 0.004f;
+            cl.a -= 0.01f;
             fadeimage.color = cl;
 
             return fadeimage.color.a <= 0;
         });
-    }
-
-    void Update()
-    {
-        
     }
 }

@@ -7,7 +7,7 @@ public class GameInfoModel
     private int m_Cullenturn = 1;
     private GameInfoUI m_GameInfoUI;
     private float m_MaxSoundTime;
-    private int m_Money;
+    private int m_Money = 15000;
     private RankStatus m_TargetRank = RankStatus.C;
 
     public int CullentTurn => m_Cullenturn;
@@ -23,6 +23,13 @@ public class GameInfoModel
     }
 
     public void AddTurn() => m_Cullenturn++;
+    public void AddMoney(int val) => m_Money += val;
+    public bool TryUseMoney(int val)
+    {
+        if (m_Money < val) { return false; }
+        m_Money -= val;
+        return true;
+    }
 
     public void SetTimerSliderValue()
     {
@@ -31,7 +38,7 @@ public class GameInfoModel
 
     public void SetMoneyText()
     {
-        m_GameInfoUI.HaveMoneyText.text = "Money : " + GameDataManager.Instance.GameInfoModel.m_Money.ToString();
+        m_GameInfoUI.HaveMoneyText.text = "Money : " + m_Money.ToString();
     }
 
     public void SetTargetRankText()

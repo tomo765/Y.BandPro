@@ -9,16 +9,12 @@ public class GameMainFlowManager : SingletonBehaviour<GameMainFlowManager>
     protected override void Awake()
     {
         base.Awake();
-
-        GameObject fadeUI = (GameObject)Resources.Load("FadeOutUI");
-        Instantiate(fadeUI, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        FadeUI.Instance.gameObject.SetActive(false);
     }
 
     private void Start()
     {
         OnStart().Forget();
-        SoundManager.Instance.OnFinishMainSound.AddListener(FinishPerformance);
+        SoundManager.Instance.OnFinishMainSound.AddListener(() => FinishPerformance().Forget());
     }
 
     private void FixedUpdate()
@@ -28,27 +24,17 @@ public class GameMainFlowManager : SingletonBehaviour<GameMainFlowManager>
 
     private async UniTask OnStart()
     {
-        await UniTask.WaitUntil(() => FadeUI.Instance.IsFadeOut);
+        await UniTask.WaitUntil(() => FadeUI.Instance?.IsFadeOut ?? true);
         SoundManager.Instance.StartMainSound().Forget();
     }
 
-    public async void FinishPerformance()
+    public async UniTask FinishPerformance()
     {
-        if((int)GameDataManager.Instance.GameInfoModel.TargetRank > (int)GameDataManager.Instance.ScoreModel.RankStatus)
+        if(!GameDataManager.Instance.IsSuccessTurn || !GameDataManager.Instance.IsDoableNextTuen)
         {
-            FadeUI.Instance.gameObject.SetActive(true);
-
-            await FadeUI.Instance.Fade("Result", () => FadeUI.Instance.gameObject.SetActive(false));
+            await FadeUI.Instance.Fade("Result");
             return;
         }
-        if(GameDataManager.Instance.GameInfoModel.CullentTurn >= 3)
-        {
-            FadeUI.Instance.gameObject.SetActive(true);
-
-            await FadeUI.Instance.Fade("Result", () => FadeUI.Instance.gameObject.SetActive(false));
-            return;
-        }
-
 
         GameDataManager.Instance.GameInfoModel.AddTurn();
         SoundManager.Instance.StartMainSound().Forget();

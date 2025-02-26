@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1309052795439417292}
   - component: {fileID: 6404521176310131691}
   m_Layer: 5
-  m_Name: FadeOutUI
+  m_Name: FadeUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

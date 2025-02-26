@@ -14,6 +14,7 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
     [SerializeField] private GenreClips m_BlueClips;
 
     [SerializeField] private FiewSprites m_FiewSprites;
+    [SerializeField] private GenreActorSprites m_ActorSprites;
 
     public GenreClips MainClips => m_MainClips;
 
@@ -27,9 +28,14 @@ public class ScriptablesManager : SingletonBehaviour<ScriptablesManager>
             ColorType.Red => m_RedClips,
             ColorType.Green => m_GreenClips,
             ColorType.Blue => m_BlueClips,
+
+            ColorType.White_Yellow => m_YellowClips,
+            ColorType.White_Magenta => m_MagentaClips,
+            ColorType.White_Cyan => m_CyanClips,
             _ => null
         };
     }
 
     public FiewSprites FiewSprites => m_FiewSprites;
+    public GenreActorSprites ActorSprites => m_ActorSprites;
 }

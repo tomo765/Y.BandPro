@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : SingletonBehaviour<SoundManager>
+public partial class SoundManager : SingletonBehaviour<SoundManager>
 {
     [SerializeField] private FiewSound m_MainSound;
     [SerializeField] private FiewSound m_Fiew1Sound;
@@ -14,6 +14,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 
     public UnityEngine.Events.UnityEvent OnFinishMainSound { get; } = new UnityEngine.Events.UnityEvent();
     public float MainSoundTime => m_MainSound.MainSource.time;
+    public float SoundLength => m_MainSound.MainSource.clip.length;
     public bool IsPlaySound => m_MainSound.IsPlaying;
 
     protected override void Awake()
@@ -27,7 +28,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
         m_MainSound.MainSource.Play();
         
         await UniTask.WaitUntil(() => !m_MainSound.IsPlaying);
-        OnFinishMainSound.Invoke();
+        OnFinishMainSound?.Invoke();
     }
     public void StartPlaySounds()
     {
@@ -62,3 +63,27 @@ public class SoundManager : SingletonBehaviour<SoundManager>
         };
     }
 }
+
+#if UNITY_EDITOR
+public partial class SoundManager : SingletonBehaviour<SoundManager>
+{
+    [Header("Debug"), Space(10)]
+    [SerializeField, Range(-3, 3)] private float SoundPitch = 1;
+
+    private void Update()
+    {
+        OnPitchValueChange();
+    }
+
+    private void OnPitchValueChange()
+    {
+        if(m_MainSound.MainSource.pitch == SoundPitch) { return; }
+
+        m_MainSound.MainSource.pitch = SoundPitch;
+        m_Fiew1Sound.MainSource.pitch = SoundPitch;
+        m_Fiew2Sound.MainSource.pitch = SoundPitch;
+        m_Fiew3Sound.MainSource.pitch = SoundPitch;
+    }
+}
+
+#endif
