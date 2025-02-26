@@ -7,8 +7,8 @@ public class GameInfoModel
     private int m_Cullenturn = 1;
     private GameInfoUI m_GameInfoUI;
     private float m_MaxSoundTime;
-    private int m_Money = 15000;
-    private RankStatus m_TargetRank = RankStatus.C;
+    private int m_Money = 25000;
+    private RankStatus m_TargetRank = RankStatus.D;
 
     public int CullentTurn => m_Cullenturn;
     public int Money => m_Money;

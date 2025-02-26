@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CustomerModel
 {
+    private const int NyuutenPay = 50;
+    private const int KeizokuPay = 10;
+
     private const float PayMoneyTime = 10f;
     private const float MoveSpeed = 5f;
 
@@ -20,6 +23,8 @@ public class CustomerModel
     {
         m_CustomerObject = customerObject;
         MoveTo(to);
+
+        GameDataManager.Instance.GameInfoModel.AddMoney(NyuutenPay);
     }
 
     private void MoveTo(Vector3 to)
@@ -35,6 +40,6 @@ public class CustomerModel
         if(m_CullentTime < PayMoneyTime) { return; }
 
         m_CullentTime = 0;
-        GameDataManager.Instance.GameInfoModel.AddMoney(100);
+        GameDataManager.Instance.GameInfoModel.AddMoney(KeizokuPay);
     }
 }

@@ -7,12 +7,9 @@ using UnityEngine;
 public class ConcertMasterModel
 {
     private const float MoveSpeed = 5f;
-    private static readonly Vector3 CenterPos = new Vector3(0, 0, -5);
-    private static readonly Vector3 OutPos = new Vector3(-8.5f, 0, -5);
 
     private ConcertMasterObject m_ConcertMasters;
     private Tween m_Tween;
-    private int m_CullentSelect;
 
     private ConcertMasterModel() { }
     public ConcertMasterModel(ConcertMasterObject concertMasters)
@@ -20,30 +17,18 @@ public class ConcertMasterModel
         m_ConcertMasters = concertMasters;
     }
 
-    public void InCome(Sprite sprite)
-    {
-        int index = m_CullentSelect;
-        Transform inComer = m_ConcertMasters.transform;
+    public void InCome(Sprite sprite) => MoveAt(m_ConcertMasters.InComePos, sprite, false);
 
-        m_ConcertMasters.SetSprite(sprite);
-        m_ConcertMasters.SetFlip(false);
+    public void OutCome() => MoveAt(m_ConcertMasters.OutComePos, null, true);
+
+    private void MoveAt(Vector3 to, Sprite sprite = null, bool flip = false)
+    {
+        if(sprite != null) { m_ConcertMasters.SetSprite(sprite); }
+        m_ConcertMasters.SetFlip(flip);
 
         m_Tween?.Kill();
-        m_Tween = inComer.transform.DOMove(CenterPos, Mathf.Abs(inComer.position.x - CenterPos.x) / MoveSpeed)
-                        .SetEase(Ease.Linear)
-                        .OnComplete(() => { m_Tween = null; });
-    }
-
-    public void OutCome()
-    {
-        int index = m_CullentSelect;
-
-        m_ConcertMasters.SetFlip(true);
-
-        Transform outComer = m_ConcertMasters.transform;
-        m_Tween?.Kill();
-        m_Tween = outComer.transform.DOMove(OutPos, Mathf.Abs(outComer.position.x - OutPos.x) / MoveSpeed)
-                        .SetEase(Ease.Linear)
-                        .OnComplete(() => { m_Tween = null; });
+        m_Tween = m_ConcertMasters.transform.DOMove(to, Mathf.Abs(m_ConcertMasters.transform.position.x - to.x) / m_ConcertMasters.Speed)
+                                            .SetEase(Ease.Linear)
+                                            .OnComplete(() => { m_Tween = null; });
     }
 }

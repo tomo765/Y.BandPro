@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class ScoreModel
 {
@@ -11,8 +12,8 @@ public class ScoreModel
     public string Rank => m_RankStatus.ToString().Replace("_Plus", "+");
     public int Score => m_Score;
 
-    private const int FiewsBaseScore = 100;
-    private const int CustomersBaseScore = 50;
+    private const int FiewsBaseScore = 10;
+    private const int CustomersBaseScore = 5;
 
     public void UpdateScore(FiewsModel fiewsModel, CustomersModel customersModel)
     {
@@ -68,9 +69,9 @@ public class ScoreModel
         }
 
     }
-    private int CalcCustomersCountPoint(CustomersModel customersModel)  // * 10 => * 1
+    private int CalcCustomersCountPoint(CustomersModel customersModel)
     {
-        return customersModel.CustomerCount * 10;
+        return Mathf.FloorToInt(customersModel.CustomerCount * 0.1f) + 1;
     }
     private int CalcCustomersColorPoint(FiewsModel fiewsModel, CustomersModel customersModel)
     {

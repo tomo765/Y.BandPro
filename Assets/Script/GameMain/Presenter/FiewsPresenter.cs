@@ -25,11 +25,13 @@ public class FiewsPresenter
             }
             return newType;
         });
+        fiewSell.Start();
+
         GameDataManager.Instance.FiewsModel.SetFiewSell(fiewSell);
         fiewSell.SetNewFiew();
         m_FiewsUI.ChangeFierw.onClick = () =>
         {
-            if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(FiewSellModel.ChangeFiewPrice)) { return; }
+            if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(GameDataManager.Instance.FiewsModel.FiewSell.ChangeFiewPrice)) { return; }
 
             GameDataManager.Instance.FiewsModel.FiewSell.SetNewFiew();
             GameDataManager.Instance.UpdateScore();
