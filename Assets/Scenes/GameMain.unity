@@ -3667,6 +3667,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218983267}
   m_CullTransparentMesh: 1
+--- !u!1001 &1283039421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_Name
+      value: ElectricGuitar_st
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.8485
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8485
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8485
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.671
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.739
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.12504703
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.58448774
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.79643947
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.09176898
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -162.154
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -72.548
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 35c61e86971f9f449869a6fb4a8565eb, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
 --- !u!1 &1301733090
 GameObject:
   m_ObjectHideFlags: 0
@@ -4161,18 +4234,6 @@ PrefabInstance:
     - target: {fileID: 4997161413699059653, guid: f005c52b27c976741be3d833696e63b3, type: 3}
       propertyPath: m_Name
       value: Fiew3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8358328317873822239, guid: f005c52b27c976741be3d833696e63b3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.353
-      objectReference: {fileID: 0}
-    - target: {fileID: 8358328317873822239, guid: f005c52b27c976741be3d833696e63b3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.353
-      objectReference: {fileID: 0}
-    - target: {fileID: 8358328317873822239, guid: f005c52b27c976741be3d833696e63b3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.353
       objectReference: {fileID: 0}
     - target: {fileID: 8358328317873822239, guid: f005c52b27c976741be3d833696e63b3, type: 3}
       propertyPath: m_LocalScale.x
@@ -6810,3 +6871,6 @@ SceneRoots:
   - {fileID: 728652377}
   - {fileID: 486543088}
   - {fileID: 1689402390}
+  - {fileID: 1558098269}
+  - {fileID: 2100288209}
+  - {fileID: 1283039421}
