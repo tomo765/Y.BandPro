@@ -15,4 +15,5 @@ public class CustomerObject : MonoBehaviour
     public CustomerObject Instantiate(Vector3 pos, Quaternion rotation) => GameObject.Instantiate(this, pos, rotation);
     public CustomerObject Instantiate(Vector3 pos, Quaternion rotation, Transform parent) => GameObject.Instantiate(this, pos, rotation, parent);
     public CustomerObject Instantiate(Transform parent) => GameObject.Instantiate(this, parent);
+
 }

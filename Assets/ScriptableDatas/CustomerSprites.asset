@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824fde74c541fe54193b01120b88379c, type: 3}
+  m_Name: CustomerSprites
+  m_EditorClassIdentifier: 
+  m_RedCustomers:
+  - {fileID: 21300000, guid: 5cec1d937db9f074e94a84f8c038a906, type: 3}
+  - {fileID: 21300000, guid: fce1370f2e1340b468cb5512fa522f7a, type: 3}
+  - {fileID: 21300000, guid: b062f82962947bd408df064fe4f72488, type: 3}
+  m_GreenCustomers:
+  - {fileID: 21300000, guid: d4949ff71b5fae44896fdeb9268edbcd, type: 3}
+  - {fileID: 21300000, guid: 38f9fbb868fc21c458258fcacc7531df, type: 3}
+  - {fileID: 21300000, guid: 89fef4a80d3d9234fa04b2df1af87cc3, type: 3}
+  m_BlueCustomers:
+  - {fileID: 21300000, guid: 0d3e9e51aeff834468e39096e88fff36, type: 3}
+  - {fileID: 21300000, guid: 21b0e25ed679501419e950e7811c44cb, type: 3}
+  - {fileID: 21300000, guid: 112a073bbbcbb264798f856e0adfd575, type: 3}

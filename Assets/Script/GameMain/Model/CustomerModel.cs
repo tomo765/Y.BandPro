@@ -22,6 +22,7 @@ public class CustomerModel
     public CustomerModel(CustomerObject customerObject, Vector3 to)
     {
         m_CustomerObject = customerObject;
+        m_CustomerObject.SpriteRenderer.sprite = ScriptablesManager.Instance.CustomerSprites.GetRandomCustomerSprite(customerObject.ColorType);
         MoveTo(to);
 
         GameDataManager.Instance.GameInfoModel.AddMoney(NyuutenPay);

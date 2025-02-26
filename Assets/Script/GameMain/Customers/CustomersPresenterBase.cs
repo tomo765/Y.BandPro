@@ -42,11 +42,12 @@ public abstract class CustomersPresenterBase<T> where T : CustomerUIBase
 
 public class CustomersModel
 {
-    public static Vector3 InitPos => new Vector3(12, 1.15f, Random.Range(-8f , - 0.5f));
+    public static Vector3 InitPos => new Vector3(12, 0, Random.Range(-8f , - 0.5f));
 
     public readonly ColorType[] CustomerColors = { ColorType.Red, ColorType.Green, ColorType.Blue };
 
     private List<CustomerModel> m_Customers = new List<CustomerModel>();
+    private Transform m_CustomerUnifyObject;
     private int m_MaxCustomerCount;
 
     public List<ColorType> AllCustomerColor => m_Customers.Select(c => c.ColorType).ToList();
@@ -54,9 +55,10 @@ public class CustomersModel
     public int CustomerCount => m_Customers.Count;
     public int MaxCustomerCount => m_MaxCustomerCount;
 
-    public CustomersModel(int maxCustomerCount)
+    public CustomersModel(int maxCustomerCount, Transform customerUnify)
     {
         m_MaxCustomerCount = maxCustomerCount;
+        m_CustomerUnifyObject = customerUnify;
     }
 
     public int GetCustomerCount(ColorType type) => m_Customers.Where(cust => cust.ColorType == type).Count();
@@ -68,7 +70,7 @@ public class CustomersModel
         Vector3 from = InitPos;
         Vector3 to = from;
         to.x = Random.Range(1.5f, GetRightPos(from.z));
-        m_Customers.Add(new CustomerModel(customer.Instantiate(from), to));
+        m_Customers.Add(new CustomerModel(customer.Instantiate(from, Quaternion.identity, m_CustomerUnifyObject), to));
     }
     public void UpdateCustomersPay(float time)
     {

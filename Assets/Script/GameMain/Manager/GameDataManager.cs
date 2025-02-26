@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameDataManager : SingletonBehaviour<GameDataManager>
 {
+    [SerializeField] private Transform m_CustomerUnifyObject;
+
     private FiewsModel m_FiewsModel;
     private ScoreModel m_ScoreModel;
     private GameInfoModel m_GameInfoModel;
@@ -16,7 +18,7 @@ public class GameDataManager : SingletonBehaviour<GameDataManager>
     public void InitFiewsModel(FiewPurchaseModel fp1, FiewPurchaseModel fp2, FiewPurchaseModel fp3) => m_FiewsModel = new FiewsModel(fp1, fp2, fp3);
     public void InitScoreModel() => m_ScoreModel = new ScoreModel();
     public void InitGameInfoModel(GameInfoUI gameInfoUI) => m_GameInfoModel = new GameInfoModel(gameInfoUI, ScriptablesManager.Instance.MainClips.GetAudioClipAsType(MusicType.Mus1).length);
-    public void InitCustomersModel(int maxCustomerCount) => m_CustomersModel = new CustomersModel(maxCustomerCount);
+    public void InitCustomersModel(int maxCustomerCount) => m_CustomersModel = new CustomersModel(maxCustomerCount, m_CustomerUnifyObject);
     public void InitCustomerGaugeModel() => m_CustomerGaugeModel = new CustomerGaugeModel();
 
     public void UpdateScore() => m_ScoreModel.UpdateScore(m_FiewsModel, m_CustomersModel);
