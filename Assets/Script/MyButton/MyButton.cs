@@ -27,24 +27,29 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     public Action onClick {  get; set; }
 
     [SerializeField] private Image m_Image;
+    [SerializeField] private bool m_IsEnabled = true;
 
     [SerializeField] private ButtonInteraction m_Default;
     [SerializeField] private ButtonInteraction m_Hover;
     [SerializeField] private ButtonInteraction m_Push;
+    [SerializeField] private ButtonInteraction m_Disable;
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        if (!m_IsEnabled) { return; }
         m_Image.color = m_Hover.Color;
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
+        if (!m_IsEnabled) { return; }
         m_Image.color = m_Push.Color;
     }
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
-        if(!eventData.hovered.Contains(gameObject)) { return; }
+        if (!m_IsEnabled) { return; }
+        if (!eventData.hovered.Contains(gameObject)) { return; }
         m_Image.color = m_Hover.Color;
 
         onClick?.Invoke();
@@ -52,6 +57,7 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
+        if (!m_IsEnabled) { return; }
         m_Image.color = m_Default.Color;
     }
 
@@ -73,15 +79,9 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 
     }
 
-
-    void Start()
+    public void SetEnabled(bool enabled)
     {
-        
-    }
-
-
-    void Update()
-    {
-        
+        m_IsEnabled = enabled;
+        m_Image.color = m_IsEnabled ? m_Default.Color : m_Disable.Color;
     }
 }

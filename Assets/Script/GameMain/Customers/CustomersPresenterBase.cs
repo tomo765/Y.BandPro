@@ -50,6 +50,9 @@ public class CustomersModel
     private Transform m_CustomerUnifyObject;
     private int m_MaxCustomerCount;
 
+    public System.Action<int> OnAddCustomer;
+    public System.Action<int> OnChangeMaxCustomerCount;
+
     public List<ColorType> AllCustomerColor => m_Customers.Select(c => c.ColorType).ToList();
 
     public int CustomerCount => m_Customers.Count;
@@ -63,14 +66,20 @@ public class CustomersModel
 
     public int GetCustomerCount(ColorType type) => m_Customers.Where(cust => cust.ColorType == type).Count();
 
+    public void UpdateMaxCustomerCount(int count)
+    {
+        m_MaxCustomerCount = count;
+        OnChangeMaxCustomerCount?.Invoke(m_MaxCustomerCount);
+    }
     public void AddCustomer(CustomerObject customer)
     {
         if(m_Customers.Count >= m_MaxCustomerCount) { return; }
 
         Vector3 from = InitPos;
         Vector3 to = from;
-        to.x = Random.Range(1.5f, GetRightPos(from.z));
+        to.x = Random.Range(-1.5f, GetRightPos(from.z));
         m_Customers.Add(new CustomerModel(customer.Instantiate(from, Quaternion.identity, m_CustomerUnifyObject), to));
+        OnAddCustomer?.Invoke(m_Customers.Count);
     }
     public void UpdateCustomersPay(float time)
     {
@@ -83,7 +92,7 @@ public class CustomersModel
     public ColorType GetRandomColorType() => CustomerColors[Random.Range(0, CustomerColors.Length)];
 
     /// <summary> 下記の2点が通る1次関数にy座標を代入してxを取得する。 </summary>
-    /// <remarks> z = 1.389x - 14.1122</remarks>
+    /// <remarks> z = 1.3889x - 14.1122</remarks>
     /// <remarks> (4.4, -8) ～ (9.8, -0.5)がカメラの右端に映る位置 </remarks>
-    private float GetRightPos(float z) => (z + 14.1122f) / 1.389f;
+    private float GetRightPos(float z) => (z + 14.1122f) / 1.3889f;
 }

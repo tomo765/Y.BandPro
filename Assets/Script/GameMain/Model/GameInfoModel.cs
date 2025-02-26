@@ -38,7 +38,7 @@ public class GameInfoModel
 
     public void SetMoneyText()
     {
-        m_GameInfoUI.HaveMoneyText.text = "Money : " + m_Money.ToString();
+        m_GameInfoUI.HaveMoneyText.text = "Money : " + m_Money.ToString("N0");
     }
 
     public void SetTargetRankText()

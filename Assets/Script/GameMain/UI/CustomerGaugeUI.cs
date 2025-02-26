@@ -16,13 +16,11 @@ public class CustomerGaugeUI : CustomerUIBase
 
     private void Awake()
     {
-        
+        m_GaugeSpawnCustomerPresenter = new GaugeSpawnCustomerPresenter(this);
     }
 
     private void Start()
     {
-        m_GaugeSpawnCustomerPresenter = new GaugeSpawnCustomerPresenter(this);
-
         GameDataManager.Instance.InitCustomerGaugeModel();
         m_GaugeSpawnCustomerPresenter.Start();
     }
