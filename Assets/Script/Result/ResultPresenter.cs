@@ -23,5 +23,8 @@ public class ResultPresenter
         {
             await FadeUI.Instance.Fade("Title");
         };
+
+        m_ResultUI.ScoreText.text = "ÉXÉRÉA : " + ResultModel.Score.ToString("N0");
+        m_ResultUI.ResultText.text = ResultModel.GetSuccessText();
     }
 }

@@ -5,12 +5,14 @@ using UnityEngine;
 public class GameInfoModel
 {
     private int m_Cullenturn = 1;
+    private int m_MaxTurn = 3;
     private GameInfoUI m_GameInfoUI;
     private float m_MaxSoundTime;
     private int m_Money = 25000;
-    private RankStatus m_TargetRank = RankStatus.D;
+    private RankStatus m_TargetRank = RankStatus.B;
 
     public int CullentTurn => m_Cullenturn;
+    public int MaxTurn => m_MaxTurn;
     public int Money => m_Money;
     public RankStatus TargetRank => m_TargetRank;
 

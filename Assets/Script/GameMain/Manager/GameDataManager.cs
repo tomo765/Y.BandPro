@@ -14,7 +14,7 @@ public class GameDataManager : SingletonBehaviour<GameDataManager>
     private ExpansionModel m_ExpansionModel;
 
     public bool IsSuccessTurn => GameInfoModel.TargetRank <= ScoreModel.RankStatus;
-    public bool IsDoableNextTuen => GameInfoModel.CullentTurn < 3;
+    public bool IsDoableNextTuen => GameInfoModel.CullentTurn < GameInfoModel.MaxTurn;
 
     public void InitFiewsModel(FiewPurchaseModel fp1, FiewPurchaseModel fp2, FiewPurchaseModel fp3) => m_FiewsModel = new FiewsModel(fp1, fp2, fp3);
     public void InitScoreModel() => m_ScoreModel = new ScoreModel();

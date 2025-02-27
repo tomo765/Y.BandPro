@@ -32,6 +32,9 @@ public class GameMainFlowManager : SingletonBehaviour<GameMainFlowManager>
     {
         if(!GameDataManager.Instance.IsSuccessTurn || !GameDataManager.Instance.IsDoableNextTuen)
         {
+            ResultModel.SetScore(GameDataManager.Instance.ScoreModel.Score);
+            ResultModel.SetSuccess(GameDataManager.Instance.GameInfoModel.CullentTurn == GameDataManager.Instance.GameInfoModel.MaxTurn);
+
             await FadeUI.Instance.Fade("Result");
             return;
         }
