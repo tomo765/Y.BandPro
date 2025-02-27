@@ -286,7 +286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &114077516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &242077948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2340,7 +2340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &360998851
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3518,7 +3518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_IsEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.a
@@ -3526,15 +3526,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.b
-      value: 0.21568628
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.g
-      value: 0.21568628
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.r
-      value: 0.21568628
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4838242432249294873, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
@@ -6046,7 +6046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1198234563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6275,7 +6275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1224845198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7288,7 +7288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1413817594
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7543,7 +7543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_IsEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.a
@@ -7551,15 +7551,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.b
-      value: 0.21568628
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.g
-      value: 0.21568628
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.r
-      value: 0.21568628
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4838242432249294873, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Color.b
@@ -8079,7 +8079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1619078826
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9385,7 +9385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1879936573
 RectTransform:
   m_ObjectHideFlags: 0
