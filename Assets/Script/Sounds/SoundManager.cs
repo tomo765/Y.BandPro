@@ -10,7 +10,7 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
     [SerializeField] private FiewSound m_Fiew2Sound;
     [SerializeField] private FiewSound m_Fiew3Sound;
 
-    [SerializeField, Space(5)] private float m_MasterVolume;
+    private static float m_MasterVolume = 1;
 
     public UnityEngine.Events.UnityEvent OnFinishMainSound { get; } = new UnityEngine.Events.UnityEvent();
     public float MainSoundTime => m_MainSound.MainSource.time;
@@ -25,6 +25,7 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
     public async UniTask StartMainSound()
     {
         m_MainSound.MainSource.time = 0;
+        m_MainSound.MainSource.volume = m_MasterVolume;
         m_MainSound.MainSource.Play();
         
         await UniTask.WaitUntil(() => !m_MainSound.IsPlaying);
@@ -41,7 +42,6 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
         m_Fiew3Sound.MainSource.time = MainSoundTime;
     }
 
-
     public void PlaySound(GenreClips clips, int fiewNumber)
     {
         GetFiewSound(fiewNumber).PlaySound(clips, m_MasterVolume, m_MainSound.MainSource);
@@ -50,6 +50,12 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
     public void StopSound(int index)
     {
         GetFiewSound(index).StopSound();
+    }
+
+    public static void SetMasterVolume(float val)
+    {
+        m_MasterVolume = val;
+        Debug.Log(val);
     }
 
     private FiewSound GetFiewSound(int index)

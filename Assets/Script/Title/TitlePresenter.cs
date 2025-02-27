@@ -23,5 +23,10 @@ public class TitlePresenter:MonoBehaviour
         {
             m_TitleUI.gameObject.SetActive(false);
         };
+
+        m_TitleUI.VolumeSlider.onValueChanged.AddListener((val) =>
+        {
+            SoundManager.SetMasterVolume(val);
+        });
     }
 }

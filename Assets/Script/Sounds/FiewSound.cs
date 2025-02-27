@@ -27,7 +27,12 @@ public class FiewSound : MonoBehaviour
         m_MainSource.time = mainAudio.time;
     }
 
-    public void StopSound() => m_MainSource.Stop();
+    public void StopSound()
+    {
+        if (m_PlayMusicType == MusicType.Main) { return; }
+        (m_MainSource, m_SubSource) = (m_SubSource, m_MainSource);
+        StartCoroutine(GraduallyDecreaseVolume(m_SubSource, 0.05f));
+    }
 
     private IEnumerator GraduallyDecreaseVolume(AudioSource target, float t)
     {
