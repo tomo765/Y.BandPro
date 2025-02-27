@@ -49,8 +49,8 @@ public class FiewsPresenter
 
     private void OnFiewButtonClicked(FiewPurchaseModel fiewPurchase)
     {
-        if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(FiewSellModel.FiewPrice)) { return; }
         if (fiewPurchase.FiewType1 != ColorType.White && fiewPurchase.FiewType2 != ColorType.White) { return; }
+        if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(FiewSellModel.FiewPrice)) { return; }
 
         fiewPurchase.SetNewtFiew(GameDataManager.Instance.FiewsModel.FiewSell.CullentFiew);
         UpdateRGBColors();
