@@ -2673,7 +2673,6 @@ MonoBehaviour:
   m_Fiew1Sound: {fileID: 330725095}
   m_Fiew2Sound: {fileID: 2083931291}
   m_Fiew3Sound: {fileID: 1651846247}
-  m_MasterVolume: 0.8
   SoundPitch: 1
 --- !u!1001 &461667776
 PrefabInstance:
@@ -3028,6 +3027,10 @@ PrefabInstance:
     - target: {fileID: 1159346397037387069, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Name
       value: UpgradeEquipmentButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159346397037387069, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3872664381651731213, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Pivot.x
@@ -6086,6 +6089,10 @@ PrefabInstance:
     - target: {fileID: 1159346397037387069, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Name
       value: DrinkServiceButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159346397037387069, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3872664381651731213, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Pivot.x

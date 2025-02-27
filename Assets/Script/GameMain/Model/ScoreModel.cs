@@ -29,14 +29,16 @@ public class ScoreModel
 
         RankStatus GetRank()
         {
-            if     (Score < 200000)   { return RankStatus.D; }
-            else if(Score < 450000)   { return RankStatus.D_Plus; }
-            else if(Score < 800000)   { return RankStatus.C; }
-            else if(Score < 1350000)  { return RankStatus.C_Plus; }
-            else if(Score < 1850000)  { return RankStatus.B_Plus; }
-            else if(Score < 2400000)  { return RankStatus.B_Plus; }
-            else if(Score < 2800000)  { return RankStatus.A; }
-            else                      { return RankStatus.S; }
+            if     (Score < 1000)   { return RankStatus.D; }
+            else if(Score < 2000)   { return RankStatus.D_Plus; }
+            else if(Score < 4000)   { return RankStatus.C; }
+            else if(Score < 8000)  { return RankStatus.C_Plus; }
+            else if(Score < 15000)  { return RankStatus.B_Plus; }
+            else if(Score < 25000)  { return RankStatus.B_Plus; }
+            else if(Score < 35000)  { return RankStatus.A; }
+            else if(Score < 45000)  { return RankStatus.A_Plus; }
+            else if(Score < 55000)  { return RankStatus.S; }
+            else                      { return RankStatus.S_Plus; }
         }
     }
 
@@ -107,5 +109,7 @@ public enum RankStatus
     B,
     B_Plus,
     A,
-    S
+    A_Plus,
+    S,
+    S_Plus
 }

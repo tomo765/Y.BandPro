@@ -42,7 +42,7 @@ public abstract class CustomersPresenterBase<T> where T : CustomerUIBase
 
 public class CustomersModel
 {
-    public static Vector3 InitPos => new Vector3(12, 0, Random.Range(-8f , - 0.5f));
+    public static Vector3 InitPos => new Vector3(12, 0, Random.Range(-9f, -3.05f));
 
     public readonly ColorType[] CustomerColors = { ColorType.Red, ColorType.Green, ColorType.Blue };
 

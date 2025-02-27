@@ -26,8 +26,8 @@ public class ExpansionPresenter
         m_ExpansionUI.ExpandStoreButton.onClick += () =>
         {
             if (!GameDataManager.Instance.ExpansionModel.CanExpandStore) { return; }
+            if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(GetExpandStoreMoney(GameDataManager.Instance.ExpansionModel.ExpandStoreCount))) { return; }
             GameDataManager.Instance.CustomersModel.UpdateMaxCustomerCount(GameDataManager.Instance.CustomersModel.MaxCustomerCount + 10);
-            GameDataManager.Instance.GameInfoModel.TryUseMoney(1000);
 
             GameDataManager.Instance.ExpansionModel.AddExpandStoreCount();
             m_ExpansionUI.ExpandStoreCount.text = GetCountText(GameDataManager.Instance.ExpansionModel.RemainingExpandStore, ExpansionModel.MaxExpandStore);
@@ -41,7 +41,7 @@ public class ExpansionPresenter
         m_ExpansionUI.DrinkServiceButton.onClick += () =>
         {
             if (!GameDataManager.Instance.ExpansionModel.CanDrinkService) { return; }
-            GameDataManager.Instance.GameInfoModel.TryUseMoney(1000);
+            if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(1000)) { return; }
 
             GameDataManager.Instance.ExpansionModel.AddDrinkServiceCount();
             m_ExpansionUI.DrinkServiceCount.text = GetCountText(GameDataManager.Instance.ExpansionModel.RemainingDrinkService, ExpansionModel.MaxDrinkService);
@@ -55,7 +55,7 @@ public class ExpansionPresenter
         m_ExpansionUI.UpgradeEquipmentButton.onClick += () =>
         {
             if (!GameDataManager.Instance.ExpansionModel.CanUpgradeEquipment) { return; }
-            GameDataManager.Instance.GameInfoModel.TryUseMoney(1000);
+            if(!GameDataManager.Instance.GameInfoModel.TryUseMoney(1000)) { return; }
 
             GameDataManager.Instance.ExpansionModel.AddUpgradeEquipmentCount();
             m_ExpansionUI.UpgradeEquipmentCount.text = GetCountText(GameDataManager.Instance.ExpansionModel.RemainingUpgradeEquipment, ExpansionModel.MaxUpgradeEquipment);
@@ -64,4 +64,17 @@ public class ExpansionPresenter
     }
 
     private string GetCountText(int count, int max) => count.ToString() + " / " + max.ToString();
+
+    private int GetExpandStoreMoney(int expandCount)
+    {
+        return expandCount switch
+        {
+            0 => 1000,
+            1 => 1400,
+            2 => 1600,
+            3 => 1800,
+            4 => 2000,
+            _ => 999999999
+        };
+    }
 }

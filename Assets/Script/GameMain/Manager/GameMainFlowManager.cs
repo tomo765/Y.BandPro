@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameMainFlowManager : SingletonBehaviour<GameMainFlowManager>
@@ -39,8 +38,22 @@ public class GameMainFlowManager : SingletonBehaviour<GameMainFlowManager>
             return;
         }
 
+        GameDataManager.Instance.GameInfoModel.SetnextTargetRank(GetNextTarget(GameDataManager.Instance.GameInfoModel.CullentTurn + 1));
+        GameDataManager.Instance.GameInfoModel.SetTargetRankText();
+
         GameDataManager.Instance.GameInfoModel.AddTurn();
         SoundManager.Instance.StartMainSound().Forget();
         SoundManager.Instance.StartPlaySounds();
+    }
+
+    private RankStatus GetNextTarget(int nextTurn)
+    {
+        return nextTurn switch
+        {
+            1 => RankStatus.C,
+            2 => RankStatus.B,
+            3 => RankStatus.A,
+            _ => RankStatus.D
+        };
     }
 }

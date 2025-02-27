@@ -8,8 +8,8 @@ public class GameInfoModel
     private int m_MaxTurn = 3;
     private GameInfoUI m_GameInfoUI;
     private float m_MaxSoundTime;
-    private int m_Money = 25000;
-    private RankStatus m_TargetRank = RankStatus.B;
+    private int m_Money = 250;
+    private RankStatus m_TargetRank = RankStatus.D;
 
     public int CullentTurn => m_Cullenturn;
     public int MaxTurn => m_MaxTurn;
@@ -36,6 +36,11 @@ public class GameInfoModel
     public void SetTimerSliderValue()
     {
         m_GameInfoUI.TimerSlider.value = m_MaxSoundTime - SoundManager.Instance.MainSoundTime;
+    }
+
+    public void SetnextTargetRank(RankStatus nextTarget)
+    {
+        //m_TargetRank = nextTarget;
     }
 
     public void SetMoneyText()
