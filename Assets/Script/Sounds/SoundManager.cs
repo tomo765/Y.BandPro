@@ -55,7 +55,6 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
     public static void SetMasterVolume(float val)
     {
         m_MasterVolume = val;
-        Debug.Log(val);
     }
 
     private FiewSound GetFiewSound(int index)

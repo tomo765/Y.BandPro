@@ -2,7 +2,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
-public class TitlePresenter:MonoBehaviour
+public class TitlePresenter
 {
     private TitleManager m_TitleManager;
     private TitleUI m_TitleUI;
