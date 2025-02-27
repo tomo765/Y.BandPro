@@ -9,7 +9,7 @@ public class GameInfoModel
     private GameInfoUI m_GameInfoUI;
     private float m_MaxSoundTime;
     private int m_Money = 250;
-    private RankStatus m_TargetRank = RankStatus.D;
+    private RankStatus m_TargetRank = RankStatus.C;
 
     public int CullentTurn => m_Cullenturn;
     public int MaxTurn => m_MaxTurn;
@@ -38,18 +38,29 @@ public class GameInfoModel
         m_GameInfoUI.TimerSlider.value = m_MaxSoundTime - SoundManager.Instance.MainSoundTime;
     }
 
-    public void SetnextTargetRank(RankStatus nextTarget)
+    public void SetNextTargetRank()
     {
-        //m_TargetRank = nextTarget;
+        m_TargetRank = GetNextTarget(m_Cullenturn + 1);
     }
 
     public void SetMoneyText()
     {
-        m_GameInfoUI.HaveMoneyText.text = "Money : " + m_Money.ToString("N0");
+        m_GameInfoUI.HaveMoneyText.text = "Š‹à : " + m_Money.ToString("N0");
     }
 
     public void SetTargetRankText()
     {
-        m_GameInfoUI.TargetRankText.text = "TargetRank : " + m_TargetRank.ToString().Replace("_Plus", "+");
+        m_GameInfoUI.TargetRankText.text = "–Ú•Wƒ‰ƒ“ƒN : " + m_TargetRank.ToString().Replace("_Plus", "+");
+    }
+
+    private RankStatus GetNextTarget(int nextTurn)
+    {
+        return nextTurn switch
+        {
+            1 => RankStatus.C,
+            2 => RankStatus.B,
+            3 => RankStatus.A,
+            _ => RankStatus.D
+        };
     }
 }
