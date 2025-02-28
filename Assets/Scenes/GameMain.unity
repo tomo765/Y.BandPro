@@ -3526,15 +3526,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.b
-      value: 1
+      value: 0.21568628
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.g
-      value: 1
+      value: 0.21568628
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.r
-      value: 1
+      value: 0.21568628
       objectReference: {fileID: 0}
     - target: {fileID: 4838242432249294873, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
@@ -4373,10 +4373,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ExpandStoreButton: {fileID: 629759239}
   m_ExpandStoreCount: {fileID: 1064093292}
+  m_ExpandStoreMoney: {fileID: 1387764121}
   m_DrinkServiceButton: {fileID: 1470764538}
   m_DrinkServiceCount: {fileID: 242077949}
+  m_DrinkServiceMoney: {fileID: 1413817595}
   m_UpgradeEquipmentButton: {fileID: 520198997}
   m_UpgradeEquipmentCount: {fileID: 1619078827}
+  m_UpgradeEquipmentMoney: {fileID: 1198234564}
 --- !u!1 &748457567
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,7 +6044,7 @@ GameObject:
   - component: {fileID: 1198234565}
   - component: {fileID: 1198234564}
   m_Layer: 5
-  m_Name: CountText
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7147,7 +7150,7 @@ GameObject:
   - component: {fileID: 1387764122}
   - component: {fileID: 1387764121}
   m_Layer: 5
-  m_Name: CountText
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7283,7 +7286,7 @@ GameObject:
   - component: {fileID: 1413817596}
   - component: {fileID: 1413817595}
   m_Layer: 5
-  m_Name: CountText
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7551,15 +7554,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.b
-      value: 1
+      value: 0.21568628
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.g
-      value: 1
+      value: 0.21568628
       objectReference: {fileID: 0}
     - target: {fileID: 4495850484983214901, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Disable.m_Color.r
-      value: 1
+      value: 0.21568628
       objectReference: {fileID: 0}
     - target: {fileID: 4838242432249294873, guid: 38fed27512bc05d40a54012857ac0fe6, type: 3}
       propertyPath: m_Color.b

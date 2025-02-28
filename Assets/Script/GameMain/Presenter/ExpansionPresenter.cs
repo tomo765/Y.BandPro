@@ -27,7 +27,9 @@ public class ExpansionPresenter
         {
             if (!GameDataManager.Instance.ExpansionModel.CanExpandStore) { return; }
             if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(GetExpandStoreMoney(GameDataManager.Instance.ExpansionModel.ExpandStoreCount))) { return; }
+            
             GameDataManager.Instance.CustomersModel.UpdateMaxCustomerCount(GameDataManager.Instance.CustomersModel.MaxCustomerCount + 10);
+            m_ExpansionUI.ExpandStoreMoney.text = GetMoneyText(GetExpandStoreMoney(GameDataManager.Instance.ExpansionModel.ExpandStoreCount + 1));
 
             GameDataManager.Instance.ExpansionModel.AddExpandStoreCount();
             m_ExpansionUI.ExpandStoreCount.text = GetCountText(GameDataManager.Instance.ExpansionModel.RemainingExpandStore, ExpansionModel.MaxExpandStore);
@@ -42,6 +44,9 @@ public class ExpansionPresenter
         {
             if (!GameDataManager.Instance.ExpansionModel.CanDrinkService) { return; }
             if (!GameDataManager.Instance.GameInfoModel.TryUseMoney(1000)) { return; }
+
+            GameDataManager.Instance.ScoreModel.AddExtraScore(1000);
+            GameDataManager.Instance.ScoreModel.UpdateRank();
 
             GameDataManager.Instance.ExpansionModel.AddDrinkServiceCount();
             m_ExpansionUI.DrinkServiceCount.text = GetCountText(GameDataManager.Instance.ExpansionModel.RemainingDrinkService, ExpansionModel.MaxDrinkService);
@@ -64,6 +69,7 @@ public class ExpansionPresenter
     }
 
     private string GetCountText(int count, int max) => count.ToString() + " / " + max.ToString();
+    private string GetMoneyText(int money) =>  "x " + money.ToString();
 
     private int GetExpandStoreMoney(int expandCount)
     {
@@ -74,7 +80,7 @@ public class ExpansionPresenter
             2 => 1600,
             3 => 1800,
             4 => 2000,
-            _ => 999999999
+            _ => 0
         };
     }
 }

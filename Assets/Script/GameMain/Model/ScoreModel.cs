@@ -6,11 +6,12 @@ using UnityEngine;
 public class ScoreModel
 {
     private int m_Score;
+    private int m_ExtraScore;
     private RankStatus m_RankStatus = RankStatus.D;
 
     public RankStatus RankStatus => m_RankStatus;
     public string Rank => m_RankStatus.ToString().Replace("_Plus", "+");
-    public int Score => m_Score;
+    public int Score => m_Score + m_ExtraScore;
 
     private const int FiewsBaseScore = 10;
     private const int CustomersBaseScore = 5;
@@ -23,6 +24,7 @@ public class ScoreModel
 
         m_Score = fiewsScore * customerCountScore + customersColorScore;
     }
+    public void AddExtraScore(int addScore) => m_ExtraScore += addScore;
     public void UpdateRank()
     {
         m_RankStatus = GetRank();
