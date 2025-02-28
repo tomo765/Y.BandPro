@@ -61,6 +61,11 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
         m_Image.color = m_Default.Color;
     }
 
+    private void Start()
+    {
+        SetEnabled(m_IsEnabled);
+    }
+
 
     protected void PointerEnter()
     {
