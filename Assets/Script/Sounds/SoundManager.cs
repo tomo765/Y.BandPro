@@ -27,6 +27,8 @@ public partial class SoundManager : SingletonBehaviour<SoundManager>
         m_MainSound.MainSource.time = 0;
         m_MainSound.MainSource.volume = m_MasterVolume;
         m_MainSound.MainSource.Play();
+
+        Debug.Log ("m_MasterVolume " + m_MasterVolume);
         
         await UniTask.WaitUntil(() => !m_MainSound.IsPlaying);
         OnFinishMainSound?.Invoke();
