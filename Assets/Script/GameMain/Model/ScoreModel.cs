@@ -7,6 +7,7 @@ public class ScoreModel
     private int m_Score;
     private RankStatus m_RankStatus = RankStatus.D;
 
+    public RankStatus RankStatus => m_RankStatus;
     public string Rank => m_RankStatus.ToString().Replace("_Plus", "+");
     public int Score => m_Score;
 
@@ -67,7 +68,7 @@ public class ScoreModel
         }
 
     }
-    private int CalcCustomersCountPoint(CustomersModel customersModel)
+    private int CalcCustomersCountPoint(CustomersModel customersModel)  // * 10 => * 1
     {
         return customersModel.CustomerCount * 10;
     }

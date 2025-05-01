@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: a7c15376dba6b2e49b86586ec091ed05
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_FadeUIPrehab: {fileID: 6404521176310131691, guid: c608aa49d7ee8724da7fffc0605ae582, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

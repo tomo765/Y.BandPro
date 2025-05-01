@@ -1,32 +1,27 @@
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class TitlePresenter
+
+public class TitlePresenter:MonoBehaviour
 {
     private TitleManager m_TitleManager;
-
-
+    private TitleUI m_TitleUI;
+    
     public TitlePresenter(TitleManager titleManager)
     {
         m_TitleManager = titleManager;
     }
 
+    public TitlePresenter(TitleUI titleUI)
+    {
+        m_TitleUI = titleUI;
+    }
+
     public void Start()
     {
-        m_TitleManager.TitleUI.StartButton.onClick = () =>
+        m_TitleUI.StartButton.onClick += () =>
         {
-            m_TitleManager.TitleUI.SetActive(false);
-            m_TitleManager.ReserveUI.SetActive(true);
-        };
-
-        m_TitleManager.ReserveUI.PlayButton.onClick = () =>
-        {
-            SceneManager.LoadScene("GameMain");
-        };
-
-        m_TitleManager.ReserveUI.BackButton.onClick = () =>
-        {
-            m_TitleManager.TitleUI.SetActive(true);
-            m_TitleManager.ReserveUI.SetActive(false);
+            m_TitleUI.gameObject.SetActive(false);
         };
     }
 }

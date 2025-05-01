@@ -14,14 +14,14 @@ public class ResultPresenter
 
     public void Start()
     {
-        m_ResultUI.RetryButton.onClick = () =>
+        m_ResultUI.RetryButton.onClick = async () =>
         {
-            SceneManager.LoadScene("GameMain");
+            await FadeUI.Instance.Fade("GameMain");
         };
 
-        m_ResultUI.TitleButton.onClick = () =>
+        m_ResultUI.TitleButton.onClick = async () =>
         {
-            SceneManager.LoadScene("Title");
+            await FadeUI.Instance.Fade("Title");
         };
     }
 }

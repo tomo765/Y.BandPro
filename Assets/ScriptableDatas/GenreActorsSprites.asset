@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3b1357af8e77f42984654e3a48f7af, type: 3}
+  m_Name: GenreActorsSprites
+  m_EditorClassIdentifier: 
+  m_YellowImage: {fileID: 1463144415, guid: 274286ec3d8e75c4b9c6722ed699682a, type: 3}
+  m_RedImage: {fileID: -2146547295, guid: ba0733903aa55c549876200031414b29, type: 3}
+  m_MagentaImage: {fileID: 2122755776, guid: ad6b5e879ad226b46bf07c39508fe182, type: 3}
+  m_BlueImage: {fileID: -1122140362, guid: 40e985095558a0243bc7109af34c56a9, type: 3}
+  m_CyanImage: {fileID: 105797893, guid: baa8c93be1f0a284889a8e8c2fc6fe9a, type: 3}
+  m_GreenImage: {fileID: -1858988258, guid: b0688e806a030c146a1514083fdcde6a, type: 3}

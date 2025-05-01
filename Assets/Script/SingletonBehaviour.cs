@@ -12,7 +12,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
     {
         if(instance != null)
         {
-            Destroy(instance);
+            Destroy(gameObject);
             return;
         }
 
@@ -23,6 +23,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
 
     private void OnDestroy()
     {
+        if(instance != this) { return; }
         instance = null;
     }
 }
